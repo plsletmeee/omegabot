@@ -421,6 +421,22 @@ module.exports = {
                     type: ApplicationCommandOptionType.String,
                 },
                 {
+                    name: "message-type",
+                    description: "The type of message you want",
+                    required: true,
+                    type: ApplicationCommandOptionType.String,
+                    choices: [
+                        {
+                            name: "Embed",
+                            value: "embed",
+                        },
+                        {
+                            name: "Regular",
+                            value: "regular",
+                        },
+                    ]
+                },
+                {
                     name: "role-1",
                     description: "The role you want to give",
                     required: true,
@@ -878,6 +894,7 @@ module.exports = {
 
             const { v4: uuidv4 } = require('uuid');
             const Schema = require('../database/schemas/dropdown-roles');
+            const type = interaction.options.getString('message-type');
             const content = interaction.options.getString('message');
             let role1 = interaction.options.getRole('role-1');
             let role2 = interaction.options.getRole('role-2');
@@ -1310,7 +1327,13 @@ module.exports = {
             else if (role2 !== null) firstActionRow = new ActionRowBuilder().addComponents(dropdown2);
             else if (role1 !== null) firstActionRow = new ActionRowBuilder().addComponents(dropdown1);
 
-            const msg = await interaction.channel.send({content: content, components: [firstActionRow]});
+            const embed = new EmbedBuilder()
+            .setDescription(content)
+            .setColor("#2f3136")
+
+            let msg = undefined;
+            if(type == 'regular') msg = await interaction.channel.send({content: content, components: [firstActionRow]});
+            if(type == 'embed') msg = await interaction.channel.send({embeds: [embed], components: [firstActionRow]});
 
             Schema.findOne({ Guild : interaction.guild.id }, (err, data) => {
                 if (data) {
