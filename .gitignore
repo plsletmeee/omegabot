@@ -1,0 +1,8 @@
+# not needed for main bot
+node_modules
+
+# see .env file for reasoning
+.env
+
+# not needed for main bot
+start.js
