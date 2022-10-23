@@ -5,8 +5,8 @@ module.exports = {
     once: true,
     async execute(client) {
 
-        client.user.setActivity("with slash commands", { type: ActivityType.Playing })
-        client.user.setStatus("online");
+        client.user.setActivity("with new commands", { type: ActivityType.Playing })
+        client.user.setStatus("idle");
 
         console.log(`✅ Login Successful. ${client.user.username} Online.`);
 
