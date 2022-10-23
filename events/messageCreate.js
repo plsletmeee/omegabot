@@ -61,22 +61,22 @@ module.exports = {
             const id = data.ID;
             const highestXP = data.Level * 1000;
 
-            if(xp === 1000 && level === 0) { 
+            if(xp >= 1000 && level === 0) { 
                 data.Level = level + 1,
                 data.XP = 0;
                 data.save();
                 channel.send(`<@${id}> you levelled up! 🥳\nYou are now level ${level + 1}.`).catch(() => {return});
-            } else if(xp === highestXP && level !== 0) { 
+            } else if(xp >= highestXP && level !== 0) { 
                 data.Level = level + 1,
                 data.XP = 0;
                 data.save();
                 channel.send(`<@${id}> you levelled up! 🥳\nYou are now level ${level + 1}.`).catch(() => {return});
             } 
 
-            if(xp < highestXP && level !== 0) {
+            if(xp >= highestXP && level !== 0) {
                 data.XP = xp + 50,
                 data.save();
-            } else if(xp < 1000 && level === 0) {
+            } else if(xp >= 1000 && level === 0) {
                 data.XP = xp + 50,
                 data.save();
             };
