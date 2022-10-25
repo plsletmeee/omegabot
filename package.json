@@ -21,7 +21,7 @@
     "get-dadjoke": "^2.0.2",
     "images-generator": "^3.3.2",
     "libsodium-wrappers": "^0.7.10",
-    "mongoose": "^6.6.7",
+    "mongoose": "^6.7.0",
     "opusscript": "^0.0.8",
     "uuid": "^9.0.0"
   }
