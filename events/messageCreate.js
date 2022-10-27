@@ -27,7 +27,6 @@ module.exports = {
 
         });
 
-
         LevelDataSchema.findOne({ Guild : message.guild.id }, (err, data) => {
 
             if(message.author.bot) return;
@@ -38,16 +37,7 @@ module.exports = {
 
         LevelSchema.findOne({ Guild : message.guild.id, ID : message.author.id }, async (err, data) => {
 
-            if(err) {
-                return new LevelSchema ({
-                    Guild : message.guild.id,
-                    ID : message.author.id,
-                    Level : 0,
-                    XP : 0,
-                }).save();
-            }
-            
-            if(!data) {
+            if(err || !data) {
                 return new LevelSchema ({
                     Guild : message.guild.id,
                     ID : message.author.id,
@@ -56,28 +46,32 @@ module.exports = {
                 }).save();
             };
 
-            const level = data.Level;
-            const xp = data.XP;
-            const id = data.ID;
-            const highestXP = data.Level * 1000;
+            let level = data.Level;
+            let xp = data.XP;
+            let id = data.ID;
+            let highestXP = data.Level * 1000;
 
-            if(xp >= 1000 && level === 0) { 
-                data.Level = level + 1,
+            if(xp > 1000 && level == 0) {
+                channel.send(`<@${id}> you levelled up! 🥳\nYou are now level ${level + 1}.`).catch(() => {return});
+                data.Level = level + 1;
                 data.XP = 0;
                 data.save();
+            } else 
+            
+            if(xp > highestXP && level > 0) { 
                 channel.send(`<@${id}> you levelled up! 🥳\nYou are now level ${level + 1}.`).catch(() => {return});
-            } else if(xp >= highestXP && level !== 0) { 
-                data.Level = level + 1,
+                data.Level = level + 1;
                 data.XP = 0;
                 data.save();
-                channel.send(`<@${id}> you levelled up! 🥳\nYou are now level ${level + 1}.`).catch(() => {return});
-            } 
+            } else 
 
-            if(xp >= highestXP && level !== 0) {
-                data.XP = xp + 50,
+            if(xp < 1000 && level == 0) {
+                data.XP = xp + Math.floor(Math.random() * 100),
                 data.save();
-            } else if(xp >= 1000 && level === 0) {
-                data.XP = xp + 50,
+            } else 
+            
+            if(xp < highestXP && level > 0) { 
+                data.XP = xp + Math.floor(Math.random() * 100),
                 data.save();
             };
     
