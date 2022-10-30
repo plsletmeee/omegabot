@@ -292,10 +292,10 @@ module.exports = {
                     
                 });
 
-                array.sort(function(a, b){return a - b});
-                array.reverse();
-
-                let shortened = array.slice(0, 10)
+                leaderboard.sort(function(obj1, obj2){return obj1.substring(6) - obj2.substring(6)});
+                leaderboard.reverse();
+                
+                let shortened = leaderboard.slice(0, 10)
 
                 const embed = new EmbedBuilder()
                 .setTitle(`Top 10 Ranked Members`)
