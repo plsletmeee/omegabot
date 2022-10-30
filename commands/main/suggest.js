@@ -13,7 +13,7 @@ module.exports = {
     ],   
     async execute(interaction) {
 
-        const Schema = require('../database/schemas/suggestions');
+        const Schema = require('../../database/schemas/suggestions');
 
         Schema.findOne({ Guild : interaction.guild.id }, async (err, data) => {
         

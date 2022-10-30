@@ -1,5 +1,4 @@
 const { EmbedBuilder, ButtonBuilder, ActionRowBuilder } = require('discord.js');
-const client = require('../index');
 
 module.exports = {
     name: 'guide',

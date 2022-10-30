@@ -43,12 +43,17 @@ module.exports = {
     ],
     async execute(interaction) {
 
-        const message = interaction.options.getString('description')
-        const footer = interaction.options.getString('footer')
-        const title = interaction.options.getString('title')
-        const colour = interaction.options.getString('hex-code')
-        const image = interaction.options.getString('image-url')
-        const thumbnail = interaction.options.getString('thumbnail-url')
+        const message = interaction.options.getString('description');
+        const footer = interaction.options.getString('footer');
+        const title = interaction.options.getString('title');
+        const colour = interaction.options.getString('hex-code');
+        const image = interaction.options.getString('image-url');
+        const thumbnail = interaction.options.getString('thumbnail-url');
+
+        if(!colour.startsWith('#') || !colour == "Red") return interaction.reply({content: "<a:obcross:1018078642607239218> An error occured. You may have used some invalid information.", ephemeral: true});
+        if(!colour.size == 7) return interaction.reply({content: "<a:obcross:1018078642607239218> An error occured. You may have used some invalid information.", ephemeral: true});
+        if(!message && !title && !colour && !image && !thumbnail && !footer) return interaction.reply({content: "<a:obcross:1018078642607239218> An error occured. You may have used some invalid information.", ephemeral: true});
+        if(!message && !title && colour && !image && !thumbnail && !footer) return interaction.reply({content: "<a:obcross:1018078642607239218> An error occured. You may have used some invalid information.", ephemeral: true});
 
         const embed = new EmbedBuilder()
         .setTitle(title || null)
@@ -58,12 +63,9 @@ module.exports = {
         .setThumbnail(thumbnail || null)
         .setFooter({ text: footer || null })
 
-        if(!message && !title && !colour && !image && !thumbnail && !footer) return interaction.reply({content: "An error occured. You may have used some invalid information.", ephemeral: true});;
-        if(!message && !title && colour && !image && !thumbnail && !footer) return interaction.reply({content: "An error occured. You may have used some invalid information.", ephemeral: true});;
-
         await interaction.reply(".");
         await interaction.deleteReply().catch(() => {return});
-        await interaction.channel.send({embeds: [embed]}).catch(() => {return interaction.reply({content: "An error occured. You may have used some invalid information.", ephemeral: true})});
+        await interaction.channel.send({embeds: [embed]}).catch(() => {return interaction.reply({content: "<a:obcross:1018078642607239218> An error occured. You may have used some invalid information.", ephemeral: true})});
 
     }
 }
