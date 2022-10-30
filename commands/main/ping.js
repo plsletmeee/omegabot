@@ -1,10 +1,9 @@
 const { EmbedBuilder } = require('discord.js');
-const client = require('../../index');
 
 module.exports = {
     name: "ping",
     description: "Get the bot and API latency",
-    async execute(interaction) {
+    async execute(interaction, client) {
 
         const pingCalc = new EmbedBuilder()
         .setTitle("🧠 Calculating latency... ")

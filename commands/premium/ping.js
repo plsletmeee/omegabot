@@ -1,10 +1,9 @@
 const { EmbedBuilder } = require('discord.js');
-const client = require('../../index');
 
 module.exports = {
     name: "ping",
     description: "Get the bot and API latency",
-    async execute(interaction) {
+    async execute(interaction, premium) {
 
         const pingCalc = new EmbedBuilder()
         .setTitle("🧠 Calculating latency... ")
@@ -17,7 +16,7 @@ module.exports = {
         .setColor("#2f3136")
         .addFields(
             {name: "Bot Ping", value: `\`${ping.createdTimestamp - interaction.createdTimestamp} ms\``},
-            {name: "API Ping", value: `\`${client.ws.ping} ms\``},
+            {name: "API Ping", value: `\`${premium.ws.ping} ms\``},
         )
 
         await interaction.editReply({ embeds: [PingEmbed] })
