@@ -1,4 +1,4 @@
-module.exports = async (client) => {
+module.exports = async (client, premium) => {
 
     try {
 
@@ -11,7 +11,7 @@ module.exports = async (client) => {
             autoIndex: false,
         });
 
-        console.log("✅ MongoDB connected successfully.");
+        console.log("[ALL] MongoDB connected successfully.");
 
     } catch(err) {
         return console.log(err);
