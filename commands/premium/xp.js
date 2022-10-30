@@ -278,29 +278,29 @@ module.exports = {
             Schema.find({ Guild : interaction.guild.id }, async (err, data) => {
         
                 if(!data) return interaction.reply({content: `<a:obcross:1018078642607239218> There is no rank data for this server.`, ephemeral: true});
-                
-                let values = data;
-                let array = []
 
-                values.forEach(async value => {
-                    let id = value.ID;
-                    let level = value.Level;
+                let leaderboard = [];
+
+                data.forEach(async user => {
+                    let id = user.ID;
+                    let level = user.Level;
 
                     interaction.guild.members.fetch(id).then(
-                        array.push(`**Level ${level}** <@${id}>`)
+                        leaderboard.push(`**Level ${level}** <@${id}>`)
                     ).catch(() => {return})
-                    
                 });
 
-                leaderboard.sort(function(obj1, obj2){return obj1.substring(6) - obj2.substring(6)});
+                leaderboard.sort(function(a, b){return a.replace(/ *\<[^)]*\> */g, "").replaceAll('**', '').substring(6) - b.replace(/ *\<[^)]*\> */g, "").replaceAll('**', '').substring(6)});
                 leaderboard.reverse();
-                
-                let shortened = leaderboard.slice(0, 10)
+
+                let shortLeaderboard = leaderboard.slice(0, 10);
+                let string = shortLeaderboard.toString().replaceAll(',', '\r');
 
                 const embed = new EmbedBuilder()
                 .setTitle(`Top 10 Ranked Members`)
-                .setDescription(shortened.toString().replaceAll(',', '\r'))
+                .setDescription(string)
                 .setColor('#2f3136')
+                .setTimestamp()
 
                 interaction.reply({embeds: [embed]})
             
