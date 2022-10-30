@@ -1,5 +1,5 @@
 const { EmbedBuilder } = require('discord.js');
-const AuditLogSchema = require('../database/schemas/audit-log');
+const AuditLogSchema = require('../../database/schemas/audit-log');
 
 module.exports = {
     name: 'messageUpdate',

@@ -1,7 +1,7 @@
 const { EmbedBuilder } = require('discord.js');
-const WelcomeSchema = require('../database/schemas/welcomes');
-const AutoroleSchema = require('../database/schemas/autorole');
-const MemberlogSchema = require('../database/schemas/memberlog')
+const WelcomeSchema = require('../../database/schemas/welcomes');
+const AutoroleSchema = require('../../database/schemas/autorole');
+const MemberlogSchema = require('../../database/schemas/memberlog')
 
 module.exports = {
     name: 'guildMemberAdd',

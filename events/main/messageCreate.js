@@ -1,6 +1,6 @@
-const LinkSchema = require('../database/schemas/links');
-const LevelSchema = require('../database/schemas/memberlevels')
-const LevelDataSchema = require('../database/schemas/levels');
+const LinkSchema = require('../../database/schemas/links');
+const LevelSchema = require('../../database/schemas/memberlevels')
+const LevelDataSchema = require('../../database/schemas/levels');
 
 module.exports = {
     name: 'messageCreate',

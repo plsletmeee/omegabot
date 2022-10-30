@@ -20,7 +20,7 @@ module.exports = {
 
             if (interaction.customId === "ticketCreate") {
 
-                const Schema = require('../database/schemas/tickets');
+                const Schema = require('../../database/schemas/tickets');
     
                 Schema.findOne({ Guild : interaction.guild.id, PanelChannel : interaction.channel.id }, async (err, data) => {
                     
@@ -467,7 +467,7 @@ module.exports = {
 
             if(interaction.customId === 'dropdown-roles') {
 
-                const Schema = require('../database/schemas/dropdown-roles');
+                const Schema = require('../../database/schemas/dropdown-roles');
 
                 Schema.findOne({ Guild : interaction.guild.id, MessageID : interaction.message.id }, async (err, data) => {
 

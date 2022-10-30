@@ -3,20 +3,20 @@ const { ActivityType } = require('discord.js');
 module.exports = {
     name: "ready",
     once: true,
-    async execute(client) {
+    async execute(premium) {
 
-        client.user.setActivity("with new commands", { type: ActivityType.Playing })
-        client.user.setStatus("idle");
+        premium.user.setActivity("with new commands", { type: ActivityType.Playing })
+        premium.user.setStatus("idle");
 
-        console.log(`✅ Login Successful. ${client.user.username} Online.`);
+        console.log(`[PREMIUM] Login Successful. ${premium.user.username} Online.`);
 
         //DAILY MESSAGES
 
         setInterval(() => {
 
-            client.guilds.cache.forEach((guild) => {
+            premium.guilds.cache.forEach((guild) => {
 
-                const DailyMessagesSchema = require('../database/schemas/daily-messages');
+                const DailyMessagesSchema = require('../../database/schemas/daily-messages');
     
                 DailyMessagesSchema.findOne({ Guild : guild.id }, async (err, data) => {
         
@@ -51,9 +51,9 @@ module.exports = {
 
         //COUNTERS
 
-        client.guilds.cache.forEach((guild) => {
+        premium.guilds.cache.forEach((guild) => {
 
-            const RoleCounterSchema = require('../database/schemas/rolecounter');
+            const RoleCounterSchema = require('../../database/schemas/rolecounter');
 
             RoleCounterSchema.findOne({ Guild : guild.id }, async (err, data) => {
 
@@ -71,7 +71,7 @@ module.exports = {
 
             });
 
-            const MemberCounterSchema = require('../database/schemas/membercounter');
+            const MemberCounterSchema = require('../../database/schemas/membercounter');
 
             MemberCounterSchema.findOne({ Guild : guild.id }, async (err, data) => {
 
@@ -89,7 +89,7 @@ module.exports = {
 
             });
 
-            const BotCounterSchema = require('../database/schemas/botcounter');
+            const BotCounterSchema = require('../../database/schemas/botcounter');
 
             BotCounterSchema.findOne({ Guild : guild.id }, async (err, data) => {
 
@@ -107,7 +107,7 @@ module.exports = {
 
             });
 
-            const OnlineCounterSchema = require('../database/schemas/onlinecounter');
+            const OnlineCounterSchema = require('../../database/schemas/onlinecounter');
 
             OnlineCounterSchema.findOne({ Guild : guild.id }, async (err, data) => {
 
@@ -130,7 +130,7 @@ module.exports = {
 
             setInterval(() => {
 
-                const RoleCounterSchema = require('../database/schemas/rolecounter');
+                const RoleCounterSchema = require('../../database/schemas/rolecounter');
 
                 RoleCounterSchema.findOne({ Guild : guild.id }, async (err, data) => {
     
@@ -148,7 +148,7 @@ module.exports = {
     
                 });
     
-                const MemberCounterSchema = require('../database/schemas/membercounter');
+                const MemberCounterSchema = require('../../database/schemas/membercounter');
     
                 MemberCounterSchema.findOne({ Guild : guild.id }, async (err, data) => {
     
@@ -166,7 +166,7 @@ module.exports = {
     
                 });
     
-                const BotCounterSchema = require('../database/schemas/botcounter');
+                const BotCounterSchema = require('../../database/schemas/botcounter');
     
                 BotCounterSchema.findOne({ Guild : guild.id }, async (err, data) => {
     
@@ -184,7 +184,7 @@ module.exports = {
     
                 });
     
-                const OnlineCounterSchema = require('../database/schemas/onlinecounter');
+                const OnlineCounterSchema = require('../../database/schemas/onlinecounter');
     
                 OnlineCounterSchema.findOne({ Guild : guild.id }, async (err, data) => {
     

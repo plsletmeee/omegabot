@@ -6,7 +6,7 @@ module.exports = {
 
         if(!oldMember.premiumSince && newMember.premiumSince) {
 
-            const BoostSchema = require('../database/schemas/boosts');
+            const BoostSchema = require('../../database/schemas/boosts');
 
             BoostSchema.findOne({ Guild : newMember.guild.id }, (err, data) => {
 
@@ -27,7 +27,7 @@ module.exports = {
 
         if(oldMember.pending && !newMember.pending) {
 
-            const AutoroleSchema = require('../database/schemas/autorole');
+            const AutoroleSchema = require('../../database/schemas/autorole');
 
             AutoroleSchema.findOne({ Guild : newMember.guild.id }, (err, data) => {
 
