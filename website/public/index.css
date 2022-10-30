@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Nunito+Sans:wght@600&family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Poppins&family=Prompt:wght@900&display=swap');
 
 :root {
     --clr-grey-light: 214 7% 19%; 
@@ -7,8 +7,8 @@
     --clr-red: 0 100% 64%;
     --clr-white: 0 0% 100%;
 
-    --fs-900: 9.375rem;
-    --fs-800: 6.25rem;
+    --fs-900: 7.375rem;
+    --fs-800: 5.25rem;
     --fs-700: 3.5rem;
     --fs-600: 2rem;
     --fs-500: 1.75rem;
@@ -18,10 +18,8 @@
 
     --ff-regular: 'Poppins', sans-serif;
     --ff-neutral: 'Montserrat', sans-serif;
-    --ff-headline: "Ginto Nord", "Whitney", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    --ff-headline: 'Prompt', sans-serif;
 }
-
-/* resetting the page */
 
 *,
 *::before,
@@ -94,6 +92,18 @@ select {
     font: inherit;
 }
 
+::-webkit-scrollbar {
+    width: 0.7rem;
+}
+
+::-webkit-scrollbar-track {
+    background: hsl( var(--clr-grey-dark) );
+}
+
+::-webkit-scrollbar-thumb {
+    background: hsl( var(--clr-grey-medium) ); 
+}
+
 ::selection {
     background: hsl( var(--clr-red) );
     color: hsl( var(--clr-white) );
@@ -114,8 +124,6 @@ select {
       scroll-behavior: auto !important;
     }
 }
-
-/* utility classes */
 
 .container {
     padding-inline: 2em;
@@ -159,8 +167,6 @@ select {
     line-height: 1.1;
 }
 
-/* scroll animations */
-
 .hidden {
     opacity: 0;
     filter: blur(5px);
@@ -174,29 +180,39 @@ select {
     transform: translateY(0);
 }
 
-/* navbar */
-
-.nav-links {
+.nav-items {
     list-style: none;
     padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
-.nav-links li {
-    display: inline-block;
-    padding: 0 0.5rem;
+.nav-items img {
+    border-radius: 0.4rem;
+    max-width: 3.4rem;
 }
 
-.nav-links a {
+.nav-items a {
     transition-duration: 0.7s;
 }
 
-.nav-links a:hover {
-    color: hsl( var(--clr-red) );
+.nav-items .nav-links {
+    display: inline-block;
 }
 
-.buttons {
+.nav-items .nav-buttons {
     display: inline-block;
     padding: 0.8rem 1rem;
     background-color: hsl( var(--clr-grey-medium) );
-    border-radius: 4px;
+    border-radius: 0.3rem;
 }
+
+.nav-items .nav-links a:hover {
+    color: hsl( var(--clr-red) );
+}
+
+/* .nav-items .nav-buttons:hover {
+    background-color: hsl( var(--clr-grey-light) );
+} */
+
