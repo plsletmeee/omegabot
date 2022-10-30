@@ -292,7 +292,7 @@ module.exports = {
                     
                 });
 
-                array.sort();
+                array.sort(function(a, b){return a - b});
                 array.reverse();
 
                 let shortened = array.slice(0, 10)
