@@ -50,9 +50,11 @@ module.exports = {
         const image = interaction.options.getString('image-url')
         const thumbnail = interaction.options.getString('thumbnail-url')
 
-        if(!(colour.startsWith('#') || colour == "Red") && !(colour.size == 7)) return interaction.reply({content: "An error occured. You may have used some invalid information.", ephemeral: true});;
-        if(!message && !title && !colour && !image && !thumbnail && !footer) return interaction.reply({content: "An error occured. You may have used some invalid information.", ephemeral: true});;
-        if(!message && !title && colour && !image && !thumbnail && !footer) return interaction.reply({content: "An error occured. You may have used some invalid information.", ephemeral: true});;
+        if(colour) if(!colour == "Red" && !colour.startsWith('#')) return interaction.reply({content: "<a:obcross:1018078642607239218> An error occured. You may have used some invalid information.", ephemeral: true});
+        if(colour) if(colour.startsWith('#') && colour.size !== 7) return interaction.reply({content: "<a:obcross:1018078642607239218> An error occured. You may have used some invalid information.", ephemeral: true});
+
+        if(!message && !title && !colour && !image && !thumbnail && !footer) return interaction.reply({content: "<a:obcross:1018078642607239218> An error occured. You may have used some invalid information.", ephemeral: true});
+        if(!message && !title && colour && !image && !thumbnail && !footer) return interaction.reply({content: "<a:obcross:1018078642607239218> An error occured. You may have used some invalid information.", ephemeral: true});
 
         const embed = new EmbedBuilder()
         .setTitle(title || null)
