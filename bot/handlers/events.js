@@ -4,7 +4,7 @@ module.exports = async (client, premium) => {
 
     try {
 
-        const eventFiles = readdirSync(`./events/main`).filter(files => files.endsWith('.js'));
+        const eventFiles = readdirSync(`./bot/events/main`).filter(files => files.endsWith('.js'));
 
         eventFiles.forEach((file) => {
             const event = require(`../events/main/${file}`);

@@ -4,7 +4,7 @@ module.exports = (client, premium) => {
 
     try {
 
-        const commandFiles = readdirSync(`./commands/main`).filter(files => files.endsWith('.js'));
+        const commandFiles = readdirSync(`./bot/commands/main`).filter(files => files.endsWith('.js'));
         const commandsArray = [];
 
         commandFiles.forEach((file) => {
