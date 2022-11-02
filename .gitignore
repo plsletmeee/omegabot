@@ -1,8 +1,8 @@
-# not needed for main bot
 node_modules
+# not needed for server
 
-# see .env file for reasoning
-.env
-
-# not needed for main bot
 start.js
+# not needed for server
+
+.env
+# has super secret keys and tokens
