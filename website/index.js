@@ -5,14 +5,14 @@ const app = express();
 require('dotenv').config();
 let port = process.env.PORT || 3000;
 
-app.use('', express.static(path.join(__dirname, '/public')));
+app.use('', express.static(path.join(__dirname, '/pages')));
 
 app.get('/', (req, res) => {
-	return res.sendFile('website/public/homepage.html', { root: '.' });
+	return res.sendFile('website/pages/homepage.html', { root: '.' });
 });
 
 app.get('/dashboard', (req, res) => {
-	return res.sendFile('website/public/dashboard.html', { root: '.' });
+	return res.sendFile('website/pages/dashboard.html', { root: '.' });
 });
 
 app.get('/auth', (req, res) => {
@@ -24,7 +24,7 @@ app.get('/invite', (req, res) => {
 });
 
 app.get('*', (req, res) => {
-	return response.sendFile('website/public/error404.html', { root: '.' });
+	return res.sendFile('website/pages/error404.html', { root: '.' });
 });
 
 app.listen(port, () => console.log(`[SITE] App listening at port ${port}`));
