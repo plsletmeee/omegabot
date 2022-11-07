@@ -1,19 +1,10 @@
 const { ApplicationCommandOptionType, PermissionFlagsBits, EmbedBuilder } = require('discord.js');
 
 module.exports = {
-    name: 'rank',
+    name: 'rankdata',
     description: 'All the rank commands',
+    defaultMemberpermissions: PermissionFlagsBits.ModerateMembers,
     options: [
-        {
-            name: "info",
-            description: "Fetch your rank data for this server",
-            type: ApplicationCommandOptionType.Subcommand
-        },
-        {
-            name: "leaderboard",
-            description: "Look at the rank leaderboard for this server",
-            type: ApplicationCommandOptionType.Subcommand
-        },
         {
             name: "set",
             description: "Set data",
@@ -23,7 +14,6 @@ module.exports = {
                     name: "xp",
                     description: "Set a member's XP",
                     type: ApplicationCommandOptionType.Subcommand,
-                    defaultMemberpermissions: PermissionFlagsBits.ModerateMembers,
                     options: [
                         {
                             name: "member",
@@ -43,7 +33,6 @@ module.exports = {
                     name: "level",
                     description: "Set a member's level",
                     type: ApplicationCommandOptionType.Subcommand,
-                    defaultMemberpermissions: PermissionFlagsBits.ModerateMembers,
                     options: [
                         {
                             name: "member",
@@ -70,7 +59,6 @@ module.exports = {
                     name: "xp",
                     description: "Add to a member's XP",
                     type: ApplicationCommandOptionType.Subcommand,
-                    defaultMemberpermissions: PermissionFlagsBits.ModerateMembers,
                     options: [
                         {
                             name: "member",
@@ -90,7 +78,6 @@ module.exports = {
                     name: "level",
                     description: "Add to a member's level",
                     type: ApplicationCommandOptionType.Subcommand,
-                    defaultMemberpermissions: PermissionFlagsBits.ModerateMembers,
                     options: [
                         {
                             name: "member",
@@ -110,69 +97,6 @@ module.exports = {
         }
     ],
     async execute(interaction) {
-
-        if(interaction.options.getSubcommand() == 'info') {
-
-            const Schema = require('../../../database/bot/memberlevels')
-    
-            Schema.findOne({ Guild : interaction.guild.id, ID : interaction.member.id }, async (err, data) => {
-        
-                if(!data) return interaction.reply({content: "<a:obcross:1018078642607239218> There is no rank data. Send some messages in this server first!", ephemeral: true})
-    
-                const level = data.Level;
-                const xp = data.XP;
-    
-                const embedOne = new EmbedBuilder()
-                .setTitle(`XP & Levels`)
-                .setThumbnail(interaction.member.displayAvatarURL({dynamic: true}))
-                .setDescription(`You are level **${level}**\nYou have **${xp}** XP\n\nYou need **${1000 - xp}** more XP to reach level **${level + 1}**`)
-                .setColor("#2f3136")
-    
-                const embedTwo = new EmbedBuilder()
-                .setTitle(`XP & Levels`)
-                .setThumbnail(interaction.member.displayAvatarURL({dynamic: true}))
-                .setDescription(`You are level **${level}**\nYou have **${xp}** XP\n\nYou need **${level * 1000 - xp}** more XP to reach level **${level + 1}**`)
-                .setColor("#2f3136")
-    
-                if(level === 0) interaction.reply({embeds: [embedOne]});
-                if(level !== 0) interaction.reply({embeds: [embedTwo]});
-            
-            });
-
-        }
-
-        if(interaction.options.getSubcommandGroup() == 'set' && interaction.options.getSubcommand() == 'xp') {
-
-            const Schema = require('../../../database/bot/memberlevels')
-            const member = interaction.options.getMember('member');
-            const amount = interaction.options.getNumber('amount');
-
-            if(amount < 0) return interaction.reply({content: `<a:obcross:1018078642607239218> Cannot set XP to ${amount}! Minimum is 0.`, ephemeral: true})
-    
-            Schema.findOne({ Guild : interaction.guild.id, ID : member.id }, async (err, data) => {
-        
-                if(!data) {
-
-                    new Schema ({
-                        Guild : interaction.guild.id,
-                        ID : member.id,
-                        Level : 0,
-                        XP : amount,
-                    }).save();
-
-                    interaction.reply({content: `<a:obtick:1018078610130751528> Set ${member.user.username}'s XP to ${amount}.`, ephemeral: true});
-                
-                } else {
-
-                    data.XP = amount;
-                    data.save();
-
-                    interaction.reply({content: `<a:obtick:1018078610130751528> Set ${member.user.username}'s XP to ${amount}.`, ephemeral: true});
-
-                }
-            
-            });
-        }
 
         if(interaction.options.getSubcommandGroup() == 'set' && interaction.options.getSubcommand() == 'level') {
 
@@ -269,42 +193,6 @@ module.exports = {
                     interaction.reply({content: `<a:obtick:1018078610130751528> Added ${amount} levels to ${member.user.username}.`, ephemeral: true});
 
                 }
-            
-            });
-        }
-
-        if(interaction.options.getSubcommand() == 'leaderboard') {
-
-            const Schema = require('../../../database/bot/memberlevels')
-    
-            Schema.find({ Guild : interaction.guild.id }, async (err, data) => {
-        
-                if(!data) return interaction.reply({content: `<a:obcross:1018078642607239218> There is no rank data for this server.`, ephemeral: true});
-
-                let leaderboard = [];
-
-                data.forEach(async user => {
-                    let id = user.ID;
-                    let level = user.Level;
-
-                    interaction.guild.members.fetch(id).then(
-                        leaderboard.push(`**Level ${level}** <@${id}>`)
-                    ).catch(() => {return})
-                });
-
-                leaderboard.sort(function(a, b){return a.replace(/ *\<[^)]*\> */g, "").replaceAll('**', '').substring(6) - b.replace(/ *\<[^)]*\> */g, "").replaceAll('**', '').substring(6)});
-                leaderboard.reverse();
-
-                let shortLeaderboard = leaderboard.slice(0, 10);
-                let string = shortLeaderboard.toString().replaceAll(',', '\r');
-
-                const embed = new EmbedBuilder()
-                .setTitle(`Top 10 Ranked Members`)
-                .setDescription(string)
-                .setColor('#2f3136')
-                .setTimestamp()
-
-                interaction.reply({embeds: [embed]})
             
             });
         }
