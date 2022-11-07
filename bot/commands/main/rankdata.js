@@ -3,7 +3,7 @@ const { ApplicationCommandOptionType, PermissionFlagsBits, EmbedBuilder } = requ
 module.exports = {
     name: 'rankdata',
     description: 'All the rank commands',
-    defaultMemberpermissions: PermissionFlagsBits.ModerateMembers,
+    defaultMemberPermissions: PermissionFlagsBits.Administrator,
     options: [
         {
             name: "set",
