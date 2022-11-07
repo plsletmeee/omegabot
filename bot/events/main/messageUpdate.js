@@ -19,7 +19,7 @@ module.exports = {
             const channel = oldMessage.guild.channels.cache.get(data.Channel);
 
             const embed = new EmbedBuilder()
-            .setColor('Red')
+            .setColor("#2f3136")
             .setTitle("Message Edited")
             .setDescription(`A message sent by ${oldMessage.author} was edited in ${oldMessage.channel}.\n[**Jump to message**](${newMessage.url})`)
             .addFields(

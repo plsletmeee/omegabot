@@ -16,7 +16,7 @@ module.exports = {
             const channel = message.guild.channels.cache.get(data.Channel);
 
             const embed = new EmbedBuilder()
-            .setColor('Red')
+            .setColor("#2f3136")
             .setTitle("Message Deleted")
             .setDescription(`A message sent by ${message.author} was deleted in ${message.channel}.`)
             .addFields(
