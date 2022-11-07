@@ -18,12 +18,12 @@ module.exports = {
             name: "set",
             description: "Set data",
             type: ApplicationCommandOptionType.SubcommandGroup,
-            defaultMemberpermissions: PermissionFlagsBits.ModerateMembers,
             options: [
                 {
                     name: "xp",
                     description: "Set a member's XP",
                     type: ApplicationCommandOptionType.Subcommand,
+                    defaultMemberpermissions: PermissionFlagsBits.ModerateMembers,
                     options: [
                         {
                             name: "member",
@@ -43,6 +43,7 @@ module.exports = {
                     name: "level",
                     description: "Set a member's level",
                     type: ApplicationCommandOptionType.Subcommand,
+                    defaultMemberpermissions: PermissionFlagsBits.ModerateMembers,
                     options: [
                         {
                             name: "member",
@@ -64,12 +65,12 @@ module.exports = {
             name: "add",
             description: "Add data",
             type: ApplicationCommandOptionType.SubcommandGroup,
-            defaultMemberpermissions: PermissionFlagsBits.ModerateMembers,
             options: [
                 {
                     name: "xp",
                     description: "Add to a member's XP",
                     type: ApplicationCommandOptionType.Subcommand,
+                    defaultMemberpermissions: PermissionFlagsBits.ModerateMembers,
                     options: [
                         {
                             name: "member",
@@ -89,6 +90,7 @@ module.exports = {
                     name: "level",
                     description: "Add to a member's level",
                     type: ApplicationCommandOptionType.Subcommand,
+                    defaultMemberpermissions: PermissionFlagsBits.ModerateMembers,
                     options: [
                         {
                             name: "member",
