@@ -7,10 +7,16 @@ DiscordRPC.register(clientId);
 async function setActivity() {
     if(!RPC) return;
     RPC.setActivity({
-        details: `Get Omega Bot!`,
+        details: `Lead Developer`,
         largeImageKey: `omegabot`,
         largeImageText: `Omega Logo`,
         instance: false,
+        buttons: [
+            {
+                label: `Get Omega Bot`,
+                url: `https://omegabot.xyz/invite`
+            }
+        ]
     })
 }
 

@@ -39,11 +39,10 @@ client.commands = new Collection();
 premium.commands = new Collection();
 premium.enabled = false;
 
-require('../rpc/index') // loads the discord-rpc statuses
-
 require('./handlers/mongodb')(client, premium); // loads the database
 require('./handlers/commands')(client, premium); // loads the bot commands
 require('./handlers/events')(client, premium); // loads the bot events
+require('../rpc/index'); // loads the discord-rpc statuses
 require('dotenv').config();
 
 client.login(process.env.MAIN_BOT_TOKEN || process.env.TEST_BOT_TOKEN); // logs in the main or testing bot (main bot token stored on bot server)
