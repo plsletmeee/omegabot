@@ -1335,18 +1335,11 @@ module.exports = {
             if(type == 'regular') msg = await interaction.channel.send({content: content, components: [firstActionRow]});
             if(type == 'embed') msg = await interaction.channel.send({embeds: [embed], components: [firstActionRow]});
 
-            Schema.findOne({ Guild : interaction.guild.id }, (err, data) => {
-                if (data) {
-                    data.MessageID = msg.id,
-                    data.Roles = role1Id + ' ' + role2Id + ' ' + role3Id + ' ' + role4Id + ' ' + role5Id + ' ' + role6Id + ' ' + role7Id + ' ' + role8Id + ' ' + role9Id + ' ' + role10Id
-                    data.save();
-                } else {
-                new Schema ({
-                    Guild : interaction.guild.id,
-                    MessageID : msg.id,
-                    Roles : role1Id + ' ' + role2Id + ' ' + role3Id + ' ' + role4Id + ' ' + role5Id + ' ' + role6Id + ' ' + role7Id + ' ' + role8Id + ' ' + role9Id + ' ' + role10Id
-                }).save();
-            }});
+            new Schema ({
+                Guild: interaction.guild.id,
+                MessageID: msg.id,
+                Roles: role1Id + ' ' + role2Id + ' ' + role3Id + ' ' + role4Id + ' ' + role5Id + ' ' + role6Id + ' ' + role7Id + ' ' + role8Id + ' ' + role9Id + ' ' + role10Id
+            }).save();
 
             interaction.reply({ content: "<a:obtick:1018078610130751528> Reaction Role setup successful.", ephemeral: true });  
 
