@@ -1,9 +1,10 @@
-const { ApplicationCommandOptionType, ChatInputCommandInteraction } = require('discord.js')
+const { ApplicationCommandOptionType, ChatInputCommandInteraction, PermissionFlagsBits } = require('discord.js')
 const client = require('../index')
 
 module.exports = {
     name: 'emoji',
     description: 'Emoji Commands',
+    defaultMemberPermissions: PermissionFlagsBits.ManageEmojisAndStickers,
     options: [
         {
             name: 'add',

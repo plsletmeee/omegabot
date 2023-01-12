@@ -39,8 +39,8 @@ module.exports = async (client) => {
                     if(data.premium) guild.commands.set(premiumCommands)
                 })
 
-                guild.commands.set([])
-                guild.commands.set(mainCommands)
+                // guild.commands.set([])
+                // guild.commands.set(mainCommands)
 
             }) 
             

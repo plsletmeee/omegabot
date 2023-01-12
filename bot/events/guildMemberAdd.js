@@ -30,7 +30,7 @@ module.exports = {
             message = message.replaceAll('{memberCount}', guild.memberCount)
             message = message.replaceAll('{joinTimestamp}', `<t:${parseInt(joinedTimestamp / 1000)}:D>`)
 
-            if(picture == 'false') picture = false
+            if(picture == 'false') picture = undefined
 
             const normalEmbed = new EmbedBuilder()
             .setColor('#ff3f3f')
