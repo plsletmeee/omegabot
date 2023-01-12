@@ -451,7 +451,7 @@ module.exports = {
 
         }
 
-        if(interaction.isSelectMenu()) {
+        if(interaction.isAnySelectMenu()) {
 
             if(interaction.customId === 'dropdown-roles') {
 
