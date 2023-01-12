@@ -65,7 +65,7 @@ module.exports = {
 
         const linkButton = new ButtonBuilder()
         .setStyle('Link')
-        .setURL(`http://localhost:3000/transcript/${uuid}`)
+        .setURL(`https://omegabot.xyz/transcript/${uuid}`)
         .setLabel('Transcript')
 
         const row = new ActionRowBuilder().addComponents(linkButton)
