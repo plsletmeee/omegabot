@@ -415,42 +415,6 @@ module.exports = {
 
         }
 
-        if (interaction.isModalSubmit()) {
-
-            if(interaction.customId === "echo") {
-
-                await interaction.reply({ content: 'Omega Bot has echoed your message!', ephemeral: true })
-    
-                const content = interaction.fields.getTextInputValue('content')
-                await interaction.channel.send(content)
-    
-            }
-
-            if(interaction.customId === "drake") {
-
-                const text1 = interaction.fields.getTextInputValue('drakeText1')
-                const text2 = interaction.fields.getTextInputValue('drakeText2')
-
-                const gen = require('images-generator')
-                const drakeImage = await gen.misc.drake({text1: text1, text2: text2})
-        
-                interaction.reply({ content: `https://${drakeImage}` })
-
-            }
-
-            if(interaction.customId === "factbook") {
-
-                const fact = interaction.fields.getTextInputValue('fact')
-
-                const gen = require('images-generator')
-                const factImage = await gen.misc.facts({content: fact})
-        
-                interaction.reply(factImage)
-
-            }
-
-        }
-
         if(interaction.isAnySelectMenu()) {
 
             if(interaction.customId === 'dropdown-roles') {
