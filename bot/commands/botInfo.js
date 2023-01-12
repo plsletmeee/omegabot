@@ -3,7 +3,6 @@ const client = require('../index')
 
 module.exports = {
     name: 'bot-info',
-    omega: true,
     description: 'Shows the bot information',
     /**
     * @param {ChatInputCommandInteraction} interaction
