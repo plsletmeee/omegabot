@@ -1,11 +1,11 @@
 # Privacy Policy
-### Last updated October 28th 2022
+### Last updated January 12th 2023
 
 The use of this application ("Omega Bot") requires the collection of some some user data ("Data"). The Data collcted includes but is not limited to the Discord IDs of our users, the Discord Guilds of our users, and the Discord Profile details of our users. The use of Omega Bot will be considered an agreement to this Policy's terms.
 
 ## Access to Data
 
-Access to Data is only permitted to Omega Bot's developers, and only within the scope required for the development, testing, and implementation of Omega Bot. Any data collected is not sold, shared, or provided to any third party, except when it is required by law or a Terms of Service agreement. To request the viewing or deletion of any data collected by Omega Bot, contact @Xictul#0001 on Discord or create a support ticket in the [Omega Bot Discord](https://discord.com/channels/1009837302954074262/1031744772949413968) server.
+Access to Data is only permitted to Omega Bot's developers, and only within the scope required for the development, testing, and implementation of Omega Bot. Any data collected is not sold, shared, or provided to any third party, except when it is required by law or a Terms of Service agreement. To request the viewing or deletion of any data collected by Omega Bot, email support@omegabot.xyz or create a support ticket in the [Omega Bot Discord](https://discord.com/channels/1009837302954074262/1031744772949413968) server.
 
 ## Storage of Data
 
@@ -13,7 +13,7 @@ Data collected by Omega Bot is stored in a MongoDB database. This database is se
 
 ## User Rights
 
-All Omega Bot users have the right, at any time, to request to view and delete the Data pertaining to their respective Discord Accounts. To request the viewing or deletion of any data collected by Omega Bot, contact @Xictul#0001 on Discord or create a support ticket in the [Omega Bot Discord](https://discord.com/channels/1009837302954074262/1031744772949413968) server.
+All Omega Bot users have the right, at any time, to request to view and delete the Data pertaining to their respective Discord Accounts. To request the viewing or deletion of any data collected by Omega Bot, email support@omegabot.xyz or create a support ticket in the [Omega Bot Discord](https://discord.com/channels/1009837302954074262/1031744772949413968) server.
 
 ## Underage Users
 
@@ -21,4 +21,4 @@ The use of Omega Bot is not permitted for minors under the age of 13, or under t
 
 ## Questions
 
-If a user of Omega Bot have questions pertaining to our services, or are concerned about what data might be being stored, they may contact @Xictul#0001 on Discord or create a support ticket in the [Omega Bot Discord](https://discord.com/channels/1009837302954074262/1031744772949413968) server.
+If a user of Omega Bot have questions pertaining to our services, or are concerned about what data might be being stored, they may email support@omegabot.xyz or create a support ticket in the [Omega Bot Discord](https://discord.com/channels/1009837302954074262/1031744772949413968) server.

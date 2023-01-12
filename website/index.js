@@ -1,30 +1,34 @@
-const path = require('path');
-const express = require('express');
-const app = express();
+const express = require('express')
+const port = process.env.PORT || 3000
+const mongoose = require('mongoose')
+const app = express()
 
-require('dotenv').config();
-let port = process.env.PORT || 3000;
+// DATABASE //
+const dotenv = require('dotenv')
+dotenv.config()
 
-app.use('', express.static(path.join(__dirname, '/pages')));
+mongoose.set("strictQuery", false)
+mongoose.connect(process.env.MONGO_TOKEN || process.env.MONGO_TEST, {
+	useUnifiedTopology: true,
+	useNewUrlParser: true,
+})
 
-app.get('/', (req, res) => {
-	return res.sendFile('website/pages/homepage.html', { root: '.' });
-});
+console.log('🎈 Database Connected')
 
-app.get('/dashboard', (req, res) => {
-	return res.sendFile('website/pages/dashboard.html', { root: '.' });
-});
+// EXPRESS SETUP
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
 
-app.get('/auth', (req, res) => {
-	return res.redirect(301, 'https://discord.com/api/oauth2/authorize?client_id=988620875622391839&redirect_uri=https%3A%2F%2Fwww.omegabot.xyz%2Fdashboard&response_type=token&scope=identify%20guilds');
-});
+// ROUTES //
+const transcriptRoute = require('./routes/transcripts')
+const defaultRoute = require('./routes/default')
 
-app.get('/invite', (req, res) => {
-	return res.redirect(301, 'https://discord.com/api/oauth2/authorize?client_id=988620875622391839&permissions=8&scope=applications.commands%20bot');
-});
+app.use('/', defaultRoute)
+app.use('/transcript', transcriptRoute)
 
 app.get('*', (req, res) => {
-	return res.sendFile('website/pages/error404.html', { root: '.' });
-});
+	return res.sendFile('website/pages/error404.html', { root: '.' })
+})
 
-app.listen(port, () => console.log(`[SITE] App listening at port ${port}`));
+// EXPRESS PORT CONNECT
+app.listen(port, () => console.log(`🎈 Express running at port ${port}`));

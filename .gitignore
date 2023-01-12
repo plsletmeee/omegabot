@@ -1,8 +1,3 @@
 node_modules
-# not needed for server
-
 start.js
-# not needed for server
-
 .env
-# has super secret keys and tokens
