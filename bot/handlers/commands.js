@@ -23,17 +23,18 @@ module.exports = async (client) => {
                 
                 client.mainCommands.set(command.name, command), mainCmd.push(command)
                 client.commands.set(command.name, command)
+    
+            }
+        }
 
-                // Updating Command Count
-                for(const command of mainCmd) {
-                    if(command.name != command.description) cmdsCount++
-                    else { command.options.forEach(commandOption => {
-                            if(commandOption.type == 1) cmdsCount++
-                            if(commandOption.type == 2) { commandOption.options.forEach(commandGroupOption => {
-                            if(commandGroupOption.type == 1) cmdsCount++ }) }
-                        })
-                    }
-                }
+        // Updating Command Count
+        for(const command of mainCmd) {
+            if(command.name != command.description) cmdsCount++
+            else { command.options.forEach(commandOption => {
+                    if(commandOption.type == 1) cmdsCount++
+                    if(commandOption.type == 2) { commandOption.options.forEach(commandGroupOption => {
+                    if(commandGroupOption.type == 1) cmdsCount++ }) }
+                })
             }
         }
 

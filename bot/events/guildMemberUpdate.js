@@ -19,7 +19,7 @@ module.exports = {
                 .setDescription(`${newMember} started boosting the server! 🥳`)
                 .setImage('https://i.imgur.com/7u9kVDS.jpg')
 
-                channel.send({embeds: [embed]}).catch(() => {return})
+                if(channel) channel.send({embeds: [embed]}).catch(() => {return})
 
             })
 
@@ -35,7 +35,7 @@ module.exports = {
            
                 const role = newMember.guild.roles.cache.get(data.Role)
     
-                if(data.Screening === "true") newMember.roles.add(role).catch(() => {return})
+                if(data.Screening === "true" && role) newMember.roles.add(role).catch(() => {return})
     
             })
 

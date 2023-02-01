@@ -27,7 +27,7 @@ module.exports = {
                 {name: "Edited Message", value: `${edited}`},
             )
 
-            await channel.send({embeds: [embed]}).catch(() => {return})
+            if(channel) channel.send({embeds: [embed]}).catch(() => {return})
             
 
         })

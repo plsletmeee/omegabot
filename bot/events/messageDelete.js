@@ -27,7 +27,7 @@ module.exports = {
                 embed.setImage(`${message.attachments.map(a => a.url)}`)
             }
 
-            await channel.send({embeds: [embed]}).catch(() => {return})
+            if(channel) channel.send({embeds: [embed]}).catch(() => {return})
             
 
         })

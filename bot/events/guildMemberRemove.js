@@ -67,7 +67,7 @@ module.exports = {
             .setColor("#ff3f3f")
             .setTimestamp()
         
-            channel.send({ embeds: [embed] }).catch(() => {return})
+            if(channel) channel.send({ embeds: [embed] }).catch(() => {return})
     
             })
     }

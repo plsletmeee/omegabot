@@ -75,7 +75,7 @@ module.exports = {
             if(!data || err) return
        
             const role = member.guild.roles.cache.get(data.Role)
-            if(data.Screening == "false") member.roles.add(role).catch(() => {return})
+            if(data.Screening == "false" && role) member.roles.add(role).catch(() => {return})
 
         })
 
@@ -92,7 +92,7 @@ module.exports = {
             .setColor("#ff3f3f")
             .setTimestamp()
 
-            channel.send({embeds: [embed]}).catch(() => {return})
+            if(channel) channel.send({embeds: [embed]}).catch(() => {return})
 
         })
     }

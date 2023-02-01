@@ -18,6 +18,8 @@ module.exports = {
                     let channel = guild.channels.cache.get(data.Channel)
                     let message = data.Message
                     let time = data.Time
+
+                    if(!channel) return
                     
                     let date = new Date()
                     let hr = date.getHours()
