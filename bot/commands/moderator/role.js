@@ -99,44 +99,6 @@ module.exports = {
             ]
         },
         {
-            name: 'name',
-            description: 'Rename a role',
-            type: ApplicationCommandOptionType.Subcommand,
-            options: [
-                {
-                    name: 'role',
-                    description: 'The role to rename',
-                    type: ApplicationCommandOptionType.Role,
-                    required: true
-                },
-                {
-                    name: 'name',
-                    description: 'The new channel name',
-                    type: ApplicationCommandOptionType.String,
-                    required: true
-                }
-            ]
-        },
-        {
-            name: 'color',
-            description: 'Recolor a role',
-            type: ApplicationCommandOptionType.Subcommand,
-            options: [
-                {
-                    name: 'role',
-                    description: 'The role to recolor',
-                    type: ApplicationCommandOptionType.Role,
-                    required: true
-                },
-                {
-                    name: 'color',
-                    description: 'The new role color',
-                    type: ApplicationCommandOptionType.String,
-                    required: true
-                }
-            ]
-        },
-        {
             name: 'members',
             description: 'List role members (max 100)',
             type: ApplicationCommandOptionType.Subcommand,
@@ -285,70 +247,6 @@ module.exports = {
                 })
 
                 return interaction.reply({ embeds: [createEmbed] })
-
-            }
-
-            case 'name': {
-
-                const role = options.getRole('role')
-                const name = options.getString('name')
-
-                const renameEmbed = new EmbedBuilder()
-                .setColor('#ff3f3f')
-                .setTitle('Role Renamed')
-                .setDescription(`Role was renamed successfully! 🎉\n\n**Old Name:** ${role.name}\n**New Name:** ${name}`)
-
-                const hierarchyEmbed = new EmbedBuilder()
-                .setColor('#ff3f3f')
-                .setTitle('Rename Failed')
-                .setDescription(`Role rename failed because the \`Omega Bot\` role is below \`${role.name}\` role in this server's role hierarchy. Bit rude but okay..`)
-
-                const noPermsEmbed = new EmbedBuilder()
-                .setColor('#ff3f3f')
-                .setTitle('Rename Failed')
-                .setDescription('Role rename failed because you do not have the required permissions to rename that role.. Whatchu tryna do huh? 🤨')
-
-                if(interaction.member.roles.highest.position < role.position) return interaction.reply({ embeds: [noPermsEmbed] })
-                if(!role.editable) return interaction.reply({ embeds: [hierarchyEmbed] })
-
-                role.setName(name)
-
-                return interaction.reply({ embeds: [renameEmbed] })
-
-            }
-
-            case 'color': {
-
-                const role = options.getRole('role')
-                const colour = options.getString('color')
-
-                const recolourEmbed = new EmbedBuilder()
-                .setColor('#ff3f3f')
-                .setTitle('Role Recolored')
-                .setDescription(`Role was recolored successfully! 🎉\n\n**Old Color:** ${role.hexColor}\n**New Color:** ${colour}`)
-
-                const hierarchyEmbed = new EmbedBuilder()
-                .setColor('#ff3f3f')
-                .setTitle('Recolor Failed')
-                .setDescription(`Role rerecolor failed because the \`Omega Bot\` role is below \`${role.name}\` role in this server's role hierarchy. Bit rude but okay..`)
-
-                const hexEmbed = new EmbedBuilder()
-                .setColor('#ff3f3f')
-                .setTitle('Recolor Failed')
-                .setDescription('Role recolor failed because the specified colour is an invalid hex code.')
-
-                const noPermsEmbed = new EmbedBuilder()
-                .setColor('#ff3f3f')
-                .setTitle('Recolor Failed')
-                .setDescription('Role recolor failed because you do not have the required permissions to recolor that role.. Whatchu tryna do huh? 🤨')
-
-                if(interaction.member.roles.highest.position < role.position) return interaction.reply({ embeds: [noPermsEmbed] })
-                if(!/^#[0-9A-F]{6}$/i.test(colour)) return interaction.reply({ embeds: [hexEmbed] })
-                if(!role.editable) return interaction.reply({ embeds: [hierarchyEmbed] })
-
-                role.setColor(colour)
-
-                return interaction.reply({ embeds: [recolourEmbed] })
 
             }
 

@@ -59,55 +59,6 @@ module.exports = {
             ]
         },
         {
-            name: 'name',
-            description: 'Rename a channel',
-            type: ApplicationCommandOptionType.Subcommand,
-            options: [
-                {
-                    name: 'channel',
-                    description: 'The channel you want to rename',
-                    type: ApplicationCommandOptionType.Channel,
-                    required: true
-                },
-                {
-                    name: 'name',
-                    description: 'The new channel name',
-                    type: ApplicationCommandOptionType.String,
-                    required: true
-                },
-                {
-                    name: 'reason',
-                    description: 'Why you want to delete it',
-                    type: ApplicationCommandOptionType.String
-                }
-            ]
-        },
-        {
-            name: 'move',
-            description: 'Move a channel',
-            type: ApplicationCommandOptionType.Subcommand,
-            options: [
-                {
-                    name: 'channel',
-                    description: 'The channel you want to move',
-                    type: ApplicationCommandOptionType.Channel,
-                    required: true
-                },
-                {
-                    name: 'category',
-                    description: 'Where you want to move it',
-                    type: ApplicationCommandOptionType.Channel,
-                    channel_types: [ChannelType.GuildCategory],
-                    required: true
-                },
-                {
-                    name: 'reason',
-                    description: 'Why you want to delete it',
-                    type: ApplicationCommandOptionType.String
-                }
-            ]
-        },
-        {
             name: 'purge',
             description: 'Clear messages from a channel',
             type: ApplicationCommandOptionType.Subcommand,
@@ -197,50 +148,6 @@ module.exports = {
                 interaction.guild.channels.delete(channel, reason)
 
                 return interaction.reply({ embeds: [deletedEmbed], ephemeral: true })
-
-            }
-
-            case 'name': {
-
-                const channel = options.getChannel('channel')
-                const name = options.getString('name')
-                const reason = options.getString('reason')
-
-                const renameEmbed = new EmbedBuilder()
-                .setColor('#ff3f3f')
-                .setTitle('Channel Renamed')
-                .setDescription(`Channel was renamed successfully! 🎉\n\n**Old Name:** ${channel.name}\n**New Name:** ${name}`)
-
-                channel.setName(name)
-
-                return interaction.reply({ embeds: [renameEmbed], ephemeral: true })
-
-            }
-
-            case 'move': {
-
-                const channel = options.getChannel('channel')
-                const category = options.getChannel('category')
-                const reason = options.getString('reason')
-
-                let channelParent = 'None'
-                if(channel.parent) channelParent = channel.parent.name
-
-                const movedEmbed = new EmbedBuilder()
-                .setColor('#ff3f3f')
-                .setTitle('Channel Moved')
-                .setDescription(`Channel was moved successfully! 🎉\n\n**Old Category:** ${channelParent}\n**New Category:** ${category.name || 'None'}`)
-
-                const failedEmbed = new EmbedBuilder()
-                .setColor('#ff3f3f')
-                .setTitle('Move Failed')
-                .setDescription(`Channel move failed because ${channel} is a category.`)
-
-                if(channel.type == ChannelType.GuildCategory) return interaction.reply({ embeds: [failedEmbed], ephemeral: true })
-
-                channel.setParent(category)
-
-                return interaction.reply({ embeds: [movedEmbed], ephemeral: true })
 
             }
 

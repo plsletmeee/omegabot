@@ -545,7 +545,7 @@ module.exports = {
             const TicketCategory = interaction.options.getChannel('ticket-category')
             const TicketMessage = interaction.options.getString('ticket-message')
             const TicketRole = interaction.options.getRole('ticket-role')
-            const Schema = require('../../database/tickets')
+            const Schema = require('../../../database/tickets')
         
                     const Embed = new EmbedBuilder()
                         .setTitle('🎟️ Tickets')
@@ -594,7 +594,7 @@ module.exports = {
 
 
                 const choice = interaction.options.getString('status')
-                const Schema = require('../../database/links')
+                const Schema = require('../../../database/links')
                 const role = interaction.options.getRole('excluded-role')
 
                 if(choice === 'true') {
@@ -638,7 +638,7 @@ module.exports = {
         if(interaction.options.getSubcommand() === 'boost-tracker') {
 
             const channel = interaction.options.getChannel('boost-channel')
-            const Schema = require('../../database/boosts')
+            const Schema = require('../../../database/boosts')
 
             Schema.findOne({ Guild : interaction.guild.id }, (err, data) => {
                 if (data) {
@@ -659,7 +659,7 @@ module.exports = {
 
             const channel = interaction.options.getChannel('levelup-channel')
             const spam = interaction.options.getChannel('excluded-channel')
-            const Schema = require('../../database/levels')
+            const Schema = require('../../../database/levels')
 
             Schema.findOne({ Guild : interaction.guild.id }, (err, data) => {
                 if (data) {
@@ -681,7 +681,7 @@ module.exports = {
         if(interaction.options.getSubcommand() === 'suggestions') {
 
             const channel = interaction.options.getChannel('suggestions-channel')
-            const Schema = require('../../database/suggestions')
+            const Schema = require('../../../database/suggestions')
 
             Schema.findOne({ Guild : interaction.guild.id }, (err, data) => {
                 if (data) {
@@ -703,7 +703,7 @@ module.exports = {
             const channel = interaction.options.getChannel('rolecounter-channel')
             const name = interaction.options.getString('rolecounter-name')
             const role = interaction.options.getRole('rolecounter-role')
-            const Schema = require('../../database/rolecounter')
+            const Schema = require('../../../database/rolecounter')
 
             Schema.findOne({ Guild : interaction.guild.id }, (err, data) => {
                 if (data) {
@@ -728,7 +728,7 @@ module.exports = {
 
             const channel = interaction.options.getChannel('membercounter-channel')
             const name = interaction.options.getString('membercounter-name')
-            const Schema = require('../../database/membercounter')
+            const Schema = require('../../../database/membercounter')
 
             Schema.findOne({ Guild : interaction.guild.id }, (err, data) => {
                 if (data) {
@@ -751,7 +751,7 @@ module.exports = {
 
             const channel = interaction.options.getChannel('botcounter-channel')
             const name = interaction.options.getString('botcounter-name')
-            const Schema = require('../../databasecounter')
+            const Schema = require('../../../databasecounter')
 
             Schema.findOne({ Guild : interaction.guild.id }, (err, data) => {
                 if (data) {
@@ -774,7 +774,7 @@ module.exports = {
 
             const channel = interaction.options.getChannel('onlinecounter-channel')
             const name = interaction.options.getString('onlinecounter-name')
-            const Schema = require('../../database/onlinecounter')
+            const Schema = require('../../../database/onlinecounter')
 
             Schema.findOne({ Guild : interaction.guild.id }, (err, data) => {
                 if (data) {
@@ -796,7 +796,7 @@ module.exports = {
         if(interaction.options.getSubcommand() === 'join-messages') {
 
             const { user, options, guild } = interaction
-            const joinMessagesData = require('../../database/joinMessages')
+            const joinMessagesData = require('../../../database/joinMessages')
 
             const embeded = options.getBoolean('embeded') //bool
             const mention = options.getBoolean('mention') //bool
@@ -854,7 +854,7 @@ module.exports = {
         if(interaction.options.getSubcommand() === 'leave-messages') {
 
             const { user, options, guild } = interaction
-            const leaveMessagesData = require('../../database/leaveMessages')
+            const leaveMessagesData = require('../../../database/leaveMessages')
 
             const embeded = options.getBoolean('embeded') //bool
             const channel = options.getChannel('channel') //channel
@@ -910,7 +910,7 @@ module.exports = {
         if(interaction.options.getSubcommand() === 'autorole') {
 
             const choice = interaction.options.getString('after-screening')
-            const Schema = require('../../database/autorole')
+            const Schema = require('../../../database/autorole')
             const role = interaction.options.getRole('auto-role')
 
             if(choice === 'true') {
@@ -954,7 +954,7 @@ module.exports = {
         if(interaction.options.getSubcommand() === 'member-log') {
 
             const channel = interaction.options.getChannel('memberlog-channel')
-            const Schema = require('../../database/memberlog')
+            const Schema = require('../../../database/memberlog')
 
             Schema.findOne({ Guild : interaction.guild.id }, (err, data) => {
                 if (data) {
@@ -974,7 +974,7 @@ module.exports = {
         if(interaction.options.getSubcommand() === 'audit-log') {
 
             const channel = interaction.options.getChannel('audit-channel')
-            const Schema = require('../../database/audit-log')
+            const Schema = require('../../../database/audit-log')
 
             Schema.findOne({ Guild : interaction.guild.id }, (err, data) => {
                 if (data) {
@@ -996,7 +996,7 @@ module.exports = {
             const channel = interaction.options.getChannel('message-channel')
             const content = interaction.options.getString('message-content')
             const time = interaction.options.getString('message-time')
-            const Schema = require('../../database/daily-messages')
+            const Schema = require('../../../database/daily-messages')
 
             Schema.findOne({ Guild : interaction.guild.id }, (err, data) => {
                 if (data) {
@@ -1020,7 +1020,7 @@ module.exports = {
         if(interaction.options.getSubcommand() === 'dropdown-roles') {
 
             const { v4: uuidv4 } = require('uuid')
-            const Schema = require('../../database/dropdown-roles')
+            const Schema = require('../../../database/dropdown-roles')
             const type = interaction.options.getString('message-type')
             const content = interaction.options.getString('message')
             let role1 = interaction.options.getRole('role-1')
