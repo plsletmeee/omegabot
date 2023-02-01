@@ -96,7 +96,7 @@ module.exports = {
                     const category = interaction.member.guild.channels.cache.get(data.TicketCategory)
                     const role = interaction.member.guild.roles.cache.get(data.TicketRole)
 
-                    if(!channel || !role) return
+                    if(!category || !role) return
         
                     const ticketEmbed = new EmbedBuilder()
                     .setDescription(data.TicketMessage)
