@@ -5,56 +5,54 @@ const client = require('../index')
 * @param {client} client 
 */
 module.exports = async (client) => {
+
     try {
-        const files = readdirSync('./bot/commands').filter(file => file.endsWith('.js'))
-        const mainCommands = []
-        const omegaCommands = []
-        const premiumCommands = []
+        const folders = readdirSync('./bot/commands')
+        const mainCmd = []
+        const omegCmd = []
+        let cmdsCount = 0
 
-        for (const file of files) {
-            const command = require(`../commands/${file}`)
+        for(const folder of folders) {
+            const files = readdirSync(`./bot/commands/${folder}`).filter(file => file.endsWith('.js'))
 
-            if(command.disabled) continue
+            for (const file of files) {
+                // Adding Command to Array
+                const command = require(`../commands/${folder}/${file}`)
 
-            if(command.premium) client.premiumCommands.set(command.name, command), premiumCommands.push(command)
-            else if(command.omega) client.omegaCommands.set(command.name, command), omegaCommands.push(command)
-            else client.mainCommands.set(command.name, command), mainCommands.push(command)
+                if(command.disabled) continue
+                
+                client.mainCommands.set(command.name, command), mainCmd.push(command)
+                client.commands.set(command.name, command)
 
-            client.commands.set(command.name, command)
+                // Updating Command Count
+                for(const command of mainCmd) {
+                    if(command.name != command.description) cmdsCount++
+                    else { command.options.forEach(commandOption => {
+                            if(commandOption.type == 1) cmdsCount++
+                            if(commandOption.type == 2) { commandOption.options.forEach(commandGroupOption => {
+                            if(commandGroupOption.type == 1) cmdsCount++ }) }
+                        })
+                    }
+                }
+            }
         }
 
-        client.on('ready', () => {
-            const guildSettings = require('../../database/guildSettings')
-   
-            client.application.commands.set([])
-            client.application.commands.set(mainCommands)
-            
+        client.on('ready', async () => {
+            // Pushing New Commands (Dev)
             client.guilds.cache.forEach(guild => {
                 guild.commands.set([])
+                guild.commands.set(mainCmd)
+            })
 
-                if(guild.id == '1009837302954074262') guild.commands.set(omegaCommands)
+            // Pushing New Commands (Prod)
+            // client.application.commands.set([])
+            // client.application.commands.set(mainCmd)
 
-                guildSettings.findOne({ guild: guild.id }, (err, data) => {
-                    if(!data || err) return
-                    if(data.premium) guild.commands.set(premiumCommands)
-                })
+            // Updating Bot Statistics
+            const botStatistics = await require('../../database/botStatistics').findById('63c4559e6b831d6faa89d5d7')
 
-                // guild.commands.set([])
-                // guild.commands.set(mainCommands)
-
-            }) 
-            
-            
-            // TESTING ONLY
-            // client.guilds.cache.forEach(guild => {
-            //     if(guild.id == '1061702951854424155') {
-            //         guild.commands.set([])
-            //         guild.commands.set(mainCommands)
-            //     }
-            // })
-
-            // // client.application.commands.set([])
-            // // client.application.commands.set(mainCommands)
+            botStatistics.commands = cmdsCount
+            botStatistics.save()
         })
 
         console.log('✨ Commands Loaded')

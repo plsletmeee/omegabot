@@ -6,7 +6,7 @@ router.get('/:transcriptId', async (req, res) => {
     const transcriptId = req.params.transcriptId
 
 	transcriptData.findOne({ transcriptId: transcriptId }, async (err, data) => {
-		if(!data || err) return res.redirect(301, 'https://omegabot.xyz')
+		if(!data || err) return res.redirect(301, '/')
         else return res.send(data.htmlCode)
 	})
 })

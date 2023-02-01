@@ -72,7 +72,7 @@ module.exports = {
 
         autoroleData.findOne({ Guild : member.guild.id }, (err, data) => {
 
-            if(!data) return
+            if(!data || err) return
        
             const role = member.guild.roles.cache.get(data.Role)
             if(data.Screening == "false") member.roles.add(role).catch(() => {return})
@@ -81,7 +81,7 @@ module.exports = {
 
         memberlogData.findOne({ Guild : member.guild.id }, (err, data) => {
 
-            if(!data) return
+            if(!data || err) return
        
             const channel = member.guild.channels.cache.get(data.Channel)
 

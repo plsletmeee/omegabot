@@ -13,7 +13,6 @@ client.distube = distube
 client.commands = new Collection()
 client.mainCommands = new Collection()
 client.omegaCommands = new Collection()
-client.premiumCommands = new Collection()
 
 require('./handlers/database')(client)
 require('./handlers/commands')(client)
@@ -21,16 +20,3 @@ require('./handlers/events')(client)
 require('dotenv').config()
 
 client.login(process.env.DJS_TOKEN || process.env.DJS_TEST)
-
-// todo in next update
-// ban.js
-// calculate.js
-// embed.js
-// guide.js
-// kick.js
-// rank.js
-// rankdata.js
-// rock-paper-scissors.js
-// tic-tac-toe.js
-// whois.js
-// basically all events and database things
