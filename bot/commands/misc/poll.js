@@ -202,7 +202,7 @@ module.exports = {
 
                     const editedEmbed = new EmbedBuilder()
                     .setColor('#ff3f3f')
-                    .setTitle('Ended Successfully <:status_warning:1071210887349809182>')
+                    .setTitle('Ended Successfully <:status_check:1071210743170609292>')
                     .setDescription('Poll was ended successfully.')
 
                     message.edit({ embeds: [endEmbed] })
