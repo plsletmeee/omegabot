@@ -205,6 +205,7 @@ module.exports = {
                     .setTitle('Ended Successfully 🎉')
 
                     message.edit({ embeds: [endEmbed] })
+                    interaction.reply({ embeds: [editedEmbed] })
 
                 }).catch(() => { return interaction.reply({ embeds: [notfoundEmbed] }) })
 
