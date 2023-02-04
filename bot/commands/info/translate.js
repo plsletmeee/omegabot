@@ -7,220 +7,220 @@ module.exports = {
     description: 'Translate text from one language to another',
     options: [
         {
-            name: "query",
-            description: "The text you want translated",
+            name: 'query',
+            description: 'The text you want translated',
             type: ApplicationCommandOptionType.String,
             required: true
         },
         {
-            name: "to",
-            description: "The language you want it translated to",
+            name: 'to',
+            description: 'The language you want it translated to',
             required: true,
             type: ApplicationCommandOptionType.String,
             choices: [
                 {
-                    value: "ar",
-                    name: "Arabic" 
+                    value: 'ar',
+                    name: 'Arabic' 
                 },
                 {
-                    value: "zh-cn",
-                    name: "Chinese"
+                    value: 'zh-cn',
+                    name: 'Chinese'
                 },
                 {
-                    value: "nl",
-                    name: "Dutch"
+                    value: 'nl',
+                    name: 'Dutch'
                 },
                 {
-                    value: "en",
-                    name: "English"
+                    value: 'en',
+                    name: 'English'
                 },
                 {
-                    value: "fr",
-                    name: "French"
+                    value: 'fr',
+                    name: 'French'
                 },
                 {
-                    value: "de",
-                    name: "German"
+                    value: 'de',
+                    name: 'German'
                 },
                 {
-                    value: "el",
-                    name: "Greek"
+                    value: 'el',
+                    name: 'Greek'
                 },
                 {
-                    value: "hi",
-                    name: "Hindi"
+                    value: 'hi',
+                    name: 'Hindi'
                 },
                 {
-                    value: "ga",
-                    name: "Irish"
+                    value: 'ga',
+                    name: 'Irish'
                 },
                 {
-                    value: "it",
-                    name: "Italian"
+                    value: 'it',
+                    name: 'Italian'
                 },
                 {
-                    value: "ja",
-                    name: "Japanese"
+                    value: 'ja',
+                    name: 'Japanese'
                 },
                 {
-                    value: "ko",
-                    name: "Korean"
+                    value: 'ko',
+                    name: 'Korean'
                 },
                 {
-                    value: "iw",
-                    name: "Hebrew"
+                    value: 'iw',
+                    name: 'Hebrew'
                 },
                 {
-                    value: "pl",
-                    name: "Polish"
+                    value: 'pl',
+                    name: 'Polish'
                 },
                 {
-                    value: "pt",
-                    name: "Portuguese"
+                    value: 'pt',
+                    name: 'Portuguese'
                 },
                 {
-                    value: "ru",
-                    name: "Russian"
+                    value: 'ru',
+                    name: 'Russian'
                 },
                 {
-                    value: "gd",
-                    name: "Scots Gaelic"
+                    value: 'gd',
+                    name: 'Scots Gaelic'
                 },
                 {
-                    value: "es",
-                    name: "Spanish"
+                    value: 'es',
+                    name: 'Spanish'
                 },
                 {
-                    value: "sv",
-                    name: "Swedish"
+                    value: 'sv',
+                    name: 'Swedish'
                 },
                 {
-                    value: "th",
-                    name: "Thai"
+                    value: 'th',
+                    name: 'Thai'
                 },
                 {
-                    value: "tr",
-                    name: "Turkish"
+                    value: 'tr',
+                    name: 'Turkish'
                 },
                 {
-                    value: "uk",
-                    name: "Ukrainian"
+                    value: 'uk',
+                    name: 'Ukrainian'
                 },
                 {
-                    value: "vi",
-                    name: "Vietnamese"
+                    value: 'vi',
+                    name: 'Vietnamese'
                 },
                 {
-                    value: "cy",
-                    name: "Welsh"
+                    value: 'cy',
+                    name: 'Welsh'
                 },
             ]
         },
         {
-            name: "from",
-            description: "The language you want it translated from",
+            name: 'from',
+            description: 'The language you want it translated from',
             required: true,
             type: ApplicationCommandOptionType.String,
             choices: [
                 {
-                    value: "auto",
-                    name: "Automatic" 
+                    value: 'auto',
+                    name: 'Automatic' 
                 },
                 {
-                    value: "ar",
-                    name: "Arabic" 
+                    value: 'ar',
+                    name: 'Arabic' 
                 },
                 {
-                    value: "zh-cn",
-                    name: "Chinese"
+                    value: 'zh-cn',
+                    name: 'Chinese'
                 },
                 {
-                    value: "nl",
-                    name: "Dutch"
+                    value: 'nl',
+                    name: 'Dutch'
                 },
                 {
-                    value: "en",
-                    name: "English"
+                    value: 'en',
+                    name: 'English'
                 },
                 {
-                    value: "fr",
-                    name: "French"
+                    value: 'fr',
+                    name: 'French'
                 },
                 {
-                    value: "de",
-                    name: "German"
+                    value: 'de',
+                    name: 'German'
                 },
                 {
-                    value: "el",
-                    name: "Greek"
+                    value: 'el',
+                    name: 'Greek'
                 },
                 {
-                    value: "hi",
-                    name: "Hindi"
+                    value: 'hi',
+                    name: 'Hindi'
                 },
                 {
-                    value: "ga",
-                    name: "Irish"
+                    value: 'ga',
+                    name: 'Irish'
                 },
                 {
-                    value: "it",
-                    name: "Italian"
+                    value: 'it',
+                    name: 'Italian'
                 },
                 {
-                    value: "ja",
-                    name: "Japanese"
+                    value: 'ja',
+                    name: 'Japanese'
                 },
                 {
-                    value: "ko",
-                    name: "Korean"
+                    value: 'ko',
+                    name: 'Korean'
                 },
                 {
-                    value: "iw",
-                    name: "Hebrew"
+                    value: 'iw',
+                    name: 'Hebrew'
                 },
                 {
-                    value: "pl",
-                    name: "Polish"
+                    value: 'pl',
+                    name: 'Polish'
                 },
                 {
-                    value: "pt",
-                    name: "Portuguese"
+                    value: 'pt',
+                    name: 'Portuguese'
                 },
                 {
-                    value: "ru",
-                    name: "Russian"
+                    value: 'ru',
+                    name: 'Russian'
                 },
                 {
-                    value: "gd",
-                    name: "Scots Gaelic"
+                    value: 'gd',
+                    name: 'Scots Gaelic'
                 },
                 {
-                    value: "es",
-                    name: "Spanish"
+                    value: 'es',
+                    name: 'Spanish'
                 },
                 {
-                    value: "sv",
-                    name: "Swedish"
+                    value: 'sv',
+                    name: 'Swedish'
                 },
                 {
-                    value: "th",
-                    name: "Thai"
+                    value: 'th',
+                    name: 'Thai'
                 },
                 {
-                    value: "tr",
-                    name: "Turkish"
+                    value: 'tr',
+                    name: 'Turkish'
                 },
                 {
-                    value: "uk",
-                    name: "Ukrainian"
+                    value: 'uk',
+                    name: 'Ukrainian'
                 },
                 {
-                    value: "vi",
-                    name: "Vietnamese"
+                    value: 'vi',
+                    name: 'Vietnamese'
                 },
                 {
-                    value: "cy",
-                    name: "Welsh"
+                    value: 'cy',
+                    name: 'Welsh'
                 },           
             ]
         }, 
@@ -237,13 +237,12 @@ module.exports = {
 
         const translation = await translate(query, { from: fromLang, to: toLang })
 
-        const embed = new EmbedBuilder()
-        .setTitle('<:book:1062539186487435354> Translated Text')
+        const translationEmbed = new EmbedBuilder()
+        .setTitle('📒 Translated Text')
         .setDescription(`**Original:**\n${query}\n\n**Translation:**\n${translation.text}`)
-        .setFooter({ text: 'Omega Bot is not responsible for user-generated content.' })
         .setColor('#ff3f3f')
 
-        interaction.reply({ embeds: [embed] })
+        interaction.reply({ embeds: [translationEmbed] })
 
     }
 }

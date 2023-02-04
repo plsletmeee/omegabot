@@ -75,7 +75,7 @@ module.exports = {
             if(!data || err) return
        
             const role = member.guild.roles.cache.get(data.Role)
-            if(data.Screening == "false" && role) member.roles.add(role).catch(() => {return})
+            if(data.Screening == 'false' && role) member.roles.add(role).catch(() => {return})
 
         })
 
@@ -89,7 +89,7 @@ module.exports = {
             .setAuthor({name: `New Member`, iconURL: `${member.displayAvatarURL({dynamic: true})}`})
             .setThumbnail(member.displayAvatarURL({dynamic: true}))
             .setDescription(`**Name:** ${member.user.tag}\n**ID:** ${member.user.id}\n**Created:** <t:${parseInt(member.user.createdTimestamp / 1000)}:D>\n**Joined:** <t:${parseInt(member.joinedTimestamp / 1000)}:D>`)
-            .setColor("#ff3f3f")
+            .setColor('#ff3f3f')
             .setTimestamp()
 
             if(channel) channel.send({embeds: [embed]}).catch(() => {return})

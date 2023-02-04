@@ -64,7 +64,7 @@ module.exports = {
             .setAuthor({name: `Member Left`, iconURL: `${member.displayAvatarURL({dynamic: true})}`})
             .setThumbnail(member.displayAvatarURL({dynamic: true}))
             .setDescription(`**Name:** ${member.user.tag}\n**ID:** ${member.user.id}\n**Created:** <t:${parseInt(member.user.createdTimestamp / 1000)}:D>\n**Joined:** <t:${parseInt(member.joinedTimestamp / 1000)}:D>`)
-            .setColor("#ff3f3f")
+            .setColor('#ff3f3f')
             .setTimestamp()
         
             if(channel) channel.send({ embeds: [embed] }).catch(() => {return})

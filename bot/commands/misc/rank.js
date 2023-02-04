@@ -5,13 +5,13 @@ module.exports = {
     description: 'rank',
     options: [
         {
-            name: "info",
-            description: "Fetch your rank data for this server",
+            name: 'info',
+            description: 'Fetch your rank data for this server',
             type: ApplicationCommandOptionType.Subcommand
         },
         {
-            name: "leaderboard",
-            description: "Look at the rank leaderboard for this server",
+            name: 'leaderboard',
+            description: 'Look at the rank leaderboard for this server',
             type: ApplicationCommandOptionType.Subcommand
         },
     ],
@@ -23,7 +23,7 @@ module.exports = {
     
             Schema.findOne({ Guild : interaction.guild.id, ID : interaction.member.id }, async (err, data) => {
         
-                if(!data) return interaction.reply({content: "<:cross:1062133327370399884> There is no rank data. Send some messages in this server first!", ephemeral: true})
+                if(!data) return interaction.reply({content: '<:status_warning:1071210887349809182> There is no rank data. Send some messages in this server first!', ephemeral: true})
     
                 const level = data.Level
                 const xp = data.XP
@@ -32,13 +32,13 @@ module.exports = {
                 .setTitle(`XP & Levels`)
                 .setThumbnail(interaction.member.displayAvatarURL({dynamic: true}))
                 .setDescription(`You are level **${level}**\nYou have **${xp}** XP\n\nYou need **${1000 - xp}** more XP to reach level **${level + 1}**`)
-                .setColor("#ff3f3f")
+                .setColor('#ff3f3f')
     
                 const embedTwo = new EmbedBuilder()
                 .setTitle(`XP & Levels`)
                 .setThumbnail(interaction.member.displayAvatarURL({dynamic: true}))
                 .setDescription(`You are level **${level}**\nYou have **${xp}** XP\n\nYou need **${level * 1000 - xp}** more XP to reach level **${level + 1}**`)
-                .setColor("#ff3f3f")
+                .setColor('#ff3f3f')
     
                 if(level === 0) interaction.reply({embeds: [embedOne]})
                 if(level !== 0) interaction.reply({embeds: [embedTwo]})
@@ -53,7 +53,7 @@ module.exports = {
     
             Schema.find({ Guild : interaction.guild.id }, async (err, data) => {
         
-                if(!data || err) return interaction.reply({content: `<:cross:1062133327370399884> There is no rank data for this server.`, ephemeral: true})
+                if(!data || err) return interaction.reply({content: `<:status_warning:1071210887349809182> There is no rank data for this server.`, ephemeral: true})
 
                 let leaderboard = []
 
@@ -66,7 +66,7 @@ module.exports = {
                     ).catch(() => {return})
                 })
 
-                leaderboard.sort(function(a, b){return a.replace(/ *\<[^)]*\> */g, "").replaceAll('**', '').substring(6) - b.replace(/ *\<[^)]*\> */g, "").replaceAll('**', '').substring(6)})
+                leaderboard.sort(function(a, b){return a.replace(/ *\<[^)]*\> */g, '').replaceAll('**', '').substring(6) - b.replace(/ *\<[^)]*\> */g, '').replaceAll('**', '').substring(6)})
                 leaderboard.reverse()
 
                 let shortLeaderboard = leaderboard.slice(0, 10)

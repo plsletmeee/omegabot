@@ -15,7 +15,7 @@ module.exports = {
                 const channel = newMember.guild.channels.cache.get(data.Channel)
 
                 const embed = new EmbedBuilder()
-                .setColor("#ff3f3f")
+                .setColor('#ff3f3f')
                 .setDescription(`${newMember} started boosting the server! 🥳`)
                 .setImage('https://i.imgur.com/7u9kVDS.jpg')
 
@@ -35,7 +35,7 @@ module.exports = {
            
                 const role = newMember.guild.roles.cache.get(data.Role)
     
-                if(data.Screening === "true" && role) newMember.roles.add(role).catch(() => {return})
+                if(data.Screening === 'true' && role) newMember.roles.add(role).catch(() => {return})
     
             })
 

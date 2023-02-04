@@ -95,19 +95,6 @@ module.exports = {
                     type: ApplicationCommandOptionType.String,
                 }
             ]
-        },
-        {
-            name: 'info',
-            description: 'Get user info',
-            type: ApplicationCommandOptionType.Subcommand,
-            options: [
-                {
-                    name: 'target',
-                    description: 'Who to target',
-                    type: ApplicationCommandOptionType.User,
-                    required: true
-                },
-            ]
         }
     ],
     /**
@@ -266,25 +253,6 @@ module.exports = {
                 target.voice.setDeaf(false, reason)
 
                 return interaction.reply({ embeds: [successEmbed] })
-
-            }
-
-            case 'info': {
-
-                const target = interaction.options.getMember('target')
-
-                const infoEmbed = new EmbedBuilder()
-                .setColor('#ff3f3f')
-                .setTitle(`${target.nickname || target.user.username}'s Info`)
-                .setThumbnail(target.displayAvatarURL({ dynamic: true }))
-                .addFields(
-                    { name: 'Joined', value: `<t:${parseInt(target.joinedTimestamp / 1000)}>`, inline: true },
-                    { name: 'Registered', value: `<t:${parseInt(target.user.createdTimestamp / 1000)}>`, inline: true },
-                    { name: 'User ID', value: `${target.id}`},
-                    { name: 'Roles', value: `${target.roles.cache.map(r => r).join(' ').replace('@everyone', '') || 'None'}` },
-                )
-                
-                return interaction.reply({ embeds: [infoEmbed] })
 
             }
         }

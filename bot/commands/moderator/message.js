@@ -54,9 +54,9 @@ module.exports = {
                 const messageId = options.getString('message')
                 const channel = options.getChannel('channel')
 
-                interaction.channel.messages.fetch(messageId).then((messages) => {
+                interaction.channel.messages.fetch(messageId).then((message) => {
 
-                    const { attachments, embeds, components, content, stickers } = messages
+                    const { attachments, embeds, components, content, stickers } = message
 
                     const sentEmbed = new EmbedBuilder()
                     .setColor('#ff3f3f')

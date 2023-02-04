@@ -1,5 +1,5 @@
 module.exports = {
-    name: "ready",
+    name: 'ready',
     once: true,
     async execute(client) {
 
@@ -25,11 +25,11 @@ module.exports = {
                     let hr = date.getHours()
                     let min = date.getMinutes()
                     let sec = date.getSeconds()
-                    let ampm = "am"
+                    let ampm = 'am'
                   
                     if( hr > 12 ) {
                         hr -= 12
-                        ampm = "pm"
+                        ampm = 'pm'
                     }
                                     
                     let currentTime = hr + ampm

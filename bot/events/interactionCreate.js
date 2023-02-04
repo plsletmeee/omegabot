@@ -71,14 +71,38 @@ module.exports = {
         if(interaction.isButton()) {
             switch (interaction.customId) {
 
+                case 'rpsRock':
+                case 'rpsPaper':
+                case 'rpsScissors': {
+
+                    const rpsThink = Math.floor(Math.random() * 3)
+                    const rpsEmbed = new EmbedBuilder().setColor('#ff3f3f').setTitle('Rock Paper Scissors')
+                    const rpsRock = new ButtonBuilder().setCustomId('rpsRock').setStyle('Danger').setLabel('Rock').setDisabled(true)
+                    const rpsPaper = new ButtonBuilder().setCustomId('rpsPaper').setStyle('Danger').setLabel('Paper').setDisabled(true)
+                    const rpsScissors = new ButtonBuilder().setCustomId('rpsScissors').setStyle('Danger').setLabel('Scissors').setDisabled(true)
+                    const rpsRow = new ActionRowBuilder().addComponents(rpsRock, rpsPaper, rpsScissors)
+                    const { customId } = interaction
+
+                    if(rpsThink == 0 && customId == 'rpsRock') return interaction.message.edit({ embeds: [rpsEmbed.setDescription(`I picked rock too.\nIt's a tie! 🪢`)], components: [rpsRow] }), interaction.deferUpdate()
+                    if(rpsThink == 1 && customId == 'rpsRock') return interaction.message.edit({ embeds: [rpsEmbed.setDescription(`Awh, I picked paper.\nBetter luck next time! 🤞`)], components: [rpsRow] }), interaction.deferUpdate()
+                    if(rpsThink == 2 && customId == 'rpsRock') return interaction.message.edit({ embeds: [rpsEmbed.setDescription(`I picked scissors.\nCongrats, you win! ⭐`)], components: [rpsRow] }), interaction.deferUpdate()
+                    if(rpsThink == 0 && customId == 'rpsPaper') return interaction.message.edit({ embeds: [rpsEmbed.setDescription(`I picked rock.\nCongrats, you win! ⭐`)], components: [rpsRow] }), interaction.deferUpdate()
+                    if(rpsThink == 1 && customId == 'rpsPaper') return interaction.message.edit({ embeds: [rpsEmbed.setDescription(`I picked paper too.\nIt's a tie! 🪢`)], components: [rpsRow] }), interaction.deferUpdate()
+                    if(rpsThink == 2 && customId == 'rpsPaper') return interaction.message.edit({ embeds: [rpsEmbed.setDescription(`Awh, I picked scissors.\nBeter luck next time! 🤞`)], components: [rpsRow] }), interaction.deferUpdate()
+                    if(rpsThink == 0 && customId == 'rpsScissors') return interaction.message.edit({ embeds: [rpsEmbed.setDescription(`Awh, I picked rock.\nBetter luck next time! 🤞`)], components: [rpsRow] }), interaction.deferUpdate()
+                    if(rpsThink == 1 && customId == 'rpsScissors') return interaction.message.edit({ embeds: [rpsEmbed.setDescription(`I picked paper.\nCongrats, you win! ⭐`)], components: [rpsRow] }), interaction.deferUpdate()
+                    if(rpsThink == 2 && customId == 'rpsScissors') return interaction.message.edit({ embeds: [rpsEmbed.setDescription(`I picked scissors too.\nIt's a tie! 🪢`)], components: [rpsRow] }), interaction.deferUpdate() 
+
+                }
+
                 case 'ticketClose': {
 
                     const closedEmbed = new EmbedBuilder()
                     .setColor('#ff3f3f')
                     .setTitle('Ticket Closed 🔒')
-                    .setDescription(`Ticket was closed by ${interaction.member}\nThis channel will be deleted in 1 minute. Cya!`)
+                    .setDescription(`Ticket was closed by ${interaction.member}\nThis channel will be deleted in 1 minute.`)
 
-                    setTimeout(() => interaction.channel.delete(), 60 * 1000).catch(()=>{return})
+                    setTimeout(() => interaction.channel.delete().catch(() => {return}), 60 * 1000)
                 
                     interaction.channel.send({ embeds: [closedEmbed] })
                     interaction.deferUpdate()
@@ -149,8 +173,8 @@ module.exports = {
 
                         const pollData = await require('../../database/polls').findOne({ guild: interaction.guild.id, uuid: customId[0] })
 
-                        if(!pollData) return interaction.reply({ content: '<:cross:1062133327370399884> An error occured, please try again later.', ephemeral: true })
-                        if(pollData.voters.includes(interaction.user.id)) return interaction.reply({ content: '<:cross:1062133327370399884> You are already entered into this poll.', ephemeral: true })
+                        if(!pollData) return interaction.reply({ content: '<:status_warning:1071210887349809182> An error occured, please try again later.', ephemeral: true })
+                        if(pollData.voters.includes(interaction.user.id)) return interaction.reply({ content: '<:status_warning:1071210887349809182> You are already entered into this poll.', ephemeral: true })
 
                         else pollData.voters.push(interaction.user.id), pollData.save()
 
@@ -208,8 +232,8 @@ module.exports = {
                     .setDescription('Embed failed because the specified thumbnail URL is invalid.')
 
                     if(colour) if(!/^#[0-9A-F]{6}$/i.test(colour)) return interaction.reply({ embeds: [hexErrEmbed], ephemeral: true })
-                    if(image) if(!/(http)?s?:?(\/\/[^"']*\.(?:png|jpg|jpeg|gif|png|webp))/i.test(image)) return interaction.reply({ embeds: [imgErrEmbed], ephemeral: true })
-                    if(thumbnail) if(!/(http)?s?:?(\/\/[^"']*\.(?:png|jpg|jpeg|gif|png|webp))/i.test(thumbnail)) return interaction.reply({ embeds: [thumbErrEmbed], ephemeral: true })
+                    if(image) if(!/(http)?s?:?(\/\/[^'']*\.(?:png|jpg|jpeg|gif|png|webp))/i.test(image)) return interaction.reply({ embeds: [imgErrEmbed], ephemeral: true })
+                    if(thumbnail) if(!/(http)?s?:?(\/\/[^'']*\.(?:png|jpg|jpeg|gif|png|webp))/i.test(thumbnail)) return interaction.reply({ embeds: [thumbErrEmbed], ephemeral: true })
 
                     const newEmbed = new EmbedBuilder()
                     if(colour) newEmbed.setColor(colour)

@@ -10,12 +10,12 @@ module.exports = {
 
         LinkSchema.findOne({ Guild : message.guild.id }, (err, data) => {
 
-                const linkTypes = ["http", "://", "www.", ".com", ".co.uk", ".gg", ".gif", ".io", ".html", ".php"]
+                const linkTypes = ['http', '://', 'www.', '.com', '.co.uk', '.gg', '.gif', '.io', '.html', '.php']
 
                 if(!data) return
                 if(message.author.bot) return
     
-                if(data.YesNo === "true") {
+                if(data.YesNo === 'true') {
     
                     if(message.member.roles.cache?.has(data.Role)) return
     

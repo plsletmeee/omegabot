@@ -4,56 +4,13 @@ const client = require('../../index')
 module.exports = {
     name: 'server',
     description: 'server',
+    disabled: true,
     options: [
         {
             name: 'info',
             description: 'Get the server info',
             type: ApplicationCommandOptionType.Subcommand
         },
-        {
-            name: 'invite',
-            description: 'Generate a server invite',
-            type: ApplicationCommandOptionType.Subcommand,
-            options: [
-                {
-                    name: 'channel',
-                    description: 'The invite channel',
-                    type: ApplicationCommandOptionType.Channel,
-                    channel_types: [ChannelType.GuildText],
-                    required: true
-                },
-                {
-                    name: 'length',
-                    description: 'The invite length',
-                    type: ApplicationCommandOptionType.String,
-                    choices: [
-                        { name: 'Infinite', value: '0' },
-                        { name: '30 minutes', value: '1800' },
-                        { name: '1 hour', value: '3600' },
-                        { name: '6 hours', value: '21600' },
-                        { name: '12 hours', value: '43200' },
-                        { name: '1 day', value: '86400' },
-                        { name: '7 days', value: '604800' }
-                    ],
-                    required: true
-                },
-                {
-                    name: 'uses',
-                    description: 'The invite uses',
-                    type: ApplicationCommandOptionType.String,
-                    choices: [
-                        { name: 'Infinite', value: '0' },
-                        { name: '1 use', value: '1' },
-                        { name: '5 uses', value: '5' },
-                        { name: '10 uses', value: '10' },
-                        { name: '25 uses', value: '25' },
-                        { name: '50 uses', value: '50' },
-                        { name: '100 uses', value: '100' }
-                    ],
-                    required: true
-                }
-            ]
-        }
     ],
     /**
     * @param {ChatInputCommandInteraction} interaction

@@ -5,38 +5,38 @@ module.exports = {
     description: 'Use a basic calculator',
     options: [
         {
-            name: "number-1",
-            description: "The first number",
+            name: 'number-1',
+            description: 'The first number',
             type: ApplicationCommandOptionType.Number,
             required: true
         },
         {
-            name: "number-2",
-            description: "The second number",
+            name: 'number-2',
+            description: 'The second number',
             type: ApplicationCommandOptionType.Number,
             required: true
         },
         {
-            name: "method",
-            description: "Which operation should I perform?",
+            name: 'method',
+            description: 'Which operation should I perform?',
             required: true,
             type: ApplicationCommandOptionType.String,
             choices: [
                 {
-                    value: "+",
-                    name: "Add" 
+                    value: '+',
+                    name: 'Add' 
                 },
                 {
-                    value: "-",
-                    name: "Subtract" 
+                    value: '-',
+                    name: 'Subtract' 
                 },
                 {
-                    value: "*",
-                    name: "Multiply" 
+                    value: '*',
+                    name: 'Multiply' 
                 },
                 {
-                    value: "/",
-                    name: "Divide" 
+                    value: '/',
+                    name: 'Divide' 
                 },
             ]
         },

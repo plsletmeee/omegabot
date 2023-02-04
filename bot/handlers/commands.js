@@ -42,18 +42,21 @@ module.exports = async (client) => {
             // Pushing New Commands (Dev)
             client.guilds.cache.forEach(guild => {
                 guild.commands.set([])
-                guild.commands.set(mainCmd)
+                // if(guild.id == '1061823009117184020') guild.commands.set(mainCmd)
             })
 
             // Pushing New Commands (Prod)
-//             client.application.commands.set([])
-//             client.application.commands.set(mainCmd)
+            client.application.commands.set([])
+            client.application.commands.set(mainCmd)
 
             // Updating Bot Statistics
-            const botStatistics = await require('../../database/botStatistics').findById('63c4559e6b831d6faa89d5d7')
+            if(client.user.id != '1046548033552273469') {
+                const botStatistics = await require('../../database/botStatistics').findById('63c4559e6b831d6faa89d5d7')
 
-            botStatistics.commands = cmdsCount
-            botStatistics.save()
+                botStatistics.commands = cmdsCount
+                botStatistics.save()
+            }
+
         })
 
         console.log('✨ Commands Loaded')

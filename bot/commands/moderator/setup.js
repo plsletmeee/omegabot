@@ -585,7 +585,7 @@ module.exports = {
                         }
                     })
         
-                interaction.reply({ content: '<:check:1062133324329517138> Ticket setup successful.', ephemeral: true })
+                interaction.reply({ content: '<:status_check:1071210743170609292> Ticket setup successful.', ephemeral: true })
                 PanelChannel.send({ embeds: [Embed], components: [TicketCreate] })
 
         }
@@ -612,7 +612,7 @@ module.exports = {
                         }).save()
                     }})
     
-                    interaction.reply({ content: '<:check:1062133324329517138> Link Detection setup successful.', ephemeral: true })
+                    interaction.reply({ content: '<:status_check:1071210743170609292> Link Detection setup successful.', ephemeral: true })
 
                 } else if(choice === 'false') {
 
@@ -629,7 +629,7 @@ module.exports = {
                         }).save()
                     }})
     
-                    interaction.reply({ content: '<:check:1062133324329517138> Link Detection setup successful.', ephemeral: true })
+                    interaction.reply({ content: '<:status_check:1071210743170609292> Link Detection setup successful.', ephemeral: true })
 
                 }
 
@@ -651,7 +651,7 @@ module.exports = {
                 }).save()
             }})
 
-            interaction.reply({ content: '<:check:1062133324329517138> Boost Tracker setup successful.', ephemeral: true })
+            interaction.reply({ content: '<:status_check:1071210743170609292> Boost Tracker setup successful.', ephemeral: true })
 
         }
 
@@ -674,7 +674,7 @@ module.exports = {
                 }).save()
             }})
 
-            interaction.reply({ content: '<:check:1062133324329517138> Levels setup successful.', ephemeral: true })
+            interaction.reply({ content: '<:status_check:1071210743170609292> Levels setup successful.', ephemeral: true })
 
         }
 
@@ -694,7 +694,7 @@ module.exports = {
                 }).save()
             }})
 
-            interaction.reply({ content: '<:check:1062133324329517138> Suggestions setup successful.', ephemeral: true })
+            interaction.reply({ content: '<:status_check:1071210743170609292> Suggestions setup successful.', ephemeral: true })
 
         }
 
@@ -720,7 +720,7 @@ module.exports = {
                 }).save()
             }})
 
-            interaction.reply({ content: '<:check:1062133324329517138> Role Counter setup successful.', ephemeral: true })
+            interaction.reply({ content: '<:status_check:1071210743170609292> Role Counter setup successful.', ephemeral: true })
 
         }
 
@@ -743,7 +743,7 @@ module.exports = {
                 }).save()
             }})
 
-            interaction.reply({ content: '<:check:1062133324329517138> Member Counter setup successful.', ephemeral: true })
+            interaction.reply({ content: '<:status_check:1071210743170609292> Member Counter setup successful.', ephemeral: true })
 
         }
 
@@ -766,7 +766,7 @@ module.exports = {
                 }).save()
             }})
 
-            interaction.reply({ content: '<:check:1062133324329517138> Bot Counter setup successful.', ephemeral: true })
+            interaction.reply({ content: '<:status_check:1071210743170609292> Bot Counter setup successful.', ephemeral: true })
 
         }
 
@@ -789,7 +789,7 @@ module.exports = {
                 }).save()
             }})
 
-            interaction.reply({ content: '<:check:1062133324329517138> Online Counter setup successful.', ephemeral: true })
+            interaction.reply({ content: '<:status_check:1071210743170609292> Online Counter setup successful.', ephemeral: true })
 
         }
 
@@ -810,7 +810,7 @@ module.exports = {
                 'image/jpeg'
             ]
 
-            if(picture && !contentType.includes(picture.contentType.toString())) return interaction.reply({ content: '<:cross:1062133327370399884> Error! Invalid Attachment Type.', ephemeral: true })
+            if(picture && !contentType.includes(picture.contentType.toString())) return interaction.reply({ content: '<:status_warning:1071210887349809182> Error! Invalid Attachment Type.', ephemeral: true })
 
             let pictureUrl = 'false'
             let pictureLink = false
@@ -818,7 +818,7 @@ module.exports = {
 
             const embed = new EmbedBuilder()
             .setColor('#ff3f3f')
-            .setTitle('<:gear:1062189732622237698> Join Messages Configured')
+            .setTitle('Join Messages Configured')
             .setFooter({ text: 'See our Privacy Policy for more info on how we handle user data.', iconURL: 'https://cdn.discordapp.com/avatars/988620875622391839/56290e8d9871ec0f21463ee05ad0899a.webp' })
             .setDescription(`**Enabled:** true,\n**Channel:** ${channel.name},\n**Mention:** ${mention || false},\n**Embeded:** ${embeded || false},\n**Picture:** ${pictureLink},\n**Message:** ${message}\n\n*These settings can be changed by rerunning this command*`)
 
@@ -868,7 +868,7 @@ module.exports = {
             ]
 
             if(picture && !contentType.includes(picture.contentType.toString())) 
-            return interaction.reply({ content: '<:cross:1062133327370399884> Error! Invalid Attachment Type.', ephemeral: true })
+            return interaction.reply({ content: '<:status_warning:1071210887349809182> Error! Invalid Attachment Type.', ephemeral: true })
 
             let pictureUrl = 'false'
             let pictureLink = false
@@ -876,7 +876,7 @@ module.exports = {
 
             const embed = new EmbedBuilder()
             .setColor('#ff3f3f')
-            .setTitle('<:gear:1062189732622237698> Leave Messages Configured')
+            .setTitle('Leave Messages Configured')
             .setFooter({ text: 'See our Privacy Policy for more info on how we handle user data.', iconURL: 'https://cdn.discordapp.com/avatars/988620875622391839/56290e8d9871ec0f21463ee05ad0899a.webp' })
             .setDescription(`**Enabled:** true,\n**Channel:** ${channel.name},\n**Embeded:** ${embeded || false},\n**Picture:** ${pictureLink},\n**Message:** ${message}\n\n*These settings can be changed by rerunning this command*`)
 
@@ -928,7 +928,7 @@ module.exports = {
                     }).save()
                 }})
 
-                interaction.reply({ content: '<:check:1062133324329517138> Autorole setup successful.', ephemeral: true })
+                interaction.reply({ content: '<:status_check:1071210743170609292> Autorole setup successful.', ephemeral: true })
 
             } else if(choice === 'false') {
 
@@ -945,7 +945,7 @@ module.exports = {
                     }).save()
                 }})
 
-                interaction.reply({ content: '<:check:1062133324329517138> Autorole setup successful.', ephemeral: true })
+                interaction.reply({ content: '<:status_check:1071210743170609292> Autorole setup successful.', ephemeral: true })
 
             }
 
@@ -967,7 +967,7 @@ module.exports = {
                 }).save()
             }})
 
-            interaction.reply({ content: '<:check:1062133324329517138> Member Log setup successful.', ephemeral: true })
+            interaction.reply({ content: '<:status_check:1071210743170609292> Member Log setup successful.', ephemeral: true })
 
         }
 
@@ -987,7 +987,7 @@ module.exports = {
                 }).save()
             }})
 
-            interaction.reply({ content: '<:check:1062133324329517138> Audit Log setup successful.', ephemeral: true })
+            interaction.reply({ content: '<:status_check:1071210743170609292> Audit Log setup successful.', ephemeral: true })
 
         }
 
@@ -1013,7 +1013,7 @@ module.exports = {
                 }).save()
             }})
 
-            interaction.reply({ content: '<:check:1062133324329517138> Daily Messages setup successful.', ephemeral: true })     
+            interaction.reply({ content: '<:status_check:1071210743170609292> Daily Messages setup successful.', ephemeral: true })     
 
         }
 
@@ -1468,7 +1468,7 @@ module.exports = {
                 Roles: role1Id + ' ' + role2Id + ' ' + role3Id + ' ' + role4Id + ' ' + role5Id + ' ' + role6Id + ' ' + role7Id + ' ' + role8Id + ' ' + role9Id + ' ' + role10Id
             }).save()
 
-            interaction.reply({ content: '<:check:1062133324329517138> Reaction Role setup successful.', ephemeral: true })  
+            interaction.reply({ content: '<:status_check:1071210743170609292> Reaction Role setup successful.', ephemeral: true })  
 
         }
 

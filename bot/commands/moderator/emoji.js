@@ -42,12 +42,12 @@ module.exports = {
             ]
 
             if(contentType.includes(attachment.contentType.toString())) 
-            return interaction.reply({ content: '<:cross:1062133327370399884> Error! Invalid Attachment Type.', ephemeral: true })
-            if(name.length < 2 || name.length > 31) return interaction.reply({ content: '<:cross:1062133327370399884> Error! Invalid Emoji Length.', ephemeral: true })
-            if(attachment.size > 33554432) return interaction.reply({ content: '<:cross:1062133327370399884> Error! Invalid Image Size.', ephemeral: true })
+            return interaction.reply({ content: '<:status_warning:1071210887349809182> Error! Invalid Attachment Type.', ephemeral: true })
+            if(name.length < 2 || name.length > 31) return interaction.reply({ content: '<:status_warning:1071210887349809182> Error! Invalid Emoji Length.', ephemeral: true })
+            if(attachment.size > 33554432) return interaction.reply({ content: '<:status_warning:1071210887349809182> Error! Invalid Image Size.', ephemeral: true })
 
             interaction.guild.emojis.create({ attachment: attachment.url, name: name }).then(emoji => {
-                interaction.reply({ content: `<:check:1062133324329517138> Successfully added <${emoji.identifier}> to ${interaction.guild.name}`, ephemeral: true })
+                interaction.reply({ content: `<:status_check:1071210743170609292> Successfully added <${emoji.identifier}> to ${interaction.guild.name}`, ephemeral: true })
             })
         }
     }

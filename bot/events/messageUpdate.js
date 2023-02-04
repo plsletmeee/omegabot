@@ -14,17 +14,17 @@ module.exports = {
             if(oldMessage.content === newMessage.content) return
 
             const count = 1950
-            const original = oldMessage.content.slice(0, count) + (oldMessage.content.length > 1950 ? " ..." : "")
-            const edited = newMessage.content.slice(0, count) + (newMessage.content.length > 1950 ? " ..." : "")
+            const original = oldMessage.content.slice(0, count) + (oldMessage.content.length > 1950 ? ' ...' : '')
+            const edited = newMessage.content.slice(0, count) + (newMessage.content.length > 1950 ? ' ...' : '')
             const channel = oldMessage.guild.channels.cache.get(data.Channel)
 
             const embed = new EmbedBuilder()
-            .setColor("#ff3f3f")
-            .setTitle("Message Edited")
+            .setColor('#ff3f3f')
+            .setTitle('Message Edited')
             .setDescription(`A message sent by ${oldMessage.author} was edited in ${oldMessage.channel}.\n[**Jump to message**](${newMessage.url})`)
             .addFields(
-                {name: "Original Message", value: `${original}`},
-                {name: "Edited Message", value: `${edited}`},
+                {name: 'Original Message', value: `${original}`},
+                {name: 'Edited Message', value: `${edited}`},
             )
 
             if(channel) channel.send({embeds: [embed]}).catch(() => {return})
