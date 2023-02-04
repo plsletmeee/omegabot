@@ -45,7 +45,7 @@ module.exports = {
 
                 const embedRow = new ActionRowBuilder().addComponents(inviteButton, supportButton)
 
-                interaction.reply({ embeds: [aboutEmbed], components: [embedRow] })
+                return interaction.reply({ embeds: [aboutEmbed], components: [embedRow] })
 
             }
 

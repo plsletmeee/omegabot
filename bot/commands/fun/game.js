@@ -87,7 +87,7 @@ module.exports = {
 
                 const rpsRow = new ActionRowBuilder().addComponents(rpsRock, rpsPaper, rpsScissors)
 
-                interaction.reply({ embeds: [rpsEmbed], components: [rpsRow] })
+                return interaction.reply({ embeds: [rpsEmbed], components: [rpsRow] })
 
             }
 

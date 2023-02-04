@@ -238,7 +238,7 @@ module.exports = {
         const translation = await translate(query, { from: fromLang, to: toLang })
 
         const translationEmbed = new EmbedBuilder()
-        .setTitle('📒 Translated Text')
+        .setTitle('Translated Text')
         .setDescription(`**Original:**\n${query}\n\n**Translation:**\n${translation.text}`)
         .setColor('#ff3f3f')
 

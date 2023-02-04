@@ -200,6 +200,10 @@ module.exports = {
                     .setTitle(title)
                     .setDescription(pollResults)
 
+                    const editedEmbed = new EmbedBuilder()
+                    .setColor('#ff3f3f')
+                    .setTitle('Ended Successfully 🎉')
+
                     message.edit({ embeds: [endEmbed] })
 
                 }).catch(() => { return interaction.reply({ embeds: [notfoundEmbed] }) })

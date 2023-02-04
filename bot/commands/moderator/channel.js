@@ -106,7 +106,7 @@ module.exports = {
 
                 const failedEmbed = new EmbedBuilder()
                 .setColor('#ff3f3f')
-                .setTitle('Creation Failed')
+                .setTitle('Creation Failed <:status_warning:1071210887349809182>')
                 .setDescription(`Channel creation failed because your server does not have the \`Community Server\` feature enabled in settings. `)
 
 
@@ -125,8 +125,8 @@ module.exports = {
 
                 const createdEmbed = new EmbedBuilder()
                 .setColor('#ff3f3f')
-                .setTitle('Channel Created')
-                .setDescription(`Channel was created successfully! 🎉\n\n**Name:** ${name}\n**Type:** ${ChannelType[type]}\n**Category:** ${category || 'None'}`)
+                .setTitle('Channel Created <:status_check:1071210743170609292>')
+                .setDescription(`Channel was created successfully.\n\n**Name:** ${name}\n**Type:** ${ChannelType[type]}\n**Category:** ${category || 'None'}`)
 
                 return interaction.reply({ embeds: [createdEmbed], ephemeral: true })
 
@@ -142,8 +142,8 @@ module.exports = {
 
                 const deletedEmbed = new EmbedBuilder()
                 .setColor('#ff3f3f')
-                .setTitle('Channel Deleted')
-                .setDescription(`Channel was deleted successfully! 🎉\n\n**Name:** ${channel.name}\n**Type:** ${ChannelType[channel.type]}\n**Category:** ${channelParent}`)
+                .setTitle('Channel Deleted <:status_check:1071210743170609292>')
+                .setDescription(`Channel was deleted successfully.\n\n**Name:** ${channel.name}\n**Type:** ${ChannelType[channel.type]}\n**Category:** ${channelParent}`)
 
                 interaction.guild.channels.delete(channel, reason)
 
@@ -160,12 +160,12 @@ module.exports = {
 
                 const amountErrEmbed = new EmbedBuilder()
                 .setColor('#ff3f3f')
-                .setTitle('Purge Failed')
-                .setDescription(`Channel purge failed because you specified an invalid amount. You can only delete between 1 and 100 messages at a time! ⚠️`)
+                .setTitle('Purge Failed <:status_warning:1071210887349809182>')
+                .setDescription(`Channel purge failed because you specified an invalid amount. You can only delete between 1 and 100 messages at a time!`)
 
                 const failedEmbed = new EmbedBuilder()
                 .setColor('#ff3f3f')
-                .setTitle('Move Failed')
+                .setTitle('Move Failed <:status_warning:1071210887349809182>')
                 .setDescription(`Channel move failed because ${channel} is a category.`)
 
                 if(channel.type == ChannelType.GuildCategory) return interaction.reply({ embeds: [failedEmbed], ephemeral: true })
@@ -198,8 +198,8 @@ module.exports = {
 
                 const purgedEmbed = new EmbedBuilder()
                 .setColor('#ff3f3f')
-                .setTitle('Channel Purged')
-                .setDescription(`Channel was purged successfully! 🎉\n\n**Channel:** ${channel.name}\n**Amount:** ${channelMessages.size}\n**Target:** ${target || 'None'}`)
+                .setTitle('Channel Purged <:status_check:1071210743170609292>')
+                .setDescription(`Channel was purged successfully.\n\n**Channel:** ${channel.name}\n**Amount:** ${channelMessages.size}\n**Target:** ${target || 'None'}`)
         
                 const linkButton = new ButtonBuilder()
                 .setStyle('Link')

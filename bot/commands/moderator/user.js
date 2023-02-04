@@ -112,20 +112,20 @@ module.exports = {
 
                 const noPermsEmbed = new EmbedBuilder()
                 .setColor('#ff3f3f')
-                .setTitle('Ban Failed')
+                .setTitle('Ban Failed <:status_warning:1071210887349809182>')
                 .setDescription('Ban failed because you do not have the required permissions to ban that member.. Whatchu tryna do huh? 🤨')
 
                 const bannedEmbed = new EmbedBuilder()
                 .setColor('#ff3f3f')
-                .setTitle('Ban Failed')
+                .setTitle('Ban Failed <:status_warning:1071210887349809182>')
                 .setDescription('Ban failed because that user is not in this server.')
 
                 if(!target) return interaction.reply({ embeds: [bannedEmbed] })
                 
                 const successEmbed = new EmbedBuilder()
                 .setColor('#ff3f3f')
-                .setTitle('Member Banned')
-                .setDescription(`Member was banned successfully! 🎉\n\n**Member:** ${target.user.username}\n**Joined:** <t:${parseInt(target.joinedTimestamp / 1000)}:R>\n**Reason:** ${reason || 'None'}`)
+                .setTitle('Member Banned <:status_check:1071210743170609292>')
+                .setDescription(`Member was banned successfully.\n\n**Member:** ${target.user.username}\n**Joined:** <t:${parseInt(target.joinedTimestamp / 1000)}:R>\n**Reason:** ${reason || 'None'}`)
 
                 if(!member.permissions.has(PermissionFlagsBits.BanMembers) || !target.bannable) return interaction.reply({ embeds: [noPermsEmbed] })
 
@@ -142,12 +142,12 @@ module.exports = {
 
                 const noPermsEmbed = new EmbedBuilder()
                 .setColor('#ff3f3f')
-                .setTitle('Unban Failed')
+                .setTitle('Unban Failed <:status_warning:1071210887349809182>')
                 .setDescription('Unban failed because you do not have the required permissions to unban that user.. Whatchu tryna do huh? 🤨')
 
                 const nobanEmbed = new EmbedBuilder()
                 .setColor('#ff3f3f')
-                .setTitle('Unban Failed')
+                .setTitle('Unban Failed <:status_warning:1071210887349809182>')
                 .setDescription('Unban failed because that user is not banned.')
 
                 if(!member.permissions.has(PermissionFlagsBits.BanMembers)) return interaction.reply({ embeds: [noPermsEmbed] })
@@ -158,8 +158,8 @@ module.exports = {
 
                     const successEmbed = new EmbedBuilder()
                     .setColor('#ff3f3f')
-                    .setTitle('User Unbanned')
-                    .setDescription(`User was unbanned successfully! 🎉\n\n**User:** ${target.username}\n**Reason:** ${reason || 'None'}`)
+                    .setTitle('User Unbanned <:status_check:1071210743170609292>')
+                    .setDescription(`User was unbanned successfully.\n\n**User:** ${target.username}\n**Reason:** ${reason || 'None'}`)
 
                     if(ban.user.id == target.id) {
                         guild.bans.remove(target, reason)
@@ -181,13 +181,13 @@ module.exports = {
 
                 const noPermsEmbed = new EmbedBuilder()
                 .setColor('#ff3f3f')
-                .setTitle('Kick Failed')
+                .setTitle('Kick Failed <:status_warning:1071210887349809182>')
                 .setDescription('Kick failed because you do not have the required permissions to kick that member.. Whatchu tryna do huh? 🤨')
                 
                 const successEmbed = new EmbedBuilder()
                 .setColor('#ff3f3f')
-                .setTitle('Member Kicked')
-                .setDescription(`Member was kicked successfully! 🎉\n\n**Member:** ${target.user.username}\n**Joined:** <t:${parseInt(target.joinedTimestamp / 1000)}:R>\n**Reason:** ${reason || 'None'}`)
+                .setTitle('Member Kicked <:status_check:1071210743170609292>')
+                .setDescription(`Member was kicked successfully.\n\n**Member:** ${target.user.username}\n**Joined:** <t:${parseInt(target.joinedTimestamp / 1000)}:R>\n**Reason:** ${reason || 'None'}`)
 
                 if(!member.permissions.has(PermissionFlagsBits.KickMembers) || !target.kickable) return interaction.reply({ embeds: [noPermsEmbed] })
 
@@ -204,18 +204,18 @@ module.exports = {
 
                 const noPermsEmbed = new EmbedBuilder()
                 .setColor('#ff3f3f')
-                .setTitle('Deafen Failed')
+                .setTitle('Deafen Failed <:status_warning:1071210887349809182>')
                 .setDescription('Deafen failed because you do not have the required permissions to deafen that member.. Whatchu tryna do huh? 🤨')
 
                 const noVoiceEmbed = new EmbedBuilder()
                 .setColor('#ff3f3f')
-                .setTitle('Deafen Failed')
+                .setTitle('Deafen Failed <:status_warning:1071210887349809182>')
                 .setDescription('Deafen failed because the member is not connected to a voice channel.')
                 
                 const successEmbed = new EmbedBuilder()
                 .setColor('#ff3f3f')
-                .setTitle('Member Deafened')
-                .setDescription(`Member was deafened successfully! 🎉\n\n**Member:** ${target.user.username}\n**Reason:** ${reason || 'None'}`)
+                .setTitle('Member Deafened <:status_check:1071210743170609292>')
+                .setDescription(`Member was deafened successfully.\n\n**Member:** ${target.user.username}\n**Reason:** ${reason || 'None'}`)
 
                 if(!member.permissions.has(PermissionFlagsBits.DeafenMembers) || !target.moderatable) return interaction.reply({ embeds: [noPermsEmbed] })
                 if(!target.voice.channel) return interaction.reply({ embeds: [noVoiceEmbed] })
@@ -233,18 +233,18 @@ module.exports = {
 
                 const noPermsEmbed = new EmbedBuilder()
                 .setColor('#ff3f3f')
-                .setTitle('Undeafen Failed')
+                .setTitle('Undeafen Failed <:status_warning:1071210887349809182>')
                 .setDescription('Undeafen failed because you do not have the required permissions to undeafen that member.. Whatchu tryna do huh? 🤨')
 
                 const noVoiceEmbed = new EmbedBuilder()
                 .setColor('#ff3f3f')
-                .setTitle('Undeafen Failed')
+                .setTitle('Undeafen Failed <:status_warning:1071210887349809182>')
                 .setDescription('Undeafen failed because the member is not connected to a voice channel.')
                 
                 const successEmbed = new EmbedBuilder()
                 .setColor('#ff3f3f')
-                .setTitle('Member Deafened')
-                .setDescription(`Member was undeafened successfully! 🎉\n\n**Member:** ${target.user.username}\n**Reason:** ${reason || 'None'}`)
+                .setTitle('Member Deafened <:status_check:1071210743170609292>')
+                .setDescription(`Member was undeafened successfully.\n\n**Member:** ${target.user.username}\n**Reason:** ${reason || 'None'}`)
 
                 
                 if(!member.permissions.has(PermissionFlagsBits.DeafenMembers) || !target.moderatable) return interaction.reply({ embeds: [noPermsEmbed] })
