@@ -1,9 +1,10 @@
-const { ChatInputCommandInteraction, ApplicationCommandOptionType, EmbedBuilder } = require('discord.js')
+const { ChatInputCommandInteraction, ApplicationCommandOptionType, EmbedBuilder, PermissionFlagsBits } = require('discord.js')
 const client = require('../../index')
 
 module.exports = {
     name: 'poll',
     description: 'poll',
+    defaultMemberPermissions: PermissionFlagsBits.ManageMessages,
     options: [
         {
             name: 'start',
