@@ -1,43 +1,46 @@
 const express = require('express')
 const cookieParser = require('cookie-parser')
-const port = process.env.PORT || 3001
+const bodyParser = require('body-parser')
+const port = process.env.PORT || 3005
 const mongoose = require('mongoose')
 const app = express()
 
-// DATABASE //
+// Database
 const dotenv = require('dotenv')
 dotenv.config()
 
 mongoose.set("strictQuery", false)
-mongoose.connect(process.env.MONGO_TOKEN || process.env.MONGO_TEST, {
+mongoose.connect(process.env.MONGO_TOKEN, {
 	useUnifiedTopology: true,
 	useNewUrlParser: true,
 })
 
 console.log('🎈 Database Connected')
 
-// EXPRESS SETUP
+// Configuration
 app.use(express.json())
 app.use(cookieParser())
 app.use(express.static(__dirname + '/public'))
 app.use(express.urlencoded({extended: true}))
+app.use(bodyParser.json())
 
-// ROUTES //
-const transcriptRoute = require('./routes/transcripts')
+// Routes
+const mainRoute = require('./routes/main')
 const authRoute = require('./routes/auth')
-const apiRoute = require('./routes/api')
 const dashboardRoute = require('./routes/dashboard')
-const policiesRoute = require('./routes/policies')
-const defaultRoute = require('./routes/default')
 
-app.use('/', defaultRoute)
-app.use('/dash', dashboardRoute)
-app.use('/api', apiRoute)
-app.use('/transcript', transcriptRoute)
-app.use('/policies', policiesRoute)
+const dataAPIRoute = require('./routes/api/data')
+const configAPIRoute = require('./routes/api/config')
+
+
+app.use('/dashboard', dashboardRoute)
 app.use('/auth', authRoute)
+app.use('/', mainRoute)
 
-app.get('*', (req, res) => { return res.redirect(301, '/404') })
+app.use('/api/data', dataAPIRoute)
+app.use('/api/config', configAPIRoute)
 
-// EXPRESS PORT CONNECT
+app.get('*', (req, res) => res.redirect('/404'))
+
+// Connecting
 app.listen(port, () => console.log(`🎈 Express running at port ${port}`));

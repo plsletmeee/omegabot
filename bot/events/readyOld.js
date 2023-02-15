@@ -102,27 +102,6 @@ module.exports = {
 
             })
 
-            const OnlineCounterSchema = require('../../database/onlinecounter')
-
-            OnlineCounterSchema.findOne({ Guild : guild.id }, async (err, data) => {
-
-                if(!data) return
-
-                try {
-                    const onl = guild.members.cache.filter(m => m.presence?.status == 'online').filter(member => !member.user.bot).size
-                    const idle = guild.members.cache.filter(m => m.presence?.status == 'idle').filter(member => !member.user.bot).size
-                    const dnd = guild.members.cache.filter(m => m.presence?.status == 'dnd').filter(member => !member.user.bot).size
-                    const onlineCount = onl + idle + dnd
-                    const channel = guild.channels.cache.get(data.Channel)
-                    const name = data.Name
-    
-                    await channel.setName(`${name}: ${onlineCount}`)
-                } catch {
-                    return
-                }
-
-            })
-
             setInterval(() => {
 
                 const RoleCounterSchema = require('../../database/rolecounter')
@@ -173,27 +152,6 @@ module.exports = {
                         const botCount = guild.members.cache.filter(member => member.user.bot).size
         
                         await channel.setName(`${name}: ${botCount}`)
-                    } catch {
-                        return
-                    }
-    
-                })
-    
-                const OnlineCounterSchema = require('../../database/onlinecounter')
-    
-                OnlineCounterSchema.findOne({ Guild : guild.id }, async (err, data) => {
-    
-                    if(!data) return
-    
-                    try {
-                        const onl = guild.members.cache.filter(m => m.presence?.status == 'online').filter(member => !member.user.bot).size
-                        const idle = guild.members.cache.filter(m => m.presence?.status == 'idle').filter(member => !member.user.bot).size
-                        const dnd = guild.members.cache.filter(m => m.presence?.status == 'dnd').filter(member => !member.user.bot).size
-                        const onlineCount = onl + idle + dnd
-                        const channel = guild.channels.cache.get(data.Channel)
-                        const name = data.Name
-        
-                        await channel.setName(`${name}: ${onlineCount}`)
                     } catch {
                         return
                     }

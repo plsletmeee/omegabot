@@ -18,6 +18,7 @@ module.exports = {
             const embed = new EmbedBuilder()
             .setColor('#ff3f3f')
             .setTitle('Message Deleted')
+            .setTimestamp()
             .setDescription(`A message sent by ${message.author} was deleted in ${message.channel}.`)
             .addFields(
                 {name: 'Message Content', value: `${message.content ? message.content : `${message.attachments.map(a => a.url)}`}`}

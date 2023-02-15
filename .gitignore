@@ -1,5 +1,7 @@
 node_modules
-cloudflared.exe
-start.js
 .env
+
+cloudflared.exe
+
+start.js
 getServers.js

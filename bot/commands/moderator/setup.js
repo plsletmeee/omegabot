@@ -45,35 +45,6 @@ module.exports = {
             ],
         },
         {
-            name: 'link-detector',
-            description: 'Setup the link detection system',
-            type: ApplicationCommandOptionType.Subcommand,
-            options: [
-                {
-                    name: 'status',
-                    description: 'Set the status of the link detector',
-                    required: true,
-                    type: ApplicationCommandOptionType.String,
-                    choices: [
-                        {
-                            name: 'on',
-                            value: 'true',
-                        },
-                        {
-                            name: 'off',
-                            value: 'false',
-                        },
-                    ]
-                },
-                {
-                    name: 'excluded-role',
-                    description: 'Who will be excluded from it',
-                    required: true,
-                    type: ApplicationCommandOptionType.Role,
-                },
-            ],
-        },
-        {
             name: 'boost-tracker',
             description: 'Setup the boost tracker system',
             type: ApplicationCommandOptionType.Subcommand,
@@ -168,26 +139,6 @@ module.exports = {
                 },
                 {
                     name: 'botcounter-name',
-                    description: 'The name of the counter',
-                    required: true,
-                    type: ApplicationCommandOptionType.String,
-                },
-            ]
-        },
-        {
-            name: 'online-counter',
-            description: 'Setup an online counter system',
-            type: ApplicationCommandOptionType.Subcommand,
-            options: [
-                {
-                    name: 'onlinecounter-channel',
-                    description: 'The channel to update',
-                    required: true,
-                    type: ApplicationCommandOptionType.Channel,
-                    channel_types: [ChannelType.GuildVoice],
-                },
-                {
-                    name: 'onlinecounter-name',
                     description: 'The name of the counter',
                     required: true,
                     type: ApplicationCommandOptionType.String,
@@ -767,29 +718,6 @@ module.exports = {
             }})
 
             interaction.reply({ content: '<:status_check:1071210743170609292> Bot Counter setup successful.', ephemeral: true })
-
-        }
-
-        if(interaction.options.getSubcommand() === 'online-counter') {
-
-            const channel = interaction.options.getChannel('onlinecounter-channel')
-            const name = interaction.options.getString('onlinecounter-name')
-            const Schema = require('../../../database/onlinecounter')
-
-            Schema.findOne({ Guild : interaction.guild.id }, (err, data) => {
-                if (data) {
-                    data.Channel = channel.id,
-                    data.Name = name,
-                    data.save()
-                } else {
-                new Schema ({
-                    Guild : interaction.guild.id,
-                    Channel : channel.id,
-                    Name : name,
-                }).save()
-            }})
-
-            interaction.reply({ content: '<:status_check:1071210743170609292> Online Counter setup successful.', ephemeral: true })
 
         }
 

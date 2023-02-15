@@ -32,8 +32,13 @@ module.exports = {
             ]
         },
         {
-            name: 'options',
-            description: 'Change voice channel music options',
+            name: 'leave',
+            description: 'Leave the voice channel',
+            type: ApplicationCommandOptionType.Subcommand,
+        },
+        {
+            name: 'queue',
+            description: 'Change queue music options',
             type: ApplicationCommandOptionType.Subcommand,
             options: [
                 {
@@ -46,9 +51,8 @@ module.exports = {
                         { name: 'resume', value: 'resume' },
                         { name: 'skip', value: 'skip' },
                         { name: 'stop', value: 'stop' },
-                        { name: 'leave', value: 'leave' },
                         { name: 'loop', value: 'loop' },
-                        { name: 'queue', value: 'queue' }
+                        { name: 'list', value: 'list' }
                     ]
                 }
             ]
@@ -84,7 +88,12 @@ module.exports = {
                 return interaction.reply(`<:music_volume:1062132652041326652> Volume adjusted to \`${percent}%\``)
             }
 
-            case 'options': {
+            case 'leave': {
+                client.distube.voices.get(voiceChannel)?.leave()
+                return interaction.reply(`<:music_stop:1062132650812395631> Left voice channel.`)
+            }
+
+            case 'queue': {
                 const queue = client.distube.getQueue(voiceChannel)
                 const options = interaction.options.getString('settings')
                 if(!queue) return interaction.reply({ content: '<:status_warning:1071210887349809182> No music in queue.', ephemeral: true })
@@ -93,13 +102,10 @@ module.exports = {
                 .setColor('#ff3f3f')
                 .setTitle('<:music_song:1062132646341267466> Music Queue')
                 .setDescription(`${queue.songs.map(
-                    (song, id) => `\n**${id + 1}**. ${song.name} - \`${song.formattedDuration}\``
+                    (song, id) => `\n**${id + 1}**. ${song.name} - \`[${song.formattedDuration}]\``
                 )}`)
                 
                 switch(options) {
-                    case 'leave':
-                        client.distube.voices.get(voiceChannel)?.leave()
-                        return interaction.reply(`<:music_stop:1062132650812395631> Voice channel has been left.`)
                     case 'stop': 
                         queue.stop(voiceChannel)
                         return interaction.reply(`<:music_stop:1062132650812395631> Music queue has been stopped.`)
@@ -117,7 +123,7 @@ module.exports = {
                         if(state == 0) client.distube.setRepeatMode(voiceChannel, 1), interaction.reply(`<:music_loop:1062761497094262854> Music looping has been enabled.`)
                         if(state == 1) client.distube.setRepeatMode(voiceChannel, 1), interaction.reply(`<:music_loop:1062761497094262854> Music looping has been disabled.`)
                         return
-                    case 'queue': 
+                    case 'list': 
                         return interaction.reply({ embeds: [queueEmbed] })
                 }
             }

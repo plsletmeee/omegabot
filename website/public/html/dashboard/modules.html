@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset='UTF-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <meta http-equiv='X-UA-Compatible' content='ie-edge'>
+        <meta property='og:title' content='Omega Bot'>
+        <meta property='og:description' content='The all in one Discord bot packed with server moderation tools, fun commands, tickets and more!'>
+        <meta property='og:url' content='https://omegabot.xyz/'>
+        <meta name='theme-color' content='#FF3F3F'>
+        <meta name='description' content='The all in one Discord bot packed with server moderation tools, fun commands, tickets and more!'>
+        <link rel='shortcut icon' href='/media/svgs/misc/omega.svg' type='image/x-icon'>
+        <link rel='stylesheet' href='/css/dashboard/modules.css' type='text/css'>
+        <title>Modules - Omega</title>
+    </head>
+    <body>
+
+        <header>
+            <div class='header'>
+                <a class='header-logo' href='/'><img src='/media/svgs/misc/banner.svg'></a>
+                <a class='header-logout' href='/dashboard/logout' title='Logout'><span id='userLogout'></span><img src='/media/svgs/main/arrow-box.svg'></a>
+            </div>
+        </header>
+
+        <main>
+            <div class='sidebar'>
+                <div class='sidebar-links'>
+                    <a href='/dashboard'><span>Servers</span><img src='/media/svgs/main/servers.svg'></a>
+                    <a class='selected' href='/dashboard/{serverId}/modules'><span>Modules</span><img src='/media/svgs/dashboard/gear.svg'></a>
+                    <a class='disabled' title='Coming Soon!'><span>Vanities</span><img src='/media/svgs/dashboard/greyed-link.svg'></a>
+                    <a class='disabled' title='Coming Soon!'><span>Forms</span><img src='/media/svgs/dashboard/greyed-clipboard.svg'></a>
+                    <a class='disabled' title='Coming Soon!'><span>Bug Tracker</span><img src='/media/svgs/dashboard/greyed-bug.svg'></a>
+                </div>
+            </div>
+            <section>
+                <div class='main'>
+                    <span class='title'>
+                        <h1>Modules</h1>
+                        <button class='navbar-button' onclick='toggleNavbar()'><img class='navbar-button-img' src='/media/svgs/main/hamburger.svg'></button>
+                    </span>
+                    <div class='navbar' style='display: none;'>
+                        <div class='navbar-links'>
+                            <a href='/dashboard'><span>Servers</span><img src='/media/svgs/main/servers.svg'></a>
+                            <a href='/dashboard/{serverId}/modules'><span>Modules</span><img src='/media/svgs/dashboard/gear.svg'></a>
+                            <a class='navbar-disabled' title='Coming Soon!'><span>Vanities</span><img src='/media/svgs/dashboard/greyed-link.svg'></a>
+                            <a class='navbar-disabled' title='Coming Soon!'><span>Forms</span><img src='/media/svgs/dashboard/greyed-clipboard.svg'></a>
+                            <a class='navbar-disabled' title='Coming Soon!'><span>Bug Tracker</span><img src='/media/svgs/dashboard/greyed-bug.svg'></a>
+                        </div>
+                    </div>
+                    <div class='main-content'>
+                        <div class='module'>
+                            <h5>Link Detector</h5>
+                            <p>Automatically delete links in text channels.</p>
+                            <br>
+                            <a href='/dashboard/{serverId}/modules/linkdetector'><img src='/media/svgs/dashboard/gear.svg'>Settings</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+    </body>
+
+    <script>
+        function toggleNavbar() {
+            let navbar = document.querySelector('.navbar')
+            let button = document.querySelector('.navbar-button-img')
+
+            if(navbar.style.display == 'none') navbar.style.display = 'flex', button.src = '/media/svgs/main/cross.svg'
+            else navbar.style.display = 'none', button.src = '/media/svgs/main/hamburger.svg'
+        }
+    </script>
+
+</html>

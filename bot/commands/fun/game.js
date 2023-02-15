@@ -55,7 +55,7 @@ module.exports = {
                         { name: '8 Sides', value: '8' },
                         { name: '10 Sides', value: '10' },
                         { name: '12 Sides', value: '12' },
-                        { name: '20 Sides', value: '20' },
+                        { name: '20 Sides', value: '20' }
                     ]
                 }
             ]
@@ -66,13 +66,13 @@ module.exports = {
     * @param {client} client
     */
     async execute(interaction, client) {
-        const { options, member } = interaction
+        const { options } = interaction
 
         switch (options.getSubcommand()) {
             case 'ttt': {
 
                 const difficulty = options.getString('difficulty')
-                const game = new TicTacToe({ language: 'en', aiDifficulty: difficulty })
+                const game = new TicTacToe({ language: 'en', aiDifficulty: difficulty || 'Unbeatable', embedColor: '#ff3f3f' })
 
                 return game.handleInteraction(interaction)
 

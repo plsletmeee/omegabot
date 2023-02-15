@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset='UTF-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <meta http-equiv='X-UA-Compatible' content='ie-edge'>
+        <meta property='og:title' content='Omega Bot'>
+        <meta property='og:description' content='The all in one Discord bot packed with server moderation tools, fun commands, tickets and more!'>
+        <meta property='og:url' content='https://omegabot.xyz/'>
+        <meta name='theme-color' content='#FF3F3F'>
+        <meta name='description' content='The all in one Discord bot packed with server moderation tools, fun commands, tickets and more!'>
+        <link rel='shortcut icon' href='/media/svgs/misc/omega.svg' type='image/x-icon'>
+        <link rel='stylesheet' href='/css/main/policy.css' type='text/css'>
+        <title>Terms of Service - Omega</title>
+    </head>
+    <body>
+
+        <header>
+            <div class='header'>
+                <div class='header-links'>
+                    <a class='header-logo' href='/'><img src='/media/svgs/misc/banner.svg'></a>
+                    <a class='header-link' href='/about'>About</a>
+                    <a class='header-link' href='/policies'>Policies</a>
+                    <a class='header-link' href='/stats'>Stats</a>
+                    <a class='header-link' href='/invite'>Invite</a>
+                </div>
+                <div class='header-right'>
+                    <a class='header-logout' href='{loginLink}' title='Manage Servers'>Manage Servers<img src='/media/svgs/main/arrow-box.svg'></a>
+                    <button class='navbar-button' onclick='toggleNavbar()'><img class='navbar-button-img' src='/media/svgs/main/hamburger.svg'></button>
+                    <img class='user-icon'>
+                </div>
+            </div>
+            <div class='navbar' style='right: -100%; display: block;'>
+                <div class='navbar-links'>
+                    <a href='/about'>About</a>
+                    <a href='/policies'>Policies</a>
+                    <a href='/stats'>Stats</a>
+                    <a href='/invite'>Invite</a>
+                    <a href='{loginLink}'>Servers</a>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class='main'>
+                <h1>Terms of Service</h1>
+                <hr>
+                <section>
+                    <h2>Definitions</h2>
+                    <span>
+                        <p>"Omega Bot" or "bot" - The Discord bot these terms are in reference to.</p>
+                        <p>"Omega API" or "API" - The Application Program Interface for Omega Bot.</p>
+                        <p>"Omega Team" or "we" - The people that develop and manage Omega Bot.</p>
+                        <p>"you" or "your" - You, the user of the service.</p>
+                        <p>"service" or "services" - The service that Omega Bot provides.</p>
+                        <p>"Terms of Service" - The policies outlined on this page.</p>
+                        <p>"Privacy Policy" - The policies outlined in our Privacy Policy.</p>
+                    </span>
+                </section>
+                <section>
+                    <h2>Usage</h2>
+                    <p>Through usage of Omega Bot, you accept the bot's Terms of Service and Privacy Policy. Additionally, you accept Discord's Terms of Service and Community Guidelines, these of which are enforceable through Omega Bot. We will send reports to Discord about you breaking their terms if and when deemed necessary.</p>
+                </section>
+                <section>
+                    <h2>Bot Rules</h2>
+                    <span>
+                        <p>1) No spamming Omega API's or Omega Bot's commands in an attempt to crash the Service.</p>
+                        <p>2) No using Omega Bot for illegal (by UK law) and/or unethical practices.</p>
+                        <p>3) No using Omega Bot to break the Discord Terms of Service.</p>
+                        <p>4) No locking Omega Bot's Service behind your own paywalls.</p>
+                        <p>5) No using Omega Bot to promote racism, sexism, homophobia or other forms of bigotry.</p>
+                        <p>6) No using Omega Bot to promote your own services and/or Discord servers.</p>
+                        <p>7) No starting harmful rumours about Omega Bot or unnecessary drama in our servers.</p>
+                        <p>8) No intentionally exploiting or sharing bugs in Omega Bot's code.</p>
+                    </span>
+                </section>
+                <section>
+                    <h2>Contact</h2>
+                    <p>The easiest way to contact the Omega Team is via our <a style='color: white; text-decoration: none;' href='/discord'>Discord</a> support channels. In our server, you can directly contact the bot developers and managers for quick and easy support.<br><br>
+
+                    Another way to contact us is via our email, support@omegabot.xyz. This email is for direct contact with the managers of Omega Bot and should not be used for general support as response times may be slower than a regular Discord ticket.</p>
+                </section>
+                <hr>
+                <p>Last Updated: January 15th 2023</p>
+            </div>
+        </main>
+
+        <footer class='footer'></footer>
+
+    </body>
+
+    <script>
+        function toggleNavbar() {
+            let navbar = document.querySelector('.navbar')
+            let button = document.querySelector('.navbar-button-img')
+
+            if(navbar.style.right == '-100%') navbar.style.right = '0', button.src = '/media/svgs/main/cross.svg'
+            else navbar.style.right = '-100%', button.src = '/media/svgs/main/hamburger.svg'
+        }
+    </script>
+
+</html>

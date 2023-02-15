@@ -34,12 +34,14 @@ module.exports = {
 
             const normalEmbed = new EmbedBuilder()
             .setColor('#ff3f3f')
+            .setTimestamp()
             .setAuthor({ name: `Welcome, ${user.username}!`, iconURL: `${member.displayAvatarURL({dynamic: true})}` })
             .setThumbnail(member.displayAvatarURL({dynamic: true}))
             .setDescription(message)
 
             const pictureEmbed = new EmbedBuilder()
             .setColor('#ff3f3f')
+            .setTimestamp()
             .setAuthor({ name: `Welcome, ${user.username}!`, iconURL: `${member.displayAvatarURL({dynamic: true})}` })
             .setImage(picture)
             .setDescription(message)

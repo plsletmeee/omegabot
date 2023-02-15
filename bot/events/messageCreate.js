@@ -1,32 +1,26 @@
-const LinkSchema = require('../../database/links')
 const LevelSchema = require('../../database/memberlevels')
 const LevelDataSchema = require('../../database/levels')
 
+const { Message } = require('discord.js')
+
 module.exports = {
     name: 'messageCreate',
+    /**
+    * @param {Message} message 
+    */
     async execute(message) {
 
-        if(message.guild === null) return
+        if(!message.guild || message.author.bot) return
 
-        LinkSchema.findOne({ Guild : message.guild.id }, (err, data) => {
+        // link detector
+        const linkSchema = await require('../../database/link-detector').findOne({ guild: message.guild.id })
+        if(linkSchema && linkSchema.enabled) {
+            if(message.deletable)
+            if(!message.member.roles.cache.has(linkSchema.exception))
+            if(message.content.includes('http://') || message.content.includes('https://')) message.delete()
+        }
 
-                const linkTypes = ['http', '://', 'www.', '.com', '.co.uk', '.gg', '.gif', '.io', '.html', '.php']
-
-                if(!data) return
-                if(message.author.bot) return
-    
-                if(data.YesNo === 'true') {
-    
-                    if(message.member.roles.cache?.has(data.Role)) return
-    
-                    linkTypes.forEach(type => {
-                        if(message.content.includes(type)) message.delete().catch(() => {return})
-                    })
-    
-                } else return
-
-        })
-
+        // levels
         LevelDataSchema.findOne({ Guild : message.guild.id }, (err, data) => {
 
             if(message.author.bot) return

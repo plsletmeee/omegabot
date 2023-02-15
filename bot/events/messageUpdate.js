@@ -21,10 +21,11 @@ module.exports = {
             const embed = new EmbedBuilder()
             .setColor('#ff3f3f')
             .setTitle('Message Edited')
+            .setTimestamp()
             .setDescription(`A message sent by ${oldMessage.author} was edited in ${oldMessage.channel}.\n[**Jump to message**](${newMessage.url})`)
             .addFields(
-                {name: 'Original Message', value: `${original}`},
-                {name: 'Edited Message', value: `${edited}`},
+                {name: 'Before', value: `${original}`},
+                {name: 'After', value: `${edited}`},
             )
 
             if(channel) channel.send({embeds: [embed]}).catch(() => {return})

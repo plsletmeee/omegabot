@@ -16,8 +16,8 @@ module.exports = {
 
                 const embed = new EmbedBuilder()
                 .setColor('#ff3f3f')
+                .setTimestamp()
                 .setDescription(`${newMember} started boosting the server! 🥳`)
-                .setImage('https://i.imgur.com/7u9kVDS.jpg')
 
                 if(channel) channel.send({embeds: [embed]}).catch(() => {return})
 

@@ -1,0 +1,321 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap');
+
+:root {
+    /* Main Colours */
+    --brand-red: #ff3f3f;
+    --full-white: #ffffff;
+    --almost-white: #bbbbbb;
+    --light-grey: #464646;
+    --dark-grey: #333333;
+    --darker-grey: #242424;
+    --almost-black: #1e1e1e;
+
+    /* Font Families */
+    --font-title: 'Poppins', sans-serif;
+    --font-regular: 'DM Sans', sans-serif;
+
+    /* Font Sizes */
+    --fontsize-title: clamp(3.85rem, 2.5vw, 4rem);
+    --fontsize-subtitle: clamp(2.85rem, 2.5vw, 3rem);
+    --fontsize-medium: clamp(1.65rem, 2.5vw, 1.8rem);
+    --fontsize-regular: clamp(0.85rem, 2.5vw, 1rem);
+    --fontsize-small: clamp(0.65rem, 2.5vw, 0.8rem);
+}
+
+::-webkit-scrollbar { width: 0.8rem; border: 0.2rem solid var(--dark-grey); }
+::-webkit-scrollbar-track { background: var(--darker-grey); border-left: 0.2rem solid var(--dark-grey); }
+::-webkit-scrollbar-thumb { background: var(--brand-red); border-left: 0.2rem solid var(--dark-grey); }
+
+::selection { background: var(--brand-red); color: var(--full-white); }
+::-moz-selection { background: var(--brand-red); color: var(--full-white); }
+
+*, *::after, *::before {
+    box-sizing: border-box;
+    font-family: var(--font-title);
+    color: var(--full-white);
+    margin: 0; 
+    padding: 0;
+    list-style: none;
+}
+
+img, picture {
+    max-width: 100%;
+    display: block;
+}
+
+button, input {
+    background: none;
+	color: inherit;
+	border: none;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+html, body {
+    margin: 0;
+    height: 100%;
+    min-height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    flex: none;
+}
+
+main {
+    background-color: var(--almost-black);
+    display: flex;
+    height: auto;
+    flex: auto;
+}
+
+
+
+/* Header */
+
+header {
+    height: 4rem;
+}
+
+.header {
+    background-color: var(--darker-grey);
+    border-bottom: 0.2rem solid var(--dark-grey);
+    width: 100%;
+    height: 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+}
+
+.header-logo img {
+    width: 10rem;
+    margin: 0rem 1rem;
+}
+
+.header-logout {
+    background-color: rgba(51, 51, 51, 0.3);
+    border: 0.05rem solid var(--dark-grey);
+    text-align: center;
+    align-items: center;
+    margin: 0rem 1rem;
+    text-decoration: none;
+
+    display: flex;
+    gap: 0.7rem;
+    padding: 0.5rem 0.7rem;
+    border-radius: 0.3rem;
+}
+
+.header-logout img {
+    width: 1rem;
+    margin: 0;
+}
+
+
+
+/* Sidebar */
+
+.sidebar {
+    background-color: var(--darker-grey);
+    width: 15rem;
+    border-right: 0.2rem solid var(--dark-grey);
+    height: 100%;
+}
+
+.sidebar-links { 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.7rem;
+    position: relative;
+    top: 0.7rem;
+}
+
+.sidebar-links a {
+    font-size: 0.875rem;
+    font-weight: 600;
+    background-color: var(--dark-grey);
+    padding: 0.5rem 0.8rem;
+    border-radius: 0.4rem;
+    text-decoration: none;
+    cursor: pointer;
+
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+}
+
+.sidebar-links .selected {
+    background-color: var(--light-grey);
+}
+
+.sidebar-links .disabled span {
+    color: #666666;
+}
+
+.sidebar-links a img {
+    height: 1.25rem;
+}
+
+
+
+/* Navbar */
+
+.navbar-button {
+    background-color: rgba(51, 51, 51, 0.3);
+    border: 0.05rem solid var(--dark-grey);
+    border-radius: 0.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    align-self: center;
+    align-items: center;
+
+    display: none;
+    justify-content: center;
+}
+
+.navbar-button-img {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.navbar {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.7rem;
+}
+
+.navbar-links { 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.7rem;
+    width: 100%;
+}
+
+.navbar-links a {
+    font-size: 0.875rem;
+    font-weight: 600;
+    background-color: rgba(51, 51, 51, 0.3);
+    padding: 0.5rem 0.8rem;
+    border-radius: 0.4rem;
+    border: 0.05rem solid var(--dark-grey);
+    text-decoration: none;
+    cursor: pointer;
+
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.navbar-disabled span {
+    color: #666666;
+}
+
+.navbar-links a img {
+    height: 1.25rem;
+}
+
+
+
+/* Main */
+
+main section {
+    background-image: url('/media/svgs/misc/background.svg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+}
+
+.main {
+    margin: 3rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.main .title {
+    display: flex;
+    gap: 1rem
+}
+
+.main h1 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    font-family: var(--font-title);
+    text-transform: uppercase;
+    color: var(--brand-red);
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem 2rem;
+}
+
+.module {
+    background-color: rgba(51, 51, 51, 0.3);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+}
+
+.module h5 {
+    text-transform: uppercase;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.module p {
+    color: #707070;
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+.module a {
+    background-color: rgba(51, 51, 51, 0.3);
+    padding: 0.3rem 0.7rem;
+    border-radius: 0.3rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 700;
+    border: 0.05rem solid var(--dark-grey);
+
+    display: flex;
+    gap: 0.5rem;
+}
+
+.module a img {
+    align-self: center;
+    width: 1rem;
+    height: 1rem;
+    transition-duration: 1.5s;
+}
+
+.module a:hover img {
+    transform: rotate(270deg);
+}
+
+
+
+/* Media Queries */
+
+@media (max-width: 1100px) {
+    .main-content { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 800px) {
+    .sidebar { display: none; }
+    .navbar-button { display: flex; }
+    .main-content { grid-template-columns: repeat(1, 1fr); }
+}

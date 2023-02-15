@@ -12,7 +12,7 @@ module.exports = {
     async execute(guild, client) {
 
         // Leave Webhook
-        const webhook = new WebhookClient({ url: process.env.DJS_LOG || process.env.DJS_LOG_TEST })
+        const webhook = new WebhookClient({ url: process.env.DJS_LOG })
 
         const embed = new EmbedBuilder()
         .setTitle('Left Server')

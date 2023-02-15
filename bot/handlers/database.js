@@ -5,7 +5,7 @@ module.exports = (client) => {
         dotenv.config()
         
         mongoose.set('strictQuery', false)
-        mongoose.connect(process.env.MONGO_TOKEN || process.env.MONGO_TEST, {
+        mongoose.connect(process.env.MONGO_TOKEN, {
             useUnifiedTopology: true,
             useNewUrlParser: true,
         })

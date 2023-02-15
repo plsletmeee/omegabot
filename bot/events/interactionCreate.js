@@ -14,7 +14,7 @@ module.exports = {
         // Command Use Event //
         if (interaction.type == InteractionType.ApplicationCommand) {
             const command = client.commands.get(interaction.commandName)
-            const webhook = new WebhookClient({ url: process.env.DJS_LOG || process.env.DJS_LOG_TEST })
+            const webhook = new WebhookClient({ url: process.env.DJS_LOG })
 
             command.execute(interaction, client).catch(async err => {
 
@@ -22,11 +22,13 @@ module.exports = {
 
                 const errEmbed = new EmbedBuilder()
                 .setColor('#ff3f3f')
+                .setTimestamp()
                 .setTitle('An Error Occured!')
                 .setDescription('A transcript of this error has been sent to the Omega Team and they will work to fix the issue!\n\nWe apologise for the inconvenience.')
 
                 const cmdErrEmbed = new EmbedBuilder()
                 .setColor('#ff3f3f')
+                .setTimestamp()
                 .setTitle('Command Failed')
                 .setDescription(`A command failed in **${interaction.guild.name}**.\n\n**Command:** ${interaction.commandName}\n**Server ID:** ${interaction.guildId}\n**Executed:** <t:${parseInt(interaction.createdAt / 1000)}:R>\n**Error:** \`\`\`${err}\`\`\``)
 
@@ -77,9 +79,9 @@ module.exports = {
 
                     const rpsThink = Math.floor(Math.random() * 3)
                     const rpsEmbed = new EmbedBuilder().setColor('#ff3f3f').setTitle('Rock Paper Scissors')
-                    const rpsRock = new ButtonBuilder().setCustomId('rpsRock').setStyle('Danger').setLabel('Rock').setDisabled(true)
-                    const rpsPaper = new ButtonBuilder().setCustomId('rpsPaper').setStyle('Danger').setLabel('Paper').setDisabled(true)
-                    const rpsScissors = new ButtonBuilder().setCustomId('rpsScissors').setStyle('Danger').setLabel('Scissors').setDisabled(true)
+                    const rpsRock = new ButtonBuilder().setCustomId('rpsRock').setStyle('Danger').setLabel('Rock')
+                    const rpsPaper = new ButtonBuilder().setCustomId('rpsPaper').setStyle('Danger').setLabel('Paper')
+                    const rpsScissors = new ButtonBuilder().setCustomId('rpsScissors').setStyle('Danger').setLabel('Scissors')
                     const rpsRow = new ActionRowBuilder().addComponents(rpsRock, rpsPaper, rpsScissors)
                     const { customId } = interaction
 
@@ -99,6 +101,7 @@ module.exports = {
 
                     const closedEmbed = new EmbedBuilder()
                     .setColor('#ff3f3f')
+                    .setTimestamp()
                     .setTitle('Ticket Closed 🔒')
                     .setDescription(`Ticket was closed by ${interaction.member}\nThis channel will be deleted in 1 minute.`)
 

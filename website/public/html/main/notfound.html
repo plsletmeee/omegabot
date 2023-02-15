@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset='UTF-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <meta http-equiv='X-UA-Compatible' content='ie-edge'>
+        <meta property='og:title' content='Omega Bot'>
+        <meta property='og:description' content='The all in one Discord bot packed with server moderation tools, fun commands, tickets and more!'>
+        <meta property='og:url' content='https://omegabot.xyz/'>
+        <meta name='theme-color' content='#FF3F3F'>
+        <meta name='description' content='The all in one Discord bot packed with server moderation tools, fun commands, tickets and more!'>
+        <link rel='shortcut icon' href='/media/svgs/misc/omega.svg' type='image/x-icon'>
+        <link rel='stylesheet' href='/css/main/notfound.css' type='text/css'>
+        <title>Page Not Found - Omega</title>
+    </head>
+    <body>
+
+        <header>
+            <div class='header'>
+                <div class='header-links'>
+                    <a class='header-logo' href='/'><img src='/media/svgs/misc/banner.svg'></a>
+                    <a class='header-link' href='/about'>About</a>
+                    <a class='header-link' href='/policies'>Policies</a>
+                    <a class='header-link' href='/stats'>Stats</a>
+                    <a class='header-link' href='/invite'>Invite</a>
+                </div>
+                <div class='header-right'>
+                    <a class='header-logout' href='{loginLink}' title='Manage Servers'>Manage Servers<img src='/media/svgs/main/arrow-box.svg'></a>
+                    <button class='navbar-button' onclick='toggleNavbar()'><img class='navbar-button-img' src='/media/svgs/main/hamburger.svg'></button>
+                    <img class='user-icon'>
+                </div>
+            </div>
+            <div class='navbar' style='right: -100%; display: block;'>
+                <div class='navbar-links'>
+                    <a href='/about'>About</a>
+                    <a href='/policies'>Policies</a>
+                    <a href='/stats'>Stats</a>
+                    <a href='/invite'>Invite</a>
+                    <a href='{loginLink}'>Servers</a>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class='main'>
+                <h1>This is awkward...</h1>
+                <p>Looks like you're trying to find a page that doesn't exist. Perhaps check the URL you entered for any mistakes, or just chill here we don't mind.<br><br>Think this is a bug? Report it in our <a style='color: white; text-decoration: none;' href='/discord'>Discord</a>.</p>
+            </div>
+        </main>
+
+        <footer class='footer'></footer>
+
+    </body>
+
+    <script>
+        function toggleNavbar() {
+            let navbar = document.querySelector('.navbar')
+            let button = document.querySelector('.navbar-button-img')
+
+            if(navbar.style.right == '-100%') navbar.style.right = '0', button.src = '/media/svgs/main/cross.svg'
+            else navbar.style.right = '-100%', button.src = '/media/svgs/main/hamburger.svg'
+        }
+    </script>
+
+</html>

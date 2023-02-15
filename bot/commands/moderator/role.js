@@ -45,60 +45,6 @@ module.exports = {
             ]
         },
         {
-            name: 'delete',
-            description: 'Delete a role',
-            type: ApplicationCommandOptionType.Subcommand,
-            options: [
-                {
-                    name: 'role',
-                    description: 'The role you want to delete',
-                    type: ApplicationCommandOptionType.Role,
-                    required: true
-                },
-                {
-                    name: 'reason',
-                    description: 'Why you want to delete it',
-                    type: ApplicationCommandOptionType.String
-                }
-            ]
-        },
-        {
-            name: 'create',
-            description: 'Create a role',
-            type: ApplicationCommandOptionType.Subcommand,
-            options: [
-                {
-                    name: 'name',
-                    description: 'The name of the role',
-                    type: ApplicationCommandOptionType.String,
-                    required: true
-                },
-                {
-                    name: 'color',
-                    description: 'The color of the role',
-                    type: ApplicationCommandOptionType.String,
-                    required: true
-                },
-                {
-                    name: 'mentionable',
-                    description: 'If everyone can mention the role',
-                    type: ApplicationCommandOptionType.Boolean,
-                    required: true
-                },
-                {
-                    name: 'separate',
-                    description: 'If the role is displayed separately',
-                    type: ApplicationCommandOptionType.Boolean,
-                    required: true
-                },
-                {
-                    name: 'reason',
-                    description: 'Why you want to delete it',
-                    type: ApplicationCommandOptionType.String
-                }
-            ]
-        },
-        {
             name: 'members',
             description: 'List role members (max 100)',
             type: ApplicationCommandOptionType.Subcommand,
@@ -186,67 +132,6 @@ module.exports = {
                 if(!role.editable) return interaction.reply({ embeds: [hierarchyEmbed] })
                 if(member.roles.cache.find(r=>r.id==role.id)) return interaction.reply({ embeds: [removedEmbed] }), member.roles.remove(role)
                 return interaction.reply({ embeds: [noRoleEmbed] })
-
-            }
-
-            case 'delete': {
-
-                const role = options.getRole('role')
-                const reason = options.getString('reason')
-
-                const deletedEmbed = new EmbedBuilder()
-                .setColor('#ff3f3f')
-                .setTitle('Role Deleted <:status_check:1071210743170609292>')
-                .setDescription(`Role was deleted successfully.\n\n**Name:** ${role.name}\n**Color:** ${role.hexColor}\n**Members:** ${role.members.size}`)
-
-                const hierarchyEmbed = new EmbedBuilder()
-                .setColor('#ff3f3f')
-                .setTitle('Delete Failed <:status_warning:1071210887349809182>')
-                .setDescription(`Role delete failed because the \`Omega Bot\` role is below \`${role.name}\` role in this server's role hierarchy. Bit rude but okay..`)
-
-                const noPermsEmbed = new EmbedBuilder()
-                .setColor('#ff3f3f')
-                .setTitle('Delete Failed <:status_warning:1071210887349809182>')
-                .setDescription('Role delete failed because you do not have the required permissions to delete that role.. Whatchu tryna do huh? 🤨')
-
-                if(interaction.member.roles.highest.position < role.position) return interaction.reply({ embeds: [noPermsEmbed] })
-                if(!role.editable) return interaction.reply({ embeds: [hierarchyEmbed] })
-
-                guild.roles.delete(role, reason)
-
-                return interaction.reply({ embeds: [deletedEmbed] })
-
-            }
-
-            case 'create': {
-
-                const name = options.getString('name')
-                const colour = options.getString('color')
-                const mentionable = options.getBoolean('mentionable')
-                const separate = options.getBoolean('separate')
-                const reason = options.getString('reason')
-
-                const createEmbed = new EmbedBuilder()
-                .setColor('#ff3f3f')
-                .setTitle('Role Created <:status_check:1071210743170609292>')
-                .setDescription(`Role was created successfully.\n\n**Name:** ${name}\n**Color:** ${colour}\n**Mentionable:** ${mentionable}\n**Separate:** ${separate}`)
-
-                const hexEmbed = new EmbedBuilder()
-                .setColor('#ff3f3f')
-                .setTitle('Create Failed <:status_warning:1071210887349809182>')
-                .setDescription('Role create failed because the specified colour is an invalid hex code.')
-
-                if(!/^#[0-9A-F]{6}$/i.test(colour)) return interaction.reply({ embeds: [hexEmbed] })
-
-                guild.roles.create({
-                    name: name,
-                    color: colour,
-                    mentionable: mentionable,
-                    hoist: separate,
-                    reason: reason
-                })
-
-                return interaction.reply({ embeds: [createEmbed] })
 
             }
 
