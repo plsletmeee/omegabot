@@ -30,11 +30,39 @@ module.exports = {
             client.user.setStatus('online') 
         }
 
+        // DB Message Function
+        async function sendMessages() {
+            client.guilds.cache.forEach(async guild => {
+                const reactionRoleSchema = require('../../database/reaction-roles')
+                const reactionRoleData = await reactionRoleSchema.find({ guild: guild.id })
+                if(!reactionRoleData) return
+                
+                reactionRoleData.forEach(async schema => {
+                    const channel = guild.channels.cache.get(schema.channel)
+                    if(!channel) return
+
+                    if(schema.sentStatus == false) {
+                        const sendEvent = await channel.send(schema.message)
+                
+                        schema.reactions.forEach(reaction => sendEvent.react(reaction.emoji))
+        
+                        schema.sentStatus = true
+                        schema.messageId = sendEvent.id
+                        schema.save()
+                    }
+
+                    channel.messages.fetch(schema.messageId).catch(() => {return})
+                })
+            })
+        }
+
         console.log(`✨ ${client.user.username} Online.`)
 
-        // Repeating Statistics Update
+        // Functions
         refreshStats()
+        sendMessages()
         
         setInterval(() => refreshStats(), 1000 * 60 * 5)
+        setInterval(() => sendMessages(), 1000 * 5)
     }
 }

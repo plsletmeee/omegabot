@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset='UTF-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <meta http-equiv='X-UA-Compatible' content='ie-edge'>
+        <meta property='og:title' content='Omega Bot'>
+        <meta property='og:description' content='The all in one Discord bot packed with server moderation tools, fun commands, tickets and more!'>
+        <meta property='og:url' content='https://omegabot.xyz/'>
+        <meta name='theme-color' content='#FF3F3F'>
+        <meta name='description' content='The all in one Discord bot packed with server moderation tools, fun commands, tickets and more!'>
+        <link rel='shortcut icon' href='/media/svgs/misc/omega.svg' type='image/x-icon'>
+        <link rel='stylesheet' href='/css/dashboard/modules/reaction-roles.css' type='text/css'>
+        <title>Reaction Roles - Omega</title>
+    </head>
+    <body>
+
+        <header>
+            <div class='header'>
+                <a class='header-logo' href='/'><img src='/media/svgs/misc/banner.svg'></a>
+                <a class='header-logout' href='/dashboard/logout' title='Logout'><span id='userLogout'></span><img src='/media/svgs/main/arrow-box.svg'></a>
+            </div>
+        </header>
+
+        <main>
+            <div class='sidebar'>
+                <div class='sidebar-links'>
+                    <a href='/dashboard'><span>Servers</span><img src='/media/svgs/main/servers.svg'></a>
+                    <a class='selected' href='/dashboard/{serverId}/modules'><span>Modules</span><img src='/media/svgs/dashboard/gear.svg'></a>
+                    <a class='disabled' title='Coming Soon!'><span>Vanities</span><img src='/media/svgs/dashboard/greyed-link.svg'></a>
+                    <a class='disabled' title='Coming Soon!'><span>Forms</span><img src='/media/svgs/dashboard/greyed-clipboard.svg'></a>
+                    <a class='disabled' title='Coming Soon!'><span>Bug Tracker</span><img src='/media/svgs/dashboard/greyed-bug.svg'></a>
+                </div>
+            </div>
+            <section>
+                <div class='main'>
+                    <span class='title'>
+                        <h1>Modules</h1>
+                        <button class='navbar-button' onclick='toggleNavbar()'><img class='navbar-button-img' src='/media/svgs/main/hamburger.svg'></button>
+                    </span>
+                    <div class='navbar' style='display: none;'>
+                        <div class='navbar-links'>
+                            <a href='/dashboard'><span>Servers</span><img src='/media/svgs/main/servers.svg'></a>
+                            <a href='/dashboard/{serverId}/modules'><span>Modules</span><img src='/media/svgs/dashboard/gear.svg'></a>
+                            <a class='navbar-disabled' title='Coming Soon!'><span>Vanities</span><img src='/media/svgs/dashboard/greyed-link.svg'></a>
+                            <a class='navbar-disabled' title='Coming Soon!'><span>Forms</span><img src='/media/svgs/dashboard/greyed-clipboard.svg'></a>
+                            <a class='navbar-disabled' title='Coming Soon!'><span>Bug Tracker</span><img src='/media/svgs/dashboard/greyed-bug.svg'></a>
+                        </div>
+                    </div>
+                    <div class='main-content'>
+                        <div class='about'>
+                            <span>
+                                <h5>Reaction Roles</h5>
+                                <p>Allow members to self-assign roles by reacting.</p>
+                            </span>
+                        </div>
+                        <div class='setting'>
+                            <span>
+                                <h5>Message Settings</h5>
+                                <p>Configure the message settings.</p>
+                            </span>
+                            <span>
+                                <h6>Message Channel</h6>
+                                <button class='channel-dropdown-button' onclick='toggleChannelDropdown()'><span class='channel-dropdown-selected'></span><span class='channel-dropdown-arrow'></span></button>
+                                <div class='channel-dropdown-content'></div>
+                            </span>
+                            <span>
+                                <h6>Message Content</h6>
+                                <textarea class='message-content' name='paragraph_text' placeholder='React here to get your roles!'></textarea>
+                            </span>
+                        </div>
+                        <div class='setting'>
+                            <span>
+                                <h5>Reaction Settings</h5>
+                                <p>Configure the reaction settings.</p>
+                            </span>
+                            <div class='reaction-settings'>
+                                <span id='rs1' style='display: block'>
+                                    <h6>Reaction 1</h6>
+                                    <div class='reaction-setting'>
+                                        <textarea class='reaction-emoji' maxlength='2' placeholder='✨'></textarea>
+                                        <div>
+                                            <button class='reaction-dropdown-button' id='rdb1' onclick='toggleRoleDropdown(1)'><span class='reaction-dropdown-selected' id='rds1'>Select Role</span><span class='reaction-dropdown-arrow' id='rda1'></span></button>
+                                            <div class='reaction-dropdown-content' id='rdc1' style='display: none'>{rolesArray}</div>
+                                        </div>
+                                    </div>
+                                </span>
+                                <span id='rs2' style='display: none'>
+                                    <h6>Reaction 2</h6>
+                                    <div class='reaction-setting'>
+                                        <textarea class='reaction-emoji' maxlength='2' placeholder='✨'></textarea>
+                                        <div>
+                                            <button class='reaction-dropdown-button' id='rdb2' onclick='toggleRoleDropdown(2)'><span class='reaction-dropdown-selected' id='rds2'>Select Role</span><span class='reaction-dropdown-arrow' id='rda2'></span></button>
+                                            <div class='reaction-dropdown-content' id='rdc2' style='display: none'>{rolesArray}</div>
+                                        </div>
+                                    </div>
+                                </span>
+                                <span id='rs3' style='display: none'>
+                                    <h6>Reaction 3</h6>
+                                    <div class='reaction-setting'>
+                                        <textarea class='reaction-emoji' maxlength='2' placeholder='✨'></textarea>
+                                        <div>
+                                            <button class='reaction-dropdown-button' id='rdb3' onclick='toggleRoleDropdown(3)'><span class='reaction-dropdown-selected' id='rds3'>Select Role</span><span class='reaction-dropdown-arrow' id='rda3'></span></button>
+                                            <div class='reaction-dropdown-content' id='rdc3' style='display: none'>{rolesArray}</div>
+                                        </div>
+                                    </div>
+                                </span>
+                                <span id='rs4' style='display: none'>
+                                    <h6>Reaction 4</h6>
+                                    <div class='reaction-setting'>
+                                        <textarea class='reaction-emoji' maxlength='2' placeholder='✨'></textarea>
+                                        <div>
+                                            <button class='reaction-dropdown-button' id='rdb4' onclick='toggleRoleDropdown(4)'><span class='reaction-dropdown-selected' id='rds4'>Select Role</span><span class='reaction-dropdown-arrow' id='rda4'></span></button>
+                                            <div class='reaction-dropdown-content' id='rdc4' style='display: none'>{rolesArray}</div>
+                                        </div>
+                                    </div>
+                                </span>
+                                <span id='rs5' style='display: none'>
+                                    <h6>Reaction 5</h6>
+                                    <div class='reaction-setting'>
+                                        <textarea class='reaction-emoji' maxlength='2' placeholder='✨'></textarea>
+                                        <div>
+                                            <button class='reaction-dropdown-button' id='rdb5' onclick='toggleRoleDropdown(5)'><span class='reaction-dropdown-selected' id='rds5'>Select Role</span><span class='reaction-dropdown-arrow' id='rda5'></span></button>
+                                            <div class='reaction-dropdown-content' id='rdc5' style='display: none'>{rolesArray}</div>
+                                        </div>
+                                    </div>
+                                </span>
+                                <span id='rs6' style='display: none'>
+                                    <h6>Reaction 6</h6>
+                                    <div class='reaction-setting'>
+                                        <textarea class='reaction-emoji' maxlength='2' placeholder='✨'></textarea>
+                                        <div>
+                                            <button class='reaction-dropdown-button' id='rdb6' onclick='toggleRoleDropdown(6)'><span class='reaction-dropdown-selected' id='rds6'>Select Role</span><span class='reaction-dropdown-arrow' id='rda6'></span></button>
+                                            <div class='reaction-dropdown-content' id='rdc6' style='display: none'>{rolesArray}</div>
+                                        </div>
+                                    </div>
+                                </span>
+                                <span id='rs7' style='display: none'>
+                                    <h6>Reaction 7</h6>
+                                    <div class='reaction-setting'>
+                                        <textarea class='reaction-emoji' maxlength='2' placeholder='✨'></textarea>
+                                        <div>
+                                            <button class='reaction-dropdown-button' id='rdb7' onclick='toggleRoleDropdown(7)'><span class='reaction-dropdown-selected' id='rds7'>Select Role</span><span class='reaction-dropdown-arrow' id='rda7'></span></button>
+                                            <div class='reaction-dropdown-content' id='rdc7' style='display: none'>{rolesArray}</div>
+                                        </div>
+                                    </div>
+                                </span>
+                                <span id='rs8' style='display: none'>
+                                    <h6>Reaction 8</h6>
+                                    <div class='reaction-setting'>
+                                        <textarea class='reaction-emoji' maxlength='2' placeholder='✨'></textarea>
+                                        <div>
+                                            <button class='reaction-dropdown-button' id='rdb8' onclick='toggleRoleDropdown(8)'><span class='reaction-dropdown-selected' id='rds8'>Select Role</span><span class='reaction-dropdown-arrow' id='rda8'></span></button>
+                                            <div class='reaction-dropdown-content' id='rdc8' style='display: none'>{rolesArray}</div>
+                                        </div>
+                                    </div>
+                                </span>
+                                <span id='rs9' style='display: none'>
+                                    <h6>Reaction 9</h6>
+                                    <div class='reaction-setting'>
+                                        <textarea class='reaction-emoji' maxlength='2' placeholder='✨'></textarea>
+                                        <div>
+                                            <button class='reaction-dropdown-button' id='rdb9' onclick='toggleRoleDropdown(9)'><span class='reaction-dropdown-selected' id='rds9'>Select Role</span><span class='reaction-dropdown-arrow' id='rda9'></span></button>
+                                            <div class='reaction-dropdown-content' id='rdc9' style='display: none'>{rolesArray}</div>
+                                        </div>
+                                    </div>
+                                </span>
+                                <span id='rs10' style='display: none'>
+                                    <h6>Reaction 10</h6>
+                                    <div class='reaction-setting'>
+                                        <textarea class='reaction-emoji' maxlength='2' placeholder='✨'></textarea>
+                                        <div>
+                                            <button class='reaction-dropdown-button' id='rdb10' onclick='toggleRoleDropdown(10)'><span class='reaction-dropdown-selected' id='rds10'>Select Role</span><span class='reaction-dropdown-arrow' id='rda10'></span></button>
+                                            <div class='reaction-dropdown-content' id='rdc10' style='display: none'>{rolesArray}</div>
+                                        </div>
+                                    </div>
+                                </span>
+                                <span id='rs11' style='display: none'>
+                                    <h6>Reaction 11</h6>
+                                    <div class='reaction-setting'>
+                                        <textarea class='reaction-emoji' maxlength='2' placeholder='✨'></textarea>
+                                        <div>
+                                            <button class='reaction-dropdown-button' id='rdb11' onclick='toggleRoleDropdown(11)'><span class='reaction-dropdown-selected' id='rds11'>Select Role</span><span class='reaction-dropdown-arrow' id='rda11'></span></button>
+                                            <div class='reaction-dropdown-content' id='rdc11' style='display: none'>{rolesArray}</div>
+                                        </div>
+                                    </div>
+                                </span>
+                                <span id='rs12' style='display: none'>
+                                    <h6>Reaction 12</h6>
+                                    <div class='reaction-setting'>
+                                        <textarea class='reaction-emoji' maxlength='2' placeholder='✨'></textarea>
+                                        <div>
+                                            <button class='reaction-dropdown-button' id='rdb12' onclick='toggleRoleDropdown(12)'><span class='reaction-dropdown-selected' id='rds12'>Select Role</span><span class='reaction-dropdown-arrow' id='rda12'></span></button>
+                                            <div class='reaction-dropdown-content' id='rdc12' style='display: none'>{rolesArray}</div>
+                                        </div>
+                                    </div>
+                                </span>
+                                <span id='rs13' style='display: none'>
+                                    <h6>Reaction 13</h6>
+                                    <div class='reaction-setting'>
+                                        <textarea class='reaction-emoji' maxlength='2' placeholder='✨'></textarea>
+                                        <div>
+                                            <button class='reaction-dropdown-button' id='rdb13' onclick='toggleRoleDropdown(13)'><span class='reaction-dropdown-selected' id='rds13'>Select Role</span><span class='reaction-dropdown-arrow' id='rda13'></span></button>
+                                            <div class='reaction-dropdown-content' id='rdc13' style='display: none'>{rolesArray}</div>
+                                        </div>
+                                    </div>
+                                </span>
+                                <span id='rs14' style='display: none'>
+                                    <h6>Reaction 14</h6>
+                                    <div class='reaction-setting'>
+                                        <textarea class='reaction-emoji' maxlength='2' placeholder='✨'></textarea>
+                                        <div>
+                                            <button class='reaction-dropdown-button' id='rdb14' onclick='toggleRoleDropdown(14)'><span class='reaction-dropdown-selected' id='rds14'>Select Role</span><span class='reaction-dropdown-arrow' id='rda14'></span></button>
+                                            <div class='reaction-dropdown-content' id='rdc14' style='display: none'>{rolesArray}</div>
+                                        </div>
+                                    </div>
+                                </span>
+                                <span id='rs15' style='display: none'>
+                                    <h6>Reaction 15</h6>
+                                    <div class='reaction-setting'>
+                                        <textarea class='reaction-emoji' maxlength='2' placeholder='✨'></textarea>
+                                        <div>
+                                            <button class='reaction-dropdown-button' id='rdb15' onclick='toggleRoleDropdown(15)'><span class='reaction-dropdown-selected' id='rds15'>Select Role</span><span class='reaction-dropdown-arrow' id='rda15'></span></button>
+                                            <div class='reaction-dropdown-content' id='rdc15' style='display: none'>{rolesArray}</div>
+                                        </div>
+                                    </div>
+                                </span>
+                                <span id='rs16' style='display: none'>
+                                    <h6>Reaction 16</h6>
+                                    <div class='reaction-setting'>
+                                        <textarea class='reaction-emoji' maxlength='2' placeholder='✨'></textarea>
+                                        <div>
+                                            <button class='reaction-dropdown-button' id='rdb16' onclick='toggleRoleDropdown(16)'><span class='reaction-dropdown-selected' id='rds16'>Select Role</span><span class='reaction-dropdown-arrow' id='rda16'></span></button>
+                                            <div class='reaction-dropdown-content' id='rdc16' style='display: none'>{rolesArray}</div>
+                                        </div>
+                                    </div>
+                                </span>
+                                <span id='rs17' style='display: none'>
+                                    <h6>Reaction 17</h6>
+                                    <div class='reaction-setting'>
+                                        <textarea class='reaction-emoji' maxlength='2' placeholder='✨'></textarea>
+                                        <div>
+                                            <button class='reaction-dropdown-button' id='rdb17' onclick='toggleRoleDropdown(17)'><span class='reaction-dropdown-selected' id='rds17'>Select Role</span><span class='reaction-dropdown-arrow' id='rda17'></span></button>
+                                            <div class='reaction-dropdown-content' id='rdc17' style='display: none'>{rolesArray}</div>
+                                        </div>
+                                    </div>
+                                </span>
+                                <span id='rs18' style='display: none'>
+                                    <h6>Reaction 18</h6>
+                                    <div class='reaction-setting'>
+                                        <textarea class='reaction-emoji' maxlength='2' placeholder='✨'></textarea>
+                                        <div>
+                                            <button class='reaction-dropdown-button' id='rdb18' onclick='toggleRoleDropdown(18)'><span class='reaction-dropdown-selected' id='rds18'>Select Role</span><span class='reaction-dropdown-arrow' id='rda18'></span></button>
+                                            <div class='reaction-dropdown-content' id='rdc18' style='display: none'>{rolesArray}</div>
+                                        </div>
+                                    </div>
+                                </span>
+                                <span id='rs19' style='display: none'>
+                                    <h6>Reaction 19</h6>
+                                    <div class='reaction-setting'>
+                                        <textarea class='reaction-emoji' maxlength='2' placeholder='✨'></textarea>
+                                        <div>
+                                            <button class='reaction-dropdown-button' id='rdb19' onclick='toggleRoleDropdown(19)'><span class='reaction-dropdown-selected' id='rds19'>Select Role</span><span class='reaction-dropdown-arrow' id='rda19'></span></button>
+                                            <div class='reaction-dropdown-content' id='rdc19' style='display: none'>{rolesArray}</div>
+                                        </div>
+                                    </div>
+                                </span>
+                                <span id='rs20' style='display: none'>
+                                    <h6>Reaction 20</h6>
+                                    <div class='reaction-setting'>
+                                        <textarea class='reaction-emoji' maxlength='2' placeholder='✨'></textarea>
+                                        <div>
+                                            <button class='reaction-dropdown-button' id='rdb20' onclick='toggleRoleDropdown(20)'><span class='reaction-dropdown-selected' id='rds20'>Select Role</span><span class='reaction-dropdown-arrow' id='rda20'></span></button>
+                                            <div class='reaction-dropdown-content' id='rdc20' style='display: none'>{rolesArray}</div>
+                                        </div>
+                                    </div>
+                                </span>
+                                <div class='edit-reactions'>
+                                    <button class='add-button' onclick='addReaction(2)'>Add Reaction</button>
+                                    <button class='remove-button' onclick='removeReaction(1)' disabled>Remove Reaction</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button class='save-button' onclick='sendButton(this)'>Send Message</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+    </body>
+
+    <script defer>
+
+        document.body.addEventListener('click', (event) => {
+            if(!event.target.classList.contains('channel-dropdown-button' || !event.target.classList.contains('channel-dropdown-option'))) {
+                let content = document.querySelector('.channel-dropdown-content')
+                let button = document.querySelector('.channel-dropdown-button')
+                let arrow = document.querySelector('.channel-dropdown-arrow')
+            
+                if(content.style.display == 'flex') {
+                    content.style.display = 'none'
+                    button.style.borderRadius = '0.3rem'
+                    arrow.style.rotate = '0deg'
+                    button.style.borderBottom = '0.05rem solid var(--dark-grey)'
+                }
+            }
+        })
+
+        const emojiInput = document.querySelector('.reaction-emoji')
+        const msgContent = document.querySelector('.message-content')
+
+        emojiInput.addEventListener('input', () => {
+            const regex = /(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])/
+            const emoji = emojiInput.value.match(regex)
+            
+            if(!emoji) emojiInput.value = ''
+            else emojiInput.value = emojiInput.value.split(regex)[1]
+        })
+
+        function sendButton(button) {
+            let reactionSettings = document.getElementsByClassName('reaction-setting')
+            let messageContent = document.querySelector('.message-content').value
+            let messageChannel = document.querySelector('.channel-dropdown-selected').getAttribute('data-info')
+            let reactions = []
+
+            if(!messageChannel) {
+                button.textContent = 'Missing Channel'
+                button.style.border = '0.05rem solid var(--brand-red)'
+                button.style.color = 'var(--brand-red)'
+
+                return setTimeout(() => { button.style.border = '0.05rem solid var(--dark-grey)', button.style.color = 'white' }, 500)
+            }
+
+            if(!messageContent) {
+                button.textContent = 'Missing Message'
+                button.style.border = '0.05rem solid var(--brand-red)'
+                button.style.color = 'var(--brand-red)'
+
+                return setTimeout(() => { button.style.border = '0.05rem solid var(--dark-grey)', button.style.color = 'white' }, 500)
+            }
+
+            for (let i = 0; i < reactionSettings.length; i++) {
+                let reactionSetting = reactionSettings[i]
+
+                if(reactionSetting.parentNode.style.display == 'block') {
+                    let emoji = reactionSetting.querySelector('textarea').value
+                    let role = reactionSetting.querySelector('div').querySelector('button').querySelector('.reaction-dropdown-selected').getAttribute('data-info')
+
+                    if(!emoji) {
+                        button.textContent = `Missing Reaction Emoji (${i+1})`
+                        button.style.border = '0.05rem solid var(--brand-red)'
+                        button.style.color = 'var(--brand-red)'
+
+                        return setTimeout(() => { button.style.border = '0.05rem solid var(--dark-grey)', button.style.color = 'white' }, 500)
+                    }
+
+                    if(!role) {
+                        button.textContent = `Missing Reaction Role (${i+1})`
+                        button.style.border = '0.05rem solid var(--brand-red)'
+                        button.style.color = 'var(--brand-red)'
+
+                        return setTimeout(() => { button.style.border = '0.05rem solid var(--dark-grey)', button.style.color = 'white' }, 500)
+                    }
+
+                    reactions.push({ emoji, role })
+                }
+            }
+
+            console.log(reactions)
+            button.textContent = 'Sending Message...'
+            button.disabled = true
+            
+            fetch('/api/config/2', {
+                    method: 'POST',
+                    headers: { Authorization: `Bearer ${getCookie('omegaAuth')}`, 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        guild: window.location.pathname.split('/dashboard/')[1].split('/modules/')[0].toString(),
+                        channel: messageChannel,
+                        message: messageContent,
+                        reactions
+                    })
+            }).then(res => { res.json().then(json => {
+                    console.log(json)
+
+                    if(json.code == 201) {
+                        button.textContent = 'Sent Message'
+                        button.style.border = '0.05rem solid #2ecc71'
+                        button.style.color = '#2ecc71'
+                        button.disabled = true
+
+                        setTimeout(() => { button.style.border = '0.05rem solid var(--dark-grey)', button.style.color = 'white' }, 500)
+                        setTimeout(() => { button.disabled = false }, 5000)
+                    } else {
+                        button.textContent = 'An Error Occured'
+                        button.style.border = '0.05rem solid var(--brand-red)'
+                        button.style.color = 'var(--brand-red)'
+                        button.disabled = true
+
+                        setTimeout(() => { button.style.border = '0.05rem solid var(--dark-grey)', button.style.color = 'white' }, 500)
+                        setTimeout(() => { button.disabled = false }, 5000)
+                    }
+                })
+            })
+        }
+
+        function addReaction(num) {
+            let addReaction = document.querySelector('.add-button')
+            let removeReaction = document.querySelector('.remove-button')
+            let reactionSetting = document.getElementById(`rs${num}`)
+
+            reactionSetting.style.display = 'block'
+            removeReaction.setAttribute('onclick', `removeReaction(${num})`)
+            
+            if(num != 20) addReaction.setAttribute('onclick', `addReaction(${num+1})`)
+            if(num == 20) addReaction.style.color = '#919191', addReaction.disabled = true
+            if(num == 2) removeReaction.style.color = '#ffffff', removeReaction.disabled = false
+        }
+
+        function removeReaction(num) {
+            let addReaction = document.querySelector('.add-button')
+            let removeReaction = document.querySelector('.remove-button')
+            let reactionSetting = document.getElementById(`rs${num}`)
+
+            reactionSetting.style.display = 'none'
+            addReaction.setAttribute('onclick', `addReaction(${num})`)
+            removeReaction.setAttribute('onclick', `removeReaction(${num-1})`)
+
+            if(num == 20) addReaction.style.color = '#ffffff', addReaction.disabled = false
+            if(num == 2) removeReaction.style.color = '#919191', removeReaction.disabled = true
+        }
+        
+        function toggleNavbar() {
+            let navbar = document.querySelector('.navbar')
+            let button = document.querySelector('.navbar-button-img')
+
+            if(navbar.style.display == 'none') navbar.style.display = 'flex', button.src = '/media/svgs/main/cross.svg'
+            else navbar.style.display = 'none', button.src = '/media/svgs/main/hamburger.svg'
+        }
+
+        function toggleChannelDropdown() {
+            let content = document.querySelector('.channel-dropdown-content')
+            let button = document.querySelector('.channel-dropdown-button')
+            let arrow = document.querySelector('.channel-dropdown-arrow')
+            if (content.style.display == 'flex') button.style.borderRadius = '0.3rem', arrow.style.rotate = '0deg', content.style.display = 'none', button.style.borderBottom = '0.05rem solid var(--dark-grey)'
+            else content.style.display = 'flex', button.style.borderRadius = '0.3rem 0.3rem 0 0', arrow.style.rotate = '180deg', button.style.borderBottom = '0rem solid var(--dark-grey)'
+        }
+
+        function toggleRoleDropdown(num) {
+            let content = document.getElementById(`rdc${num}`)
+            let button = document.getElementById(`rdb${num}`)
+            let arrow = document.getElementById(`rda${num}`)
+
+            if (content.style.display == 'flex') button.style.borderRadius = '0.3rem', arrow.style.rotate = '0deg', content.style.display = 'none', button.style.borderBottom = '0.05rem solid var(--dark-grey)'
+            else content.style.display = 'flex', button.style.borderRadius = '0.3rem 0.3rem 0 0', arrow.style.rotate = '180deg', button.style.borderBottom = '0rem solid var(--dark-grey)'
+        }
+
+        function selectChannelOption(element) {
+            let content = document.querySelector('.channel-dropdown-content')
+            let button = document.querySelector('.channel-dropdown-button')
+            let selected = document.querySelector('.channel-dropdown-selected')
+            let arrow = document.querySelector('.channel-dropdown-arrow')
+
+            selected.textContent = element.textContent
+            selected.style.color = element.style.color
+            selected.dataset.info = element.getAttribute('data-info')
+            content.style.display = 'none'
+            button.style.borderRadius = '0.3rem'
+            arrow.style.rotate = '0deg'
+            button.style.borderBottom = '0.05rem solid var(--dark-grey)'
+        }
+
+
+        function selectRoleOption(element) {
+            let content = document.getElementById(`rdc${element.parentNode.id.split('rdc')[1]-0}`)
+            let button = document.getElementById(`rdb${element.parentNode.id.split('rdc')[1]-0}`)
+            let selected = document.getElementById(`rds${element.parentNode.id.split('rdc')[1]-0}`)
+            let arrow = document.getElementById(`rda${element.parentNode.id.split('rdc')[1]-0}`)
+
+            selected.textContent = element.textContent
+            selected.style.color = element.style.color
+            selected.dataset.info = element.getAttribute('data-info')
+            content.style.display = 'none'
+            button.style.borderRadius = '0.3rem'
+            arrow.style.rotate = '0deg'
+            button.style.borderBottom = '0.05rem solid var(--dark-grey)'
+        }
+
+        function getCookie(name) {
+            const value = `; ${document.cookie}`
+            const parts = value.split(`; ${name}=`)
+            if(parts.length == 2) return parts.pop().split(';').shift()
+        }
+    </script>
+
+</html>

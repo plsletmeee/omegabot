@@ -10,7 +10,7 @@
         <meta name='theme-color' content='#FF3F3F'>
         <meta name='description' content='The all in one Discord bot packed with server moderation tools, fun commands, tickets and more!'>
         <link rel='shortcut icon' href='/media/svgs/misc/omega.svg' type='image/x-icon'>
-        <link rel='stylesheet' href='/css/dashboard/module.css' type='text/css'>
+        <link rel='stylesheet' href='/css/dashboard/modules/link-detector.css' type='text/css'>
         <title>Link Detector - Omega</title>
     </head>
     <body>
@@ -53,29 +53,32 @@
                                 <h5>Link Detector</h5>
                                 <p>Automatically delete links in text channels.</p>
                             </span>
-                            <button class='switch switch-enabled' onclick='toggleEnabled()'>{moduleStatus}</button>
+                            <button class='status-button' onclick='toggleEnabled(this)'>{moduleStatus}</button>
                         </div>
                         <div class='setting'>
-                            <h5>Excluded Role</h5>
-                            <p>Members of this role will be immune to the link detector.</p>
-                            <br>
-                            <button class='dropdown-button' onclick='toggleDropdown()'><span class='dropdown-selected'></span><span class='dropdown-arrow'></span></button>
-                            <div class='dropdown-content'></div>
+                            <span>
+                                <h5>Excluded Role</h5>
+                                <p>Members of this role will be immune to the link detector.</p>
+                            </span>
+                            <div>
+                                <button class='reaction-dropdown-button' onclick='toggleDropdown()'><span class='reaction-dropdown-selected'></span><span class='reaction-dropdown-arrow'></span></button>
+                                <div class='reaction-dropdown-content'></div>
+                            </div>
                         </div>
+                        <button class='save-button' onclick='saveButton(this)'>Save Settings</button>
                     </div>
                 </div>
             </section>
-            <div class='notif'><img src='/media/svgs/dashboard/check.svg'>Updated Settings</div>
         </main>
 
     </body>
 
     <script defer>
         document.body.addEventListener('click', (event) => {
-            if(!event.target.classList.contains('dropdown-button' || !event.target.classList.contains('dropdown-option'))) {
-                let content = document.querySelector('.dropdown-content')
-                let button = document.querySelector('.dropdown-button')
-                let arrow = document.querySelector('.dropdown-arrow')
+            if(!event.target.classList.contains('reaction-dropdown-button' || !event.target.classList.contains('reaction-dropdown-option'))) {
+                let content = document.querySelector('.reaction-dropdown-content')
+                let button = document.querySelector('.reaction-dropdown-button')
+                let arrow = document.querySelector('.reaction-dropdown-arrow')
 
                 if(content.style.display == 'flex') {
                     content.style.display = 'none'
@@ -84,6 +87,48 @@
                 }
             }
         })
+
+        function saveButton(button) {
+            let exception = document.querySelector('.reaction-dropdown-selected').getAttribute('data-info')
+            let enabled
+
+            if(document.querySelector('.status-button').textContent == 'Enabled') enabled = true
+            else enabled = false
+
+            button.textContent = 'Saving Settings...'
+            button.disabled = true
+            
+            fetch('/api/config/1', {
+                    method: 'POST',
+                    headers: { Authorization: `Bearer ${getCookie('omegaAuth')}`, 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        guild: window.location.pathname.split('/dashboard/')[1].split('/modules/')[0].toString(),
+                        enabled,
+                        exception,
+                    })
+            }).then(res => { res.json().then(json => {
+                    console.log(json)
+
+                    if(json.code == 201) {
+                        button.textContent = 'Saved Settings'
+                        button.style.border = '0.05rem solid #2ecc71'
+                        button.style.color = '#2ecc71'
+                        button.disabled = true
+
+                        setTimeout(() => { button.style.border = '0.05rem solid var(--dark-grey)', button.style.color = 'white' }, 500)
+                        setTimeout(() => { button.disabled = false }, 5000)
+                    } else {
+                        button.textContent = 'An Error Occured'
+                        button.style.border = '0.05rem solid var(--brand-red)'
+                        button.style.color = 'var(--brand-red)'
+                        button.disabled = true
+
+                        setTimeout(() => { button.style.border = '0.05rem solid var(--dark-grey)', button.style.color = 'white' }, 500)
+                        setTimeout(() => { button.disabled = false }, 5000)
+                    }
+                })
+            })
+        }
         
         function toggleNavbar() {
             let navbar = document.querySelector('.navbar')
@@ -92,93 +137,35 @@
             if(navbar.style.display == 'none') navbar.style.display = 'flex', button.src = '/media/svgs/main/cross.svg'
             else navbar.style.display = 'none', button.src = '/media/svgs/main/hamburger.svg'
         }
-        function toggleEnabled() {
-            let button = document.querySelector('.switch')
-            let notif = document.querySelector('.notif')
 
-            if(button.textContent == 'Enabled' && !button.disabled) {
-                button.textContent = 'Disabled'
-                button.disabled = true
-
-                fetch('/api/config/1', {
-                    method: 'POST',
-                    headers: { Authorization: `Bearer ${getCookie('omegaAuth')}`, 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        guild: window.location.pathname.split('/dashboard/')[1].split('/modules/')[0].toString(),
-                        enabled: false,
-                    })
-                }).then(res => { res.json().then(json => {
-                        console.log(json)
-                        if(json.code == 201) {
-                            button.disabled = false
-                            notif.style.opacity = 1
-                            setTimeout(() => {
-                                notif.style.opacity = 0
-                            }, 3000)
-                        }
-                    })
-                })
-            } else if(button.textContent == 'Disabled') {
-                button.textContent = 'Enabled'
-                button.disabled = true
-
-                fetch('/api/config/1', {
-                    method: 'POST',
-                    headers: { Authorization: `Bearer ${getCookie('omegaAuth')}`, 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        guild: window.location.pathname.split('/dashboard/')[1].split('/modules/')[0].toString(),
-                        enabled: true,
-                    })
-                }).then(res => { res.json().then(json => {
-                        console.log(json)
-                        if(json.code == 201) {
-                            notif.style.opacity = 1
-                            button.disabled = false
-                            setTimeout(() => {
-                                notif.style.opacity = 0
-                            }, 3000)
-                        }
-                    })
-                })
-            }
+        function toggleEnabled(button) {
+            if(button.textContent == 'Enabled') button.textContent = 'Disabled'
+            else button.textContent = 'Enabled'
         }
+
         function toggleDropdown() {
-            let content = document.querySelector('.dropdown-content')
-            let button = document.querySelector('.dropdown-button')
-            let arrow = document.querySelector('.dropdown-arrow')
-            if (content.style.display == 'flex') button.style.borderRadius = '0.3rem', arrow.style.rotate = '0deg', content.style.display = 'none'
-            else content.style.display = 'flex', button.style.borderRadius = '0.3rem 0.3rem 0 0', arrow.style.rotate = '180deg'
-        }
-        function selectOption(element) {
-            let content = document.querySelector('.dropdown-content')
-            let button = document.querySelector('.dropdown-button')
-            let selected = document.querySelector('.dropdown-selected')
-            let arrow = document.querySelector('.dropdown-arrow')
-            let notif = document.querySelector('.notif')
+            let content = document.querySelector('.reaction-dropdown-content')
+            let button = document.querySelector('.reaction-dropdown-button')
+            let arrow = document.querySelector('.reaction-dropdown-arrow')
 
+            if (content.style.display == 'flex') button.style.borderRadius = '0.3rem', arrow.style.rotate = '0deg', content.style.display = 'none', button.style.borderBottom = '0.05rem solid var(--dark-grey)'
+            else content.style.display = 'flex', button.style.borderRadius = '0.3rem 0.3rem 0 0', arrow.style.rotate = '180deg', button.style.borderBottom = '0rem solid var(--dark-grey)'
+        }
+
+        function selectOption(element) {
+            let content = document.querySelector('.reaction-dropdown-content')
+            let button = document.querySelector('.reaction-dropdown-button')
+            let selected = document.querySelector('.reaction-dropdown-selected')
+            let arrow = document.querySelector('.reaction-dropdown-arrow')
+
+            selected.setAttribute('data-info', element.getAttribute('data-info'))
             selected.textContent = element.textContent
             selected.style.color = element.style.color
             content.style.display = 'none'
             button.style.borderRadius = '0.3rem'
             arrow.style.rotate = '0deg'
-
-            fetch('/api/config/1', {
-                method: 'POST',
-                headers: { Authorization: `Bearer ${getCookie('omegaAuth')}`, 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    guild: window.location.pathname.split('/dashboard/')[1].split('/modules/')[0].toString(),
-                    exception: element.getAttribute('data-info')
-                })
-            }).then(res => { res.json().then(json => {
-                    if(json.code == 201) {
-                        notif.style.opacity = 1
-                        setTimeout(() => {
-                            notif.style.opacity = 0
-                        }, 3000)
-                    }
-                })
-            })
         }
+
         function getCookie(name) {
             const value = `; ${document.cookie}`
             const parts = value.split(`; ${name}=`)

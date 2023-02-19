@@ -5,7 +5,11 @@ async function getBotGuilds() {
         method: 'GET',
         headers: { Authorization: `Bot ${TOKEN}` }
     })
-    return response.json()
+    
+    const array = await response.json()
+    array.sort((a, b) => { return a.position - b.position })
+
+    return array
 }
 
 async function getGuildRoles(guildId) {
@@ -13,7 +17,11 @@ async function getGuildRoles(guildId) {
         method: 'GET',
         headers: { Authorization: `Bot ${TOKEN}` }
     })
-    return response.json()
+        
+    const array = await response.json()
+    array.sort((a, b) => { return a.position - b.position })
+
+    return array
 }
 
 async function getGuildChannels(guildId) {
@@ -21,7 +29,11 @@ async function getGuildChannels(guildId) {
         method: 'GET',
         headers: { Authorization: `Bot ${TOKEN}` }
     })
-    return response.json()
+        
+    const array = await response.json()
+    array.sort((a, b) => { return a.position - b.position })
+
+    return array
 }
 
 module.exports = { getBotGuilds, getGuildRoles, getGuildChannels }

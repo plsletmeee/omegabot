@@ -42,7 +42,7 @@ module.exports = async (client) => {
             // Pushing New Commands (Dev)
             client.guilds.cache.forEach(guild => {
                 guild.commands.set([])
-                // if(guild.id == '1061823009117184020') guild.commands.set(mainCmd)
+                // if(guild.id == '1041314301270573077') guild.commands.set(mainCmd)
             })
 
             // Pushing New Commands (Prod)
