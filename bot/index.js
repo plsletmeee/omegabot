@@ -1,7 +1,7 @@
 require('events').defaultMaxListeners = 40
 
-const { Client, Collection, Partials, GatewayIntentBits } = require('discord.js')
-const client = new Client({ intents: [Object.keys(GatewayIntentBits)] }, { partials: [Object.keys(Partials)] })
+const { Client, Collection, Partials } = require('discord.js')
+const client = new Client({ intents: 3276543 }, { partials: [Object.keys(Partials)] })
 
 const { DisTube } = require('distube')
 const { SpotifyPlugin } = require('@distube/spotify')
