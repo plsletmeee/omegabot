@@ -45,26 +45,26 @@ module.exports = {
             let id = data.ID
             let highestXP = data.Level * 1000
 
-            if(xp > 1000 && level == 0) {
+            if(xp >= 1000 && level == 0) {
                 channel.send(`<@${id}> you levelled up! 🥳\nYou are now level ${level + 1}.`).catch(() => {return})
                 data.Level = level + 1
                 data.XP = 0
                 data.save()
             } else 
             
-            if(xp > highestXP && level > 0) { 
+            if(xp >= highestXP && level > 0) { 
                 channel.send(`<@${id}> you levelled up! 🥳\nYou are now level ${level + 1}.`).catch(() => {return})
                 data.Level = level + 1
                 data.XP = 0
                 data.save()
             } else 
 
-            if(xp < 1000 && level == 0) {
+            if(xp <= 1000 && level == 0) {
                 data.XP = xp + Math.floor(Math.random() * 100),
                 data.save()
             } else 
             
-            if(xp < highestXP && level > 0) { 
+            if(xp <= highestXP && level > 0) { 
                 data.XP = xp + Math.floor(Math.random() * 100),
                 data.save()
             }

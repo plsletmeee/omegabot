@@ -23,7 +23,7 @@ module.exports = {
     
             Schema.findOne({ Guild : interaction.guild.id, ID : interaction.member.id }, async (err, data) => {
         
-                if(!data) return interaction.reply({content: '<:status_warning:1071210887349809182> There is no rank data. Send some messages in this server first!', ephemeral: true})
+                if(!data) return interaction.reply({content: '<:obcross:1073595895360258118> There is no rank data. Send some messages in this server first!', ephemeral: true})
     
                 const level = data.Level
                 const xp = data.XP
@@ -53,7 +53,7 @@ module.exports = {
     
             Schema.find({ Guild : interaction.guild.id }, async (err, data) => {
         
-                if(!data || err) return interaction.reply({content: `<:status_warning:1071210887349809182> There is no rank data for this server.`, ephemeral: true})
+                if(!data || err) return interaction.reply({content: `<:obcross:1073595895360258118> There is no rank data for this server.`, ephemeral: true})
 
                 let leaderboard = []
 

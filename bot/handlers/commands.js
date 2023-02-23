@@ -16,7 +16,6 @@ module.exports = async (client) => {
             const files = readdirSync(`./bot/commands/${folder}`).filter(file => file.endsWith('.js'))
 
             for (const file of files) {
-                // Adding Command to Array
                 const command = require(`../commands/${folder}/${file}`)
 
                 if(command.disabled) continue
@@ -42,12 +41,12 @@ module.exports = async (client) => {
             // Pushing New Commands (Dev)
             client.guilds.cache.forEach(guild => {
                 guild.commands.set([])
-                // if(guild.id == '1041314301270573077') guild.commands.set(mainCmd)
+                if(guild.id == '1061702951854424155') guild.commands.set(mainCmd)
             })
 
             // Pushing New Commands (Prod)
-            client.application.commands.set([])
-            client.application.commands.set(mainCmd)
+            // client.application.commands.set([])
+            // client.application.commands.set(mainCmd)
 
             // Updating Bot Statistics
             if(client.user.id != '1046548033552273469') {

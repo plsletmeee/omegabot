@@ -78,22 +78,22 @@ module.exports = {
 
                 const hasRoleEmbed = new EmbedBuilder()
                 .setColor('#ff3f3f')
-                .setTitle('Add Failed <:status_warning:1071210887349809182>')
+                .setTitle('Add Failed <:obcross:1073595895360258118>')
                 .setDescription('Role add failed because the user already has that role.')
 
                 const addedEmbed = new EmbedBuilder()
                 .setColor('#ff3f3f')
-                .setTitle('Added Role <:status_check:1071210743170609292>')
+                .setTitle('Added Role <:obcheck:1073595892701069362>')
                 .setDescription(`Role was added successfully.\n\n**Role:** ${role.name}\n**User:** ${member.user.username}`)
 
                 const hierarchyEmbed = new EmbedBuilder()
                 .setColor('#ff3f3f')
-                .setTitle('Add Failed <:status_warning:1071210887349809182>')
+                .setTitle('Add Failed <:obcross:1073595895360258118>')
                 .setDescription(`Role add failed because the \`Omega Bot\` role is below \`${role.name}\` role in this server's role hierarchy. Bit rude but okay..`)
 
                 const noPermsEmbed = new EmbedBuilder()
                 .setColor('#ff3f3f')
-                .setTitle('Add Failed <:status_warning:1071210887349809182>')
+                .setTitle('Add Failed <:obcross:1073595895360258118>')
                 .setDescription('Role add failed because you do not have the required permissions to add that role to that member.. Whatchu tryna do huh? 🤨')
 
                 if(interaction.member.roles.highest.position < role.position) return interaction.reply({ embeds: [noPermsEmbed] })
@@ -110,22 +110,22 @@ module.exports = {
 
                 const noRoleEmbed = new EmbedBuilder()
                 .setColor('#ff3f3f')
-                .setTitle('Remove Failed <:status_warning:1071210887349809182>')
+                .setTitle('Remove Failed <:obcross:1073595895360258118>')
                 .setDescription('Role remove failed because the user does not have that role.')
 
                 const removedEmbed = new EmbedBuilder()
                 .setColor('#ff3f3f')
-                .setTitle('Removed Role <:status_check:1071210743170609292>')
+                .setTitle('Removed Role <:obcheck:1073595892701069362>')
                 .setDescription(`Role was removed successfully.\n\n**Role:** ${role.name}\n**User:** ${member.user.username}`)
 
                 const hierarchyEmbed = new EmbedBuilder()
                 .setColor('#ff3f3f')
-                .setTitle('Remove Failed <:status_warning:1071210887349809182>')
+                .setTitle('Remove Failed <:obcross:1073595895360258118>')
                 .setDescription(`Role remove failed because the \`Omega Bot\` role is below \`${role.name}\` role in this server's role hierarchy. Bit rude but okay..`)
 
                 const noPermsEmbed = new EmbedBuilder()
                 .setColor('#ff3f3f')
-                .setTitle('Remove Failed <:status_warning:1071210887349809182>')
+                .setTitle('Remove Failed <:obcross:1073595895360258118>')
                 .setDescription('Role remove failed because you do not have the required permissions to remove that role from that member.. Whatchu tryna do huh? 🤨')
 
                 if(interaction.member.roles.highest.position < role.position) return interaction.reply({ embeds: [noPermsEmbed] })

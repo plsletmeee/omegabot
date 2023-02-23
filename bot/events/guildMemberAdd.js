@@ -97,5 +97,6 @@ module.exports = {
             if(channel) channel.send({embeds: [embed]}).catch(() => {return})
 
         })
+
     }
 }

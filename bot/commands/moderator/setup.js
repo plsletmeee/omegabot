@@ -73,7 +73,6 @@ module.exports = {
                 {
                     name: 'excluded-channel',
                     description: 'Set this to your server spam channel',
-                    required: true,
                     type: ApplicationCommandOptionType.Channel,
                     channel_types: [ChannelType.GuildText],
                 },
@@ -536,7 +535,7 @@ module.exports = {
                         }
                     })
         
-                interaction.reply({ content: '<:status_check:1071210743170609292> Ticket setup successful.', ephemeral: true })
+                interaction.reply({ content: '<:obcheck:1073595892701069362> Ticket setup successful.', ephemeral: true })
                 PanelChannel.send({ embeds: [Embed], components: [TicketCreate] })
 
         }
@@ -563,7 +562,7 @@ module.exports = {
                         }).save()
                     }})
     
-                    interaction.reply({ content: '<:status_check:1071210743170609292> Link Detection setup successful.', ephemeral: true })
+                    interaction.reply({ content: '<:obcheck:1073595892701069362> Link Detection setup successful.', ephemeral: true })
 
                 } else if(choice === 'false') {
 
@@ -580,7 +579,7 @@ module.exports = {
                         }).save()
                     }})
     
-                    interaction.reply({ content: '<:status_check:1071210743170609292> Link Detection setup successful.', ephemeral: true })
+                    interaction.reply({ content: '<:obcheck:1073595892701069362> Link Detection setup successful.', ephemeral: true })
 
                 }
 
@@ -602,7 +601,7 @@ module.exports = {
                 }).save()
             }})
 
-            interaction.reply({ content: '<:status_check:1071210743170609292> Boost Tracker setup successful.', ephemeral: true })
+            interaction.reply({ content: '<:obcheck:1073595892701069362> Boost Tracker setup successful.', ephemeral: true })
 
         }
 
@@ -612,40 +611,23 @@ module.exports = {
             const spam = interaction.options.getChannel('excluded-channel')
             const Schema = require('../../../database/levels')
 
+            let spamChannel = 'None'
+            if(spam) spamChannel = spam.id
+
             Schema.findOne({ Guild : interaction.guild.id }, (err, data) => {
                 if (data) {
                     data.Channel = channel.id,
-                    data.Spam = spam.id,
+                    data.Spam = spamChannel,
                     data.save()
                 } else {
                 new Schema ({
                     Guild : interaction.guild.id,
                     Channel : channel.id,
-                    Spam : spam.id,
+                    Spam : spamChannel,
                 }).save()
             }})
 
-            interaction.reply({ content: '<:status_check:1071210743170609292> Levels setup successful.', ephemeral: true })
-
-        }
-
-        if(interaction.options.getSubcommand() === 'suggestions') {
-
-            const channel = interaction.options.getChannel('suggestions-channel')
-            const Schema = require('../../../database/suggestions')
-
-            Schema.findOne({ Guild : interaction.guild.id }, (err, data) => {
-                if (data) {
-                    data.Channel = channel.id,
-                    data.save()
-                } else {
-                new Schema ({
-                    Guild : interaction.guild.id,
-                    Channel : channel.id,
-                }).save()
-            }})
-
-            interaction.reply({ content: '<:status_check:1071210743170609292> Suggestions setup successful.', ephemeral: true })
+            interaction.reply({ content: '<:obcheck:1073595892701069362> Levels setup successful.', ephemeral: true })
 
         }
 
@@ -671,7 +653,7 @@ module.exports = {
                 }).save()
             }})
 
-            interaction.reply({ content: '<:status_check:1071210743170609292> Role Counter setup successful.', ephemeral: true })
+            interaction.reply({ content: '<:obcheck:1073595892701069362> Role Counter setup successful.', ephemeral: true })
 
         }
 
@@ -694,7 +676,7 @@ module.exports = {
                 }).save()
             }})
 
-            interaction.reply({ content: '<:status_check:1071210743170609292> Member Counter setup successful.', ephemeral: true })
+            interaction.reply({ content: '<:obcheck:1073595892701069362> Member Counter setup successful.', ephemeral: true })
 
         }
 
@@ -717,7 +699,7 @@ module.exports = {
                 }).save()
             }})
 
-            interaction.reply({ content: '<:status_check:1071210743170609292> Bot Counter setup successful.', ephemeral: true })
+            interaction.reply({ content: '<:obcheck:1073595892701069362> Bot Counter setup successful.', ephemeral: true })
 
         }
 
@@ -738,7 +720,7 @@ module.exports = {
                 'image/jpeg'
             ]
 
-            if(picture && !contentType.includes(picture.contentType.toString())) return interaction.reply({ content: '<:status_warning:1071210887349809182> Error! Invalid Attachment Type.', ephemeral: true })
+            if(picture && !contentType.includes(picture.contentType.toString())) return interaction.reply({ content: '<:obcross:1073595895360258118> Error! Invalid Attachment Type.', ephemeral: true })
 
             let pictureUrl = 'false'
             let pictureLink = false
@@ -796,7 +778,7 @@ module.exports = {
             ]
 
             if(picture && !contentType.includes(picture.contentType.toString())) 
-            return interaction.reply({ content: '<:status_warning:1071210887349809182> Error! Invalid Attachment Type.', ephemeral: true })
+            return interaction.reply({ content: '<:obcross:1073595895360258118> Error! Invalid Attachment Type.', ephemeral: true })
 
             let pictureUrl = 'false'
             let pictureLink = false
@@ -856,7 +838,7 @@ module.exports = {
                     }).save()
                 }})
 
-                interaction.reply({ content: '<:status_check:1071210743170609292> Autorole setup successful.', ephemeral: true })
+                interaction.reply({ content: '<:obcheck:1073595892701069362> Autorole setup successful.', ephemeral: true })
 
             } else if(choice === 'false') {
 
@@ -873,7 +855,7 @@ module.exports = {
                     }).save()
                 }})
 
-                interaction.reply({ content: '<:status_check:1071210743170609292> Autorole setup successful.', ephemeral: true })
+                interaction.reply({ content: '<:obcheck:1073595892701069362> Autorole setup successful.', ephemeral: true })
 
             }
 
@@ -895,7 +877,7 @@ module.exports = {
                 }).save()
             }})
 
-            interaction.reply({ content: '<:status_check:1071210743170609292> Member Log setup successful.', ephemeral: true })
+            interaction.reply({ content: '<:obcheck:1073595892701069362> Member Log setup successful.', ephemeral: true })
 
         }
 
@@ -915,7 +897,7 @@ module.exports = {
                 }).save()
             }})
 
-            interaction.reply({ content: '<:status_check:1071210743170609292> Audit Log setup successful.', ephemeral: true })
+            interaction.reply({ content: '<:obcheck:1073595892701069362> Audit Log setup successful.', ephemeral: true })
 
         }
 
@@ -941,7 +923,7 @@ module.exports = {
                 }).save()
             }})
 
-            interaction.reply({ content: '<:status_check:1071210743170609292> Daily Messages setup successful.', ephemeral: true })     
+            interaction.reply({ content: '<:obcheck:1073595892701069362> Daily Messages setup successful.', ephemeral: true })     
 
         }
 
@@ -1396,7 +1378,7 @@ module.exports = {
                 Roles: role1Id + ' ' + role2Id + ' ' + role3Id + ' ' + role4Id + ' ' + role5Id + ' ' + role6Id + ' ' + role7Id + ' ' + role8Id + ' ' + role9Id + ' ' + role10Id
             }).save()
 
-            interaction.reply({ content: '<:status_check:1071210743170609292> Reaction Role setup successful.', ephemeral: true })  
+            interaction.reply({ content: '<:obcheck:1073595892701069362> Reaction Role setup successful.', ephemeral: true })  
 
         }
 

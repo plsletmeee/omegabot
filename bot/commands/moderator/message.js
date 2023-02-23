@@ -48,7 +48,7 @@ module.exports = {
 
                 const notfoundEmbed = new EmbedBuilder()
                 .setColor('#ff3f3f')
-                .setTitle('Echo Failed <:status_warning:1071210887349809182>')
+                .setTitle('Echo Failed <:obcross:1073595895360258118>')
                 .setDescription('Message echo failed because the message ID is either invalid or the message does not originate from this channel.')
 
                 const messageId = options.getString('message')
@@ -60,7 +60,7 @@ module.exports = {
 
                     const sentEmbed = new EmbedBuilder()
                     .setColor('#ff3f3f')
-                    .setTitle('Echoed Message <:status_check:1071210743170609292>')
+                    .setTitle('Echoed Message <:obcheck:1073595892701069362>')
                     .setDescription('Message was echoed successfully.')
     
                     if(channel) channel.send({ content: content, embeds: embeds, components: components, stickers: stickers, files: attachments })

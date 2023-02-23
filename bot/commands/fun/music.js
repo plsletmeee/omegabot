@@ -66,8 +66,8 @@ module.exports = {
         const voiceChannel = interaction.member.voice.channel
         const botVoiceChannel = interaction.guild.members.me.voice.channelId
 
-        if(!voiceChannel) return interaction.reply({ content: '<:status_warning:1071210887349809182> You must be in a voice channel to run this command.', ephemeral: true })
-        if(botVoiceChannel && voiceChannel.id != botVoiceChannel) return interaction.reply({ content: `<:status_warning:1071210887349809182> I am already playing music in another voice channel.`, ephemeral: true })
+        if(!voiceChannel) return interaction.reply({ content: '<:obcross:1073595895360258118> You must be in a voice channel to run this command.', ephemeral: true })
+        if(botVoiceChannel && voiceChannel.id != botVoiceChannel) return interaction.reply({ content: `<:obcross:1073595895360258118> I am already playing music in another voice channel.`, ephemeral: true })
 
         switch (interaction.options.getSubcommand()) {
             case 'play': {
@@ -81,8 +81,8 @@ module.exports = {
                 const percent = interaction.options.getNumber('percent')
                 const queue = client.distube.getQueue(voiceChannel)
 
-                if(percent > 100 || percent < 1) return interaction.reply({ content: '<:status_warning:1071210887349809182> You can only choose between 1 and 100.', ephemeral: true })
-                if(!queue) return interaction.reply({ content: '<:status_warning:1071210887349809182> No music in queue.', ephemeral: true })
+                if(percent > 100 || percent < 1) return interaction.reply({ content: '<:obcross:1073595895360258118> You can only choose between 1 and 100.', ephemeral: true })
+                if(!queue) return interaction.reply({ content: '<:obcross:1073595895360258118> No music in queue.', ephemeral: true })
 
                 client.distube.setVolume(voiceChannel, percent)
                 return interaction.reply(`<:music_volume:1062132652041326652> Volume adjusted to \`${percent}%\``)
@@ -96,7 +96,7 @@ module.exports = {
             case 'queue': {
                 const queue = client.distube.getQueue(voiceChannel)
                 const options = interaction.options.getString('settings')
-                if(!queue) return interaction.reply({ content: '<:status_warning:1071210887349809182> No music in queue.', ephemeral: true })
+                if(!queue) return interaction.reply({ content: '<:obcross:1073595895360258118> No music in queue.', ephemeral: true })
 
                 const queueEmbed = new EmbedBuilder()
                 .setColor('#ff3f3f')

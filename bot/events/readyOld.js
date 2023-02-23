@@ -1,6 +1,11 @@
+const client = require('../index')
+
 module.exports = {
     name: 'ready',
     once: true,
+    /**
+    * @param {client} client 
+    */
     async execute(client) {
 
         //DAILY MESSAGES
@@ -75,7 +80,7 @@ module.exports = {
                 try {
                     const channel = guild.channels.cache.get(data.Channel)
                     const name = data.Name
-                    const memberCount = guild.members.cache.filter(member => !member.user.bot).size
+                    const memberCount = guild.memberCount
     
                     await channel.setName(`${name}: ${memberCount}`)
                 } catch {
@@ -131,7 +136,7 @@ module.exports = {
                     try {
                         const channel = guild.channels.cache.get(data.Channel)
                         const name = data.Name
-                        const memberCount = guild.members.cache.filter(member => !member.user.bot).size
+                        const memberCount = guild.memberCount
         
                         await channel.setName(`${name}: ${memberCount}`)
                     } catch {

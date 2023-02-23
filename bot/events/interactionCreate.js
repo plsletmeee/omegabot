@@ -176,8 +176,8 @@ module.exports = {
 
                         const pollData = await require('../../database/polls').findOne({ guild: interaction.guild.id, uuid: customId[0] })
 
-                        if(!pollData) return interaction.reply({ content: '<:status_warning:1071210887349809182> An error occured, please try again later.', ephemeral: true })
-                        if(pollData.voters.includes(interaction.user.id)) return interaction.reply({ content: '<:status_warning:1071210887349809182> You are already entered into this poll.', ephemeral: true })
+                        if(!pollData) return interaction.reply({ content: '<:obcross:1073595895360258118> An error occured, please try again later.', ephemeral: true })
+                        if(pollData.voters.includes(interaction.user.id)) return interaction.reply({ content: '<:obcross:1073595895360258118> You are already entered into this poll.', ephemeral: true })
 
                         else pollData.voters.push(interaction.user.id), pollData.save()
 

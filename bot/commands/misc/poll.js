@@ -7,8 +7,8 @@ module.exports = {
     defaultMemberPermissions: PermissionFlagsBits.ManageMessages,
     options: [
         {
-            name: 'start',
-            description: 'Start a new poll',
+            name: 'create',
+            description: 'Create a new poll',
             type: ApplicationCommandOptionType.Subcommand,
             options: [
                 {
@@ -18,48 +18,48 @@ module.exports = {
                     required: true
                 },
                 {
-                    name: 'option-1',
+                    name: 'choice-1',
                     description: 'Poll option',
                     type: ApplicationCommandOptionType.String,
                     required: true
                 },
                 {
-                    name: 'option-2',
+                    name: 'choice-2',
                     description: 'Poll option',
                     type: ApplicationCommandOptionType.String
                 },
                 {
-                    name: 'option-3',
+                    name: 'choice-3',
                     description: 'Poll option',
                     type: ApplicationCommandOptionType.String
                 },
                 {
-                    name: 'option-4',
+                    name: 'choice-4',
                     description: 'Poll option',
                     type: ApplicationCommandOptionType.String
                 },
                 {
-                    name: 'option-5',
+                    name: 'choice-5',
                     description: 'Poll option',
                     type: ApplicationCommandOptionType.String
                 },
                 {
-                    name: 'option-6',
+                    name: 'choice-6',
                     description: 'Poll option',
                     type: ApplicationCommandOptionType.String
                 },
                 {
-                    name: 'option-7',
+                    name: 'choice-7',
                     description: 'Poll option',
                     type: ApplicationCommandOptionType.String
                 },
                 {
-                    name: 'option-8',
+                    name: 'choice-8',
                     description: 'Poll option',
                     type: ApplicationCommandOptionType.String
                 },
                 {
-                    name: 'option-9',
+                    name: 'choice-9',
                     description: 'Poll option',
                     type: ApplicationCommandOptionType.String
                 }
@@ -87,26 +87,28 @@ module.exports = {
         const { options } = interaction
 
         switch (options.getSubcommand()) {
-            case 'start': {
+            case 'create': {
 
                 const name = options.getString('name')
                 const pollOptions = [
-                    options.getString('option-1'),
-                    options.getString('option-2'),
-                    options.getString('option-3'),
-                    options.getString('option-4'),
-                    options.getString('option-5'),
-                    options.getString('option-6'),
-                    options.getString('option-7'),
-                    options.getString('option-8'),
-                    options.getString('option-9')
+                    options.getString('choice-1'),
+                    options.getString('choice-2'),
+                    options.getString('choice-3'),
+                    options.getString('choice-4'),
+                    options.getString('choice-5'),
+                    options.getString('choice-6'),
+                    options.getString('choice-7'),
+                    options.getString('choice-8'),
+                    options.getString('choice-9')
                 ]
 
                 const pollEmbed = new EmbedBuilder()
                 .setColor('#ff3f3f')
-                .setTitle(`Poll: "${name}"`)
+                .setFooter({ text: `Poll by ${interaction.user.username}#${interaction.user.discriminator}` })
+                .setTimestamp()
+                .setTitle(name)
 
-                let description = 'Poll options:\n\n'
+                let description = ''
                 let emojiNum = 0
                 let emoji
 
@@ -123,11 +125,9 @@ module.exports = {
                     if(emojiNum == 7) emoji = '<:num_eight:1071210745104171088>'
                     if(emojiNum == 8) emoji = '<:num_nine:1071210750183489536>'
 
-                    description += `${emoji} = ${option},\n`
+                    description += `${emoji} = ${option}\n\n`
                     emojiNum++
                 }
-
-                description += '\n**React to vote!**'
 
                 pollEmbed.setDescription(description)
 
@@ -157,16 +157,17 @@ module.exports = {
 
                 const notfoundEmbed = new EmbedBuilder()
                 .setColor('#ff3f3f')
-                .setTitle('End Failed <:status_warning:1071210887349809182>')
-                .setDescription('Poll end failed because the poll ID is either invalid or the message does not originate from this channel.')
+                .setDescription('<:obcross:1073595895360258118> Could not find poll.')
+
 
                 interaction.channel.messages.fetch(pollID).then((message) => {
 
                     const title = message.embeds[0].title
                     const description = message.embeds[0].description
+                    const footer = message.embeds[0].footer
                     const reactions = message.reactions.cache
 
-                    let pollResults = 'Poll results:\n\n'
+                    let pollResults = ''
 
                     let allowedReactions = [
                         '<:num_one:1071210751584370688>',
@@ -186,30 +187,30 @@ module.exports = {
                             const row = description.split(`<:${reaction.emoji.name}:${reaction.emoji.id}>`)
 
                             const emoji = `<:${reaction.emoji.name}:${reaction.emoji.id}>`
-                            const option = row[1].split(' = ')[1].split(',')[0]
+                            const option = row[1].split(' = ')[1].split('\n\n')[0]
                             const count = reaction.count - 1
 
-                            pollResults += `${emoji} = ${option}, **(${count})**\n`
+                            pollResults += `${emoji} = ${option} **(${count} votes)**\n\n`
 
                         }
                     })
-
-                    pollResults += '\nPoll has ended.\n**Thanks for voting!**'
 
                     const endEmbed = new EmbedBuilder()
                     .setColor('#ff3f3f')
                     .setTitle(title)
                     .setDescription(pollResults)
+                    .setFooter(footer)
+                    .setTimestamp()
 
                     const editedEmbed = new EmbedBuilder()
-                    .setColor('#ff3f3f')
-                    .setTitle('Ended Successfully <:status_check:1071210743170609292>')
-                    .setDescription('Poll was ended successfully.')
+                    .setColor('#43b581')
+                    .setDescription('<:obcheck:1073595892701069362> Ended poll.')
 
+                    message.reactions.removeAll()
                     message.edit({ embeds: [endEmbed] })
                     interaction.reply({ embeds: [editedEmbed] })
 
-                }).catch(() => { return interaction.reply({ embeds: [notfoundEmbed] }) })
+                }).catch((err) => { return interaction.reply({ embeds: [notfoundEmbed] }), console.log(err) })
 
                 return 
 
