@@ -96,7 +96,7 @@ module.exports = {
                 .setTitle('Add Failed <:obcross:1073595895360258118>')
                 .setDescription('Role add failed because you do not have the required permissions to add that role to that member.. Whatchu tryna do huh? 🤨')
 
-                if(interaction.member.roles.highest.position < role.position) return interaction.reply({ embeds: [noPermsEmbed] })
+                if(interaction.member.roles.highest.position <= role.position) return interaction.reply({ embeds: [noPermsEmbed] })
                 if(!role.editable) return interaction.reply({ embeds: [hierarchyEmbed] })
                 if(member.roles.cache.find(r=>r.id==role.id)) return interaction.reply({ embeds: [hasRoleEmbed] })
                 return interaction.reply({ embeds: [addedEmbed] }), member.roles.add(role)
@@ -128,7 +128,7 @@ module.exports = {
                 .setTitle('Remove Failed <:obcross:1073595895360258118>')
                 .setDescription('Role remove failed because you do not have the required permissions to remove that role from that member.. Whatchu tryna do huh? 🤨')
 
-                if(interaction.member.roles.highest.position < role.position) return interaction.reply({ embeds: [noPermsEmbed] })
+                if(interaction.member.roles.highest.position <= role.position) return interaction.reply({ embeds: [noPermsEmbed] })
                 if(!role.editable) return interaction.reply({ embeds: [hierarchyEmbed] })
                 if(member.roles.cache.find(r=>r.id==role.id)) return interaction.reply({ embeds: [removedEmbed] }), member.roles.remove(role)
                 return interaction.reply({ embeds: [noRoleEmbed] })
