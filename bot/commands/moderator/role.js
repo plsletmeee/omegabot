@@ -4,7 +4,7 @@ const client = require('../../index')
 module.exports = {
     name: 'role',
     description: 'role',
-    defaultMemeberPermissions: PermissionFlagsBits.ManageRoles,
+    defaultMemeberPermissions: PermissionFlagsBits.Administrator,
     options: [
         {
             name: 'add',
