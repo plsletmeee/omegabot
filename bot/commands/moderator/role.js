@@ -4,7 +4,6 @@ const client = require('../../index')
 module.exports = {
     name: 'role',
     description: 'role',
-    defaultMemeberPermissions: PermissionFlagsBits.Administrator,
     options: [
         {
             name: 'add',
@@ -73,6 +72,8 @@ module.exports = {
         switch (options.getSubcommand()) {
             case 'add': {
 
+                if(!interaction.member.permissions.has(PermissionFlagsBits.ManageRoles)) return interaction.reply({ embeds: [new EmbedBuilder().setColor('Red').setDescription('<:obcross:1073595895360258118> You do not have permissions to use this command')] })
+
                 const role = options.getRole('role')
                 const member = options.getMember('user')
 
@@ -104,6 +105,8 @@ module.exports = {
             }
 
             case 'remove': {
+
+                if(!interaction.member.permissions.has(PermissionFlagsBits.ManageRoles)) return interaction.reply({ embeds: [new EmbedBuilder().setColor('Red').setDescription('<:obcross:1073595895360258118> You do not have permissions to use this command')] })
 
                 const role = options.getRole('role')
                 const member = options.getMember('user')
