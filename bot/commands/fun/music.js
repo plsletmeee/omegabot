@@ -12,7 +12,7 @@ module.exports = {
             options: [
                 {
                     name: 'query',
-                    description: 'The name or link to a YouTube song',
+                    description: 'The name or link to a Spotify song',
                     type: ApplicationCommandOptionType.String,
                     required: true
                 }
@@ -73,8 +73,10 @@ module.exports = {
             case 'play': {
                 const query = interaction.options.getString('query')
 
+                if(query.includes('youtu')) return interaction.reply({ content: '<:obcross:1073595895360258118> You cannot use YouTube videos as a query.', ephemeral: true })
+
                 client.distube.play( voiceChannel, query, { textChannel: interaction.channel, member: interaction.member })
-                return interaction.reply('<:music_song:1062132646341267466> Added music to queue.')
+                return interaction.reply('Added music to queue.')
             }
 
             case 'volume': {
@@ -85,12 +87,12 @@ module.exports = {
                 if(!queue) return interaction.reply({ content: '<:obcross:1073595895360258118> No music in queue.', ephemeral: true })
 
                 client.distube.setVolume(voiceChannel, percent)
-                return interaction.reply(`<:music_volume:1062132652041326652> Volume adjusted to \`${percent}%\``)
+                return interaction.reply(`Volume adjusted to \`${percent}%\``)
             }
 
             case 'leave': {
                 client.distube.voices.get(voiceChannel)?.leave()
-                return interaction.reply(`<:music_stop:1062132650812395631> Left voice channel.`)
+                return interaction.reply(`Left voice channel.`)
             }
 
             case 'queue': {
@@ -100,7 +102,7 @@ module.exports = {
 
                 const queueEmbed = new EmbedBuilder()
                 .setColor('#ff3f3f')
-                .setTitle('<:music_song:1062132646341267466> Music Queue')
+                .setTitle('Music Queue')
                 .setDescription(`${queue.songs.map(
                     (song, id) => `\n**${id + 1}**. ${song.name} - \`[${song.formattedDuration}]\``
                 )}`)
@@ -108,20 +110,20 @@ module.exports = {
                 switch(options) {
                     case 'stop': 
                         queue.stop(voiceChannel)
-                        return interaction.reply(`<:music_stop:1062132650812395631> Music queue has been stopped.`)
+                        return interaction.reply(`Music queue has been stopped.`)
                     case 'skip': 
                         queue.skip(voiceChannel)
-                        return interaction.reply(`<:music_skip:1062132642977419374> Music has been skipped.`)
+                        return interaction.reply(`Music has been skipped.`)
                     case 'pause': 
                         queue.pause(voiceChannel)
-                        return interaction.reply(`<:music_pause:1062132647641501736> Music has been paused.`)
+                        return interaction.reply(`Music has been paused.`)
                     case 'resume': 
                         queue.resume(voiceChannel)
-                        return interaction.reply(`<:music_resume:1062132649608630472> Music has been resumed.`)
+                        return interaction.reply(`Music has been resumed.`)
                     case 'loop':
                         const state = queue.repeatMode
-                        if(state == 0) client.distube.setRepeatMode(voiceChannel, 1), interaction.reply(`<:music_loop:1062761497094262854> Music looping has been enabled.`)
-                        if(state == 1) client.distube.setRepeatMode(voiceChannel, 1), interaction.reply(`<:music_loop:1062761497094262854> Music looping has been disabled.`)
+                        if(state == 0) client.distube.setRepeatMode(voiceChannel, 1), interaction.reply(`Music looping has been enabled.`)
+                        if(state == 1) client.distube.setRepeatMode(voiceChannel, 1), interaction.reply(`Music looping has been disabled.`)
                         return
                     case 'list': 
                         return interaction.reply({ embeds: [queueEmbed] })
