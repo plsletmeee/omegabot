@@ -28,6 +28,7 @@ module.exports = {
             if(data.Spam === message.channel.id) return
 
             const channel = message.guild.channels.cache.get(data.Channel)
+            if(!channel) return
 
         LevelSchema.findOne({ Guild : message.guild.id, ID : message.author.id }, async (err, data) => {
 
