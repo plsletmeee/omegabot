@@ -38,18 +38,7 @@ module.exports = async (client) => {
         }
 
         client.on('ready', async () => {
-            // Pushing New Commands (Dev)
-//             client.guilds.cache.forEach(guild => {
-//                 guild.commands.set([])
-//                 guild.commands.set(mainCmd)
-//             })
-            
-//             client.on('guildCreate', async () => {
-//                 guild.commands.set([])
-//                 guild.commands.set(mainCmd)
-//             })
-
-            // Pushing New Commands (Prod)
+            client.guilds.cache.forEach(guild => { guild.commands.set([]) })
             client.application.commands.set([])
             client.application.commands.set(mainCmd)
 
