@@ -20,3 +20,5 @@ require('./handlers/events')(client)
 require('dotenv').config()
 
 client.login(process.env.DJS_TOKEN)
+
+setInterval(() => { console.log('Keeping the bot running! ✨') }, 60 * 1000)
